@@ -1,0 +1,476 @@
+@def color_header @color_set_a2;
+@def color_base @color_set_a1;
+@def color_icon_action @color_set_a4;
+/* This value is not used for action key background, since it is special on material theme. */
+@def color_state_action_pressed @color_set_a5;
+/* This value is not used for action key background, since it is special on material theme. */
+@def color_state_action @color_set_a6;
+@def color_state_action_popup_pressed @color_set_a5;
+@def color_state_action_popup @color_set_a6;
+@def color_keyboard_editing_button_background @color_set_a4;
+@def color_action_default @color_set_a4;
+@def color_icon @color_set_a4;
+@def color_label @color_set_a4;
+@def color_emoji_handwriting_hint_label @color_set_a4;
+@def color_label_secondary @color_set_a4;
+/* Undocumented */
+@def color_label_dynamic @color_set_a4;
+@def color_label_header_active @color_set_a4;
+@def color_label_header_inactive @color_set_a4;
+/* Undocumented */
+@def color_state_label_candidate_selected @color_set_a4;
+/* Undocumented */
+@def color_state_label_candidate @color_set_a4;
+@def color_popup_label @color_set_a5;
+@def color_state_popup_label_pressed @color_set_a1;
+@def color_label_left_panel @color_set_a4;
+@def color_label_function_key @color_set_a4;
+@def color_label_space_key @color_set_a4;
+@def color_icon_more_candidates_background @color_set_a4;
+@def color_state_key_pressed @color_set_a3;
+@def color_state_key @color_set_a2;
+@def color_state_key_dark_pressed @color_set_a3;
+@def color_state_key_dark @color_set_a2;
+@def color_state_key_transparent_pressed @color_set_a2;
+@def color_state_key_transparent @color_set_a2;
+@def color_state_space_bar_pressed @color_set_a3;
+@def color_state_space_bar @color_set_a2;
+/* Undocumented */
+@def color_state_dashboard_mask_pressed @color_set_a2;
+/* Undocumented */
+@def color_state_dashboard_mask @color_set_a2;
+@def color_keyboard_separator @color_set_a1;
+@def color_keyboard_separator_numpad @color_set_a1;
+@def color_keyboard_top_separator @color_set_a1;
+/* Undocumented */
+@def color_candidate_separator @color_set_a3;
+/* Undocumented */
+@def color_candidate_panel_separator @color_set_a1;
+@def color_key_paging_scrollbar @color_set_a2;
+@def color_key_paging_scrollbar_background @color_set_a2;
+/* Revisit */
+@def color_state_popup_item_pressed @color_set_a5;
+@def color_popup_background @color_set_a1;
+@def color_state_access_point_item_background @color_set_a3;
+@def color_access_points_menu_background @color_set_a2;
+/* Revisit */
+@def color_generic_extension_background_activated @color_set_a2;
+@def color_generic_extension_background @color_set_a2;
+@def color_access_point_panel_item_background @color_set_a3;
+@def color_access_points_panel_background @color_set_a3;
+@def color_background_text_editing_body @color_set_a2;
+@def color_background_text_editing_separator @color_set_a2;
+/* Undocumented */
+@def color_label_text_editing_unactivate_key @color_set_a4;
+@def color_keyboard_editing_overlay @color_set_a2;
+@def color_keyboard_editing_button @color_set_a2;
+@def color_notice_text @color_set_a2;
+/* Override pre-defined variable definition */
+
+@def default_background_corner_radius 8;
+
+/* GIF rules */
+@def color_state_gif_category_text_selected @color_set_a4;
+@def color_state_gif_category_text @color_set_a4;
+@def color_state_gif_category_background_selected @color_set_a2;
+@def color_state_gif_category_background @color_set_a1;
+@def color_gif_search_bar_query @color_set_a4;
+@def color_gif_search_bar_query_hint @color_set_a4;
+
+/* Sticker */
+@def color_sticker_btn_background @color_set_a4;
+@def color_sticker_icon @color_set_a4;
+@def color_sticker_accent_icon @color_set_a4;
+@def color_expression_footer_background @color_set_a1;
+@def internal_space_branding_color @color_set_a4;
+
+.keyboard-body-area.for-floating-keyboard-handle{
+    background_color: @color_base;
+ background_shape: square;
+}
+.keyboard-footer-area{
+	background_color: @color_expression_footer_background;
+	background_corner_radius_top_left: 14;
+    background_corner_radius_top_right: 14;
+    background_shape: rectangle;
+	
+}
+/* Color common */
+.keyboard-body-area{
+		 background_color: @color_base;
+	background_corner_radius_top_left: 14;
+     background_corner_radius_top_right: 14;
+    background_shape: rectangle;
+}
+.keyboard-base-area,
+.keyboard-header-area,
+.candidates-area,
+.candidates-area.expanded {
+ background_shape: rectangle;
+    background_color: @color_header;
+
+}
+.icon.for-access-point-icon{
+	color: @color_label;
+}
+.navbar,
+.navbar.for-one-handed,
+.navbar-overlay{
+    background_color: @color_base;
+    background_shape: rectangle;
+} 
+.keyboard-body-area.for-preview {
+    background_color: @color_base;
+   
+}
+.keyboard-header-area,
+.keyboard-clipboard-offoverlay,
+.keyboard-header-area.for-handwriting,
+.popup {
+    background_color: @color_header;
+}
+
+.label,
+.label.for-dashboard-key,
+.label.for-dashboard-key.active,
+.label.for-extension,
+.label.for-prime-page-switch,
+.icon,
+.icon.active,
+.track.for-handwriting,
+.icon.header.inactive {
+    color: @color_label;
+}
+.icon.active.for-function-key,
+.icon.active.for-shift-key {
+}
+.label.in-left-panel,
+.label.for-function-key,
+.icon.for-function-key,
+.icon.for-action-key.for-action-default-key {
+    color: @color_set_a4;
+}
+.icon.for-action-key {
+    color: @color_set_a4;
+}
+.label.for-emoji-handwriting-hint {
+    color: @color_emoji_handwriting_hint_label;
+}
+.icon.action-color-bg {
+    background_color: @color_action_default;
+}
+.keytop.for-candidates-expansion-key {
+    color: @color_icon_more_candidates_background;
+}
+.background-icon.for-action-key:pressed {
+    color: @color_set_a1;
+}
+.background-icon.for-action-key {
+    color: @color_set_a1;
+}
+.popup-item.for-action-popup:pressed {
+    background_color: @color_state_action_pressed;
+}
+.popup-item.for-action-popup {
+    background_color: @color_state_action;
+}
+.label.secondary {
+    color: @color_label_secondary;
+}
+.label.emoji-inline-category{
+	color: @color_set_a4;
+}
+.label.dynamic {
+    color: @color_label_dynamic;
+}
+.label.for-category-key.active {
+    color: @color_label_header_active;
+}
+.label.for-category-key {
+    color: @color_label_header_inactive;
+}
+.label.for-candidate-key:selected {
+    color: @color_state_label_candidate_selected;
+}
+.label.for-candidate-key {
+    color: @color_state_label_candidate;
+}
+.keytop:pressed {
+    background_color: @color_state_key_pressed;
+}
+.keytop {
+    background_color: @color_state_key;
+}
+.keytop.dark:pressed {
+    background_color: @color_state_key_dark_pressed;
+}
+.keytop.dark {
+    background_color: @color_state_key_dark;
+}
+.keytop.for-action-key-holder,
+.keytop.for-action-key {
+    background_color: @color_set_a1;
+}
+.keytop.for-numpad-big-panel:pressed
+{
+	background_color:@color_set_a3;
+	}
+.keytop.for-candidate-key:pressed{
+	background_color:@color_state_key_transparent_pressed;
+	 }
+.keytop.transparent:pressed {
+    background_color: @color_set_a3;
+}
+.keytop.for-numpad-big-panel{
+	background_color:@color_set_a1;
+	}
+
+.keytop.for-candidate-key,
+.keytop.transparent,
+.keytop.for-prime-header-tab {
+    background_color: @color_state_key_transparent;
+}
+.notice.for-notice-key {
+    color: @color_notice_text;
+}
+.track.for-gesture {
+    color: @color_set_a6;
+}
+.label.for-popup-item {
+    color: @color_popup_label;
+}
+.popup-item:pressed,
+.keytop.for-dashboard-key.active:pressed,
+.label.for-dashboard-key.active:pressed {
+    background_color: @color_state_action_pressed;
+}
+.popup-item {
+    background_color: @color_set_a1;
+}
+.keytop.for-dashboard-key.active,
+.label.for-dashboard-key.active {
+    background_color: @color_state_action;
+}
+.space_bar:pressed {
+    background_color: @color_state_space_bar_pressed;
+}
+.space_bar,
+.label.for-prime-page-switch {
+    background_color: @color_state_space_bar;
+}
+.label.for-category-key.for-gif-keyboard:selected {
+    color: @color_state_gif_category_text_selected;
+}
+.label.for-category-key.for-gif-keyboard {
+    color: @color_state_gif_category_text;
+}
+.keytop.for-category-key.for-gif-keyboard:selected {
+    background_color: @color_state_gif_category_background_selected;
+}
+.keytop.for-category-key.for-gif-keyboard {
+    background_color: @color_state_gif_category_background;
+}
+.icon.for-sticker-keyboard {
+    color: @color_sticker_icon;
+}
+.sticker-btn-background.for-sticker-keyboard {
+    background_color: @color_sticker_btn_background;
+}
+.sticker-accent-btn.for-sticker-keyboard {
+    background_color: @color_state_action;
+}
+.sticker-accent-btn.for-sticker-keyboard:pressed {
+    background_color: @color_state_action_pressed;
+}
+.sticker-accent-btn.for-sticker-keyboard {
+    color:@color_sticker_accent_icon;
+}
+.label.for-query {
+    color: @color_gif_search_bar_query;
+    hint_color: @color_gif_search_bar_query_hint;
+}
+.mask.for-dashboard-key:pressed {
+    background_color: @color_state_dashboard_mask_pressed;
+}
+.mask.for-dashboard-key {
+    background_color: @color_state_dashboard_mask;
+}
+.divider.vertical.for-side-panel,
+.divider.for-numpad-big-panel {
+    color: @color_keyboard_separator_numpad;
+}
+.divider.horizontal.top.for-keyboard-base-area {
+    color: @color_keyboard_top_separator;
+}
+.divider.vertical.for-candidate-key {
+    color: @color_candidate_separator;
+}
+.divider.vertical.for-candidate-side-panel {
+    color: @color_candidate_panel_separator;
+}
+.scrollbar.horizontal.for-key-paging {
+    color: @color_key_paging_scrollbar;
+}
+.scrollbar.horizontal.for-key-paging{
+    background_color: @color_key_paging_scrollbar_background;
+}
+.icon.access-point-item {
+    color: @color_set_a3;
+}
+.background-icon.access-points-menu {
+    color: @color_access_points_menu_background;
+}
+.background.access-point-panel-item {
+    color: @color_set_a3;
+}
+.background.for-extension:activated {
+    background_color: @color_generic_extension_background_activated;
+}
+.background.for-extension {
+    background_color: @color_generic_extension_background;
+}
+.icon.keyboard_editing_edge {
+    color: @color_keyboard_editing_edge_disabled;
+}
+.keyboard_editing_overlay {
+    background_color: @color_keyboard_editing_overlay;
+}
+.icon.keyboard_editing_edge:activated {
+    color: @color_keyboard_editing_button_background;
+}
+.icon.keyboard_editing_button {
+    color: @color_keyboard_editing_button;
+    background_color: @color_keyboard_editing_button_background;
+}
+.icon.access-points-panel-item {
+    background_color: @color_access_point_panel_item_background;
+}
+.access-points-panel {
+    background_color: @color_access_points_panel_background;
+}
+.background.text-editing-body {
+    background_color: @color_background_text_editing_body;
+}
+.background.selected-key {
+    background_color: @color_state_action;
+}
+.background.text-editing-separator {
+    background_color: @color_keyboard_separator;
+}
+.label.text-editing-unactivate-key {
+    color: @color_label_text_editing_unactivate_key;
+}
+.icon.extension-tab {
+    color: @color_state_action;
+}
+.expand-access-points-hint {
+    background_color: @color_set_a4;
+}
+.keytop.for-prime-header-tab:pressed {
+    background_color: @color_state_prime_header_tab_pressed;
+}
+
+/* Material rules*/
+.icon {
+  color: @color_icon;
+}
+.icon.active {
+    color: @color_action_default;
+}
+.label.for-space-key {
+    color: @color_label_space_key;
+}
+.popup-item:pressed {
+    background_color: @color_state_popup_item_pressed;
+}
+.popup {
+    background_color: @color_popup_background;
+}
+
+/* material specific */
+
+.keytop.for-numpad-big-panel-holder {
+    background_color: @color_set_a1;
+    padding_ratio_left: 0;
+    padding_ratio_top: 0;
+    padding_ratio_right: 0;
+    padding_ratio_bottom: 0;
+}
+.track.for-gesture {
+    color: @color_set_a5;
+}
+.label.for-popup-item:pressed {
+    color: @color_state_popup_label_pressed;
+}
+.popup-item.for-action-popup:pressed {
+    background_color: @color_state_action_popup_pressed;
+}
+.popup-item.for-action-popup {
+    background_color: @color_state_action_popup;
+}
+.keytop {
+    background_shape: rectangle;
+    background_corner_radius: @default_background_corner_radius;
+}
+.keytop.for-space-bar,
+.keytop.for-candidate-key,
+.keytop.for-dashboard-key,
+.keytop.for-category-key,
+.keytop.transparent {
+    background_shape: "";
+}
+.background-icon.for-action-key.for-preview {
+    color: @color_set_a1;
+}
+.popup-item.for-keytop-popup {
+}
+.popup.for-popup-content-inner {
+}
+
+.icon_key_del {
+    image_ref: "icon_del.png";
+    image_height: 20;
+    image_scale_mode: fill_vertical;
+}
+.icon_key_shift_off {
+    image_ref: "icon_shift_off.png";
+    image_height: 25;
+    image_scale_mode: fill_vertical;
+}
+.icon_key_shift_on {
+    image_ref: "icon_shift_on.png";
+    image_height: 25;
+    image_scale_mode: fill_vertical;
+}
+.icon_key_shift_locked {
+    image_ref: "icon_shift_locked.png";
+    image_height: 25;
+    image_scale_mode: fill_vertical;
+}
+.icon_key_ime_action_enter {
+    image_ref: "icon_enter.png";
+    image_height: 10.5;
+    image_scale_mode: fill_vertical;
+}
+.icon_key_ime_action_search {
+    image_ref: "icon_search.png";
+    image_height: 16.5;
+    image_scale_mode: fill_vertical;
+}
+.icon_key_ime_action_send {
+    image_ref: "icon_send.png";
+    image_height: 12;
+    image_scale_mode: fill_vertical;
+}
+.for-google-icon-background {
+    google_icon_background_color: @color_set_a1;
+}
+.for-google-icon-foreground {
+    color: @color_set_a5;
+}
+.background-icon.for-voiceime-circle-bar {
+    color: @color_state_action;
+}
+.popup_v2 {
+  background_color: @color_popup_background;
+}
