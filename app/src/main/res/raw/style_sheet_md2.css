@@ -2,11 +2,11 @@
 @def color_base @color_set_a1;
 @def color_icon_action @color_set_a4;
 /* This value is not used for action key background, since it is special on material theme. */
-@def color_state_action_pressed @color_set_a5;
+@def color_state_action_pressed @color_set_a6;
 /* This value is not used for action key background, since it is special on material theme. */
-@def color_state_action @color_set_a6;
-@def color_state_action_popup_pressed @color_set_a5;
-@def color_state_action_popup @color_set_a6;
+@def color_state_action @color_set_a5;
+@def color_state_action_popup_pressed @color_set_a6;
+@def color_state_action_popup @color_set_a5;
 @def color_keyboard_editing_button_background @color_set_a4;
 @def color_action_default @color_set_a4;
 @def color_icon @color_set_a4;
@@ -41,7 +41,6 @@
 @def color_state_dashboard_mask @color_set_a2;
 @def color_keyboard_separator @color_set_a1;
 @def color_keyboard_separator_numpad @color_set_a1;
-@def color_keyboard_top_separator @color_set_a1;
 /* Undocumented */
 @def color_candidate_separator @color_set_a3;
 /* Undocumented */
@@ -93,7 +92,7 @@
 	background_corner_radius_top_left: 14;
     background_corner_radius_top_right: 14;
     background_shape: rectangle;
-	
+
 }
 /* Color common */
 .keyboard-body-area{
@@ -118,10 +117,10 @@
 .navbar-overlay{
     background_color: @color_base;
     background_shape: rectangle;
-} 
+}
 .keyboard-body-area.for-preview {
     background_color: @color_base;
-   
+
 }
 .keyboard-header-area,
 .keyboard-clipboard-offoverlay,
@@ -228,7 +227,6 @@
 .keytop.for-candidate-key,
 .keytop.transparent,
 .keytop.for-prime-header-tab {
-    background_color: @color_state_key_transparent;
 }
 .notice.for-notice-key {
     color: @color_notice_text;
