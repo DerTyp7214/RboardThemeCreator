@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Rboard Theme Creator</string>
     <string name="share_theme">Share Theme</string>
+    <string name="generate_theme">Do me theme pls</string>
+    <string name="dark">Dark</string>
 </resources>

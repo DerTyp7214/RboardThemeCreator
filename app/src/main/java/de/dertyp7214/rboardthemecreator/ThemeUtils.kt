@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.util.Log
 import android.util.TypedValue
 import androidx.annotation.ColorInt
 import androidx.appcompat.view.ContextThemeWrapper
@@ -15,23 +16,27 @@ import de.dertyp7214.rboardthemecreator.data.ThemeMetadata
 import java.io.BufferedReader
 import java.io.File
 import java.io.InputStreamReader
+import kotlin.math.min
 
 
 object ThemeUtils {
-    fun generateTheme(context: Context, @ColorInt color: Int): File {
+    fun generateTheme(context: Context, @ColorInt color: Int, dark: Boolean = false): File {
         val workingDir = File(context.filesDir, "theme")
         if (!workingDir.exists()) workingDir.mkdirs()
         workingDir.listFiles()?.forEach { it.delete() }
 
         val defs = StringBuilder()
 
-        val colorSetA1 = changeHSL(color, -1, 40, 40)
-        val colorSetA2 = changeHSL(colorSetA1, -1, 0, -4)
-        val colorSetA3 = changeHSL(colorSetA2, -1, -16, -14)
+        val colorSetA1 = if (dark) changeHSL(color, -1, -40, -40) else changeHSL(color, -1, 40, 40)
+        val colorSetA2 =
+            if (dark) changeHSL(colorSetA1, -1, 0, 4) else changeHSL(colorSetA1, -1, 0, -4)
+        val colorSetA3 =
+            if (dark) changeHSL(colorSetA2, -1, 16, 14) else changeHSL(colorSetA2, -1, -16, -14)
         val colorSetA4 =
             if (ColorUtils.calculateLuminance(colorSetA1) < .5) Color.WHITE else Color.BLACK
         val colorSetA5 = changeHSL(color, 0, 0, 0)
-        val colorSetA6 = changeHSL(colorSetA5, -1, 27, -41)
+        val colorSetA6 =
+            if (dark) changeHSL(colorSetA5, -1, -27, 41) else changeHSL(colorSetA5, -1, 27, -41)
 
         defs.append("@def color_set_a1 ${colorSetA1.toHex()}FF;\n")
         defs.append("@def color_set_a2 ${colorSetA2.toHex()}FF;\n")
@@ -40,13 +45,13 @@ object ThemeUtils {
         defs.append("@def color_set_a5 ${colorSetA5.toHex()}FF;\n")
         defs.append("@def color_set_a6 ${colorSetA6.toHex()}FF;\n")
 
-        val themeName = "Color Theme"
+        val themeName = "Color Theme (${color.toHex()})"
 
         File(workingDir, "style_sheet_variables.css").writeText(defs.toString())
         File(workingDir, "metadata.json").writeText(
             ThemeMetadata(
                 name = themeName,
-                is_light_theme = ColorUtils.calculateLuminance(colorSetA1) < .5
+                is_light_theme = ColorUtils.calculateLuminance(colorSetA1) > .5
             ).toString()
         )
         File(workingDir, "style_sheet_md2.css").writeText(getRaw(context, R.raw.style_sheet_md2))
@@ -57,7 +62,7 @@ object ThemeUtils {
             )
         )
 
-        val zip = File(workingDir, "${themeName.replace(" ", "_")}.zip")
+        val zip = File(workingDir, "${themeName.replace(" ", "_").replace(Regex("[()#]"), "")}.zip")
         val pack = File(context.cacheDir, "theme.pack")
 
         Zip().apply {
@@ -109,10 +114,14 @@ object ThemeUtils {
     private fun changeHSL(color: Int, h: Int, s: Int, l: Int): Int {
         val hsl = FloatArray(3)
         ColorUtils.colorToHSL(color, hsl)
-        hsl[0] = if (hsl[0] + h > 360) hsl[0] + h - 360 else hsl[0] + h
-        hsl[1] = hsl[1] + (s / 100F)
-        hsl[2] = hsl[2] + (l / 100F)
-        return ColorUtils.HSLToColor(hsl)
+        Log.d("AA", hsl.joinToString(","))
+        Log.d("AA", "$h $s $l ${color.toHex()}")
+        hsl[0] =
+            if (hsl[0] + h > 360) hsl[0] + h - 360 else if (hsl[0] + h < 0) hsl[0] + h + 360 else hsl[0] + h
+        hsl[1] = min(hsl[1] + (s / 100F), .95F)
+        hsl[2] = min(hsl[2] + (l / 100F), .95F)
+        Log.d("BB", hsl.joinToString(","))
+        return ColorUtils.HSLToColor(hsl).also { Log.d("BB", it.toHex()) }
     }
 
     fun getSystemAccent(context: Context): Int {
