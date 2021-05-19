@@ -94,6 +94,10 @@
     background_shape: rectangle;
 
 }
+
+.icon.clipboard-suggestion-paste-icon{
+color: @color_state_action_popup;
+}
 /* Color common */
 .keyboard-body-area{
 		 background_color: @color_base;
@@ -162,8 +166,8 @@
     color: @color_icon_more_candidates_background;
 }
 .background-icon.for-action-key:pressed {
-    color: @color_set_a1;
-}
+color: @color_set_a3;
+ }
 .background-icon.for-action-key {
     color: @color_set_a1;
 }
@@ -195,16 +199,16 @@
     color: @color_state_label_candidate;
 }
 .keytop:pressed {
-    background_color: @color_state_key_pressed;
+    background_color: @color_set_a3;
 }
 .keytop {
-    background_color: @color_state_key;
+    background_color: @color_set_a1;
 }
 .keytop.dark:pressed {
-    background_color: @color_state_key_dark_pressed;
-}
+background_color: @color_set_a3;
+    }
 .keytop.dark {
-    background_color: @color_state_key_dark;
+background_color: @color_set_a1;
 }
 .keytop.for-action-key-holder,
 .keytop.for-action-key {

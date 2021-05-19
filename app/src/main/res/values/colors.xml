@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +7,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+
+    <color name="accent_200" tools:ignore="NewApi">@android:color/system_accent1_200</color>
+    <color name="neutral_500" tools:ignore="NewApi">@android:color/system_neutral1_500</color>
+
+    <color name="neutral_700" tools:ignore="NewApi">@android:color/system_neutral1_800</color>
+    <color name="neutral_900" tools:ignore="NewApi">@android:color/system_neutral1_900</color>
+
+    <color name="neutral_0" tools:ignore="NewApi">@android:color/system_neutral1_0</color>
+    <color name="accent2_50" tools:ignore="NewApi">@android:color/system_accent2_50</color>
 </resources>

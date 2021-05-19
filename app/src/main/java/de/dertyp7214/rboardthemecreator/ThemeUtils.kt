@@ -1,10 +1,12 @@
 package de.dertyp7214.rboardthemecreator
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.os.Build
 import android.util.TypedValue
 import android.widget.ImageView
 import androidx.annotation.ColorInt
@@ -23,10 +25,12 @@ import java.io.InputStreamReader
 import kotlin.math.min
 
 object ThemeUtils {
+    @SuppressLint("NewApi")
     fun generateTheme(
         context: Context,
         @ColorInt color: Int,
         dark: Boolean = false,
+        monet: Boolean = true,
         image: Bitmap? = null
     ): File {
         val workingDir = File(context.filesDir, "theme")
@@ -35,16 +39,40 @@ object ThemeUtils {
 
         val defs = StringBuilder()
 
-        val colorSetA1 = if (dark) changeHSL(color, -1, -40, -40) else changeHSL(color, -1, 40, 40)
+        val newOs = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+
+        val colorSetA1 =
+            when {
+                monet && newOs && dark -> context.getColor(R.color.neutral_900)
+                monet && newOs -> context.getColor(R.color.accent2_50)
+                dark -> changeHSL(
+                    color,
+                    -1,
+                    -40,
+                    -40
+                )
+                else -> changeHSL(color, -1, 40, 40)
+            }
         val colorSetA2 =
-            if (dark) changeHSL(colorSetA1, -1, 0, 4) else changeHSL(colorSetA1, -1, 0, -4)
+            when {
+                monet && newOs && dark -> context.getColor(R.color.neutral_700)
+                monet && newOs -> context.getColor(R.color.neutral_0)
+                dark -> changeHSL(
+                    colorSetA1,
+                    -1,
+                    0,
+                    4
+                )
+                else -> changeHSL(colorSetA1, -1, 0, -4)
+            }
         val colorSetA3 =
             if (dark) changeHSL(colorSetA2, -1, 16, 14) else changeHSL(colorSetA2, -1, -16, -14)
         val colorSetA4 =
             if (ColorUtils.calculateLuminance(colorSetA1) < .5) Color.WHITE else Color.BLACK
-        val colorSetA5 = changeHSL(color, 0, 0, 0)
+        val colorSetA5 =
+            if (monet && newOs) context.getColor(R.color.accent_200) else changeHSL(color, 0, 0, 0)
         val colorSetA6 =
-            if (dark) changeHSL(colorSetA5, -1, -12, 12) else changeHSL(colorSetA5, -1, 27, -41)
+            if (dark) changeHSL(colorSetA5, -1, -27, 15) else changeHSL(colorSetA5, -1, 27, -41)
 
         defs.append("@def color_set_a1 ${colorSetA1.toHex()}FF;\n")
         defs.append("@def color_set_a2 ${colorSetA2.toHex()}FF;\n")
@@ -156,16 +184,47 @@ object ThemeUtils {
         return typedValue.data
     }
 
-    fun parseImage(context: Context, color: Int, dark: Boolean, imageView: ImageView) {
+    @SuppressLint("NewApi")
+    fun parseImage(
+        context: Context,
+        color: Int,
+        dark: Boolean,
+        monet: Boolean,
+        imageView: ImageView
+    ) {
 
-        val colorSetA1 = if (dark) changeHSL(color, -1, -40, -40) else changeHSL(color, -1, 40, 40)
+        val newOs = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+
+        val colorSetA1 =
+            when {
+                monet && newOs && dark -> context.getColor(R.color.neutral_900)
+                monet && newOs -> context.getColor(R.color.accent2_50)
+                dark -> changeHSL(
+                    color,
+                    -1,
+                    -40,
+                    -40
+                )
+                else -> changeHSL(color, -1, 40, 40)
+            }
         val colorSetA2 =
-            if (dark) changeHSL(colorSetA1, -1, 0, 4) else changeHSL(colorSetA1, -1, 0, -4)
+            when {
+                monet && newOs && dark -> context.getColor(R.color.neutral_700)
+                monet && newOs -> context.getColor(R.color.neutral_0)
+                dark -> changeHSL(
+                    colorSetA1,
+                    -1,
+                    0,
+                    4
+                )
+                else -> changeHSL(colorSetA1, -1, 0, -4)
+            }
         val colorSetA3 =
             if (dark) changeHSL(colorSetA2, -1, 16, 14) else changeHSL(colorSetA2, -1, -16, -14)
         val colorSetA4 =
             if (ColorUtils.calculateLuminance(colorSetA1) < .5) Color.WHITE else Color.BLACK
-        val colorSetA5 = changeHSL(color, 0, 0, 0)
+        val colorSetA5 =
+            if (monet && newOs) context.getColor(R.color.accent_200) else changeHSL(color, 0, 0, 0)
         val colorSetA6 =
             if (dark) changeHSL(colorSetA5, -1, -27, 15) else changeHSL(colorSetA5, -1, 27, -41)
 
@@ -178,29 +237,28 @@ object ThemeUtils {
             colorSetA6
         )
 
-        val colorMap = mapOf(
-            Pair(colors[1], listOf("EAEAEA_1", "EAEAEA_2", "EAEAEA_3")),
+        val colorMap = listOf(
             Pair(
-                colors[5], listOf(
-                    "878787_1", "878787_2", "878787_3",
-                    "878787_4", "878787_5", "878787_6"
+                colors[1], listOf(
+                    "FFD0DB_1", "FFD0DB_2", "FFD0DB_3", "FFD0DB_4", "FFD0DB_5",
+                    "FFD0DB_6", "FFD0DB_7", "FFD0DB_8", "FFD0DB_9", "FFD0DB_10",
+                    "FFD0DB_11", "FFD0DB_12", "FFD0DB_13", "FFD0DB_14", "FFD0DB_15",
+                    "FFD0DB_16", "FFD0DB_17", "FFD0DB_18", "FFD0DB_19", "FFD0DB_20",
+                    "FFD0DB_21", "FFD0DB_22", "FFD0DB_23", "FFD0DB_24", "FFD0DB_25",
+                    "FFD0DB_26", "FFD0DB_27", "FFD0DB_28", "FFD0DB_29", "FFD0DB_30",
+                    "FFD0DB_31", "FFD0DB_32", "FFD0DB_33", "FFD0DB_34"
                 )
             ),
-            Pair(colors[2], listOf("FAFAFA_1", "FAFAFA_2", "FAFAFA_3")),
+            Pair(colors[0], listOf("FFE8ED_1", "FFE8ED_2")),
+            Pair(colors[4], listOf("EE5479_1", "EE5479_2", "EE5479_3", "EE5479_4")),
+            Pair(
+                if (ColorUtils.calculateLuminance(colors[4]) < .3) Color.WHITE else Color.BLACK,
+                listOf("000000_8")
+            ),
             Pair(
                 colors[3], listOf(
-                    "000000_1", "000000_2", "000000_3", "000000_4", "000000_5",
-                    "000000_6", "000000_7", "000000_8", "000000_9", "000000_10",
-                    "000000_11", "000000_12", "000000_13", "000000_14", "000000_15",
-                    "000000_16", "000000_17", "000000_18", "000000_19", "000000_20",
-                    "000000_21", "000000_22", "000000_23", "000000_24", "000000_25",
-                    "000000_26", "000000_27", "000000_28", "000000_29", "000000_30",
-                    "000000_31", "000000_32", "000000_33", "000000_34", "000000_35",
-                    "000000_36", "000000_37", "000000_38", "000000_39", "000000_40",
-                    "000000_41", "000000_42", "000000_43", "000000_44", "000000_45",
-                    "000000_46", "000000_47", "000000_48", "000000_49", "000000_50",
-                    "000000_51", "000000_52", "000000_53", "000000_54", "000000_55",
-                    "000000_56", "000000_57", "000000_58_S", "000000_59", "000000_60"
+                    "000000_1", "000000_2", "000000_3", "000000_4",
+                    "000000_5", "000000_6_S", "000000_7"
                 )
             )
         )
@@ -209,8 +267,9 @@ object ThemeUtils {
 
         val sets = hashMapOf<Int, HashMap<String, VectorDrawableCompat.VFullPath>>()
 
-        colors.forEach { c ->
-            colorMap[c]?.forEach { key ->
+        colorMap.forEach { pair ->
+            val c = pair.first
+            pair.second.forEach { key ->
                 val path = vector.findPathByName(key)
                 if (path != null) {
                     if (!sets.containsKey(c)) sets[c] = hashMapOf()
@@ -220,5 +279,7 @@ object ThemeUtils {
                 }
             }
         }
+
+        imageView.invalidate()
     }
 }

@@ -4,17 +4,19 @@ plugins {
 }
 
 android {
-    compileSdk 30
-    buildToolsVersion "30.0.3"
+    compileSdkVersion 'android-S'
+    buildToolsVersion '31.0.0 rc4'
 
     defaultConfig {
         applicationId "de.dertyp7214.rboardthemecreator"
         minSdk 21
-        targetSdk 30
+        targetSdkVersion 'S'
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        vectorDrawables.useSupportLibrary true
     }
 
     buildTypes {

@@ -50,17 +50,18 @@
     shadow_color: @color_set_a1;
     edge_width: 0;
     edge_color: @color_set_a2;
+background_color: @color_set_a2;
 }
 .keytop:pressed{
 	edge_color:@color_set_a3;
 	edge_width: 0;
-
+background_color: @color_set_a3;
 	}
 .keytop.dark,
 .keytop.for-action-key {
     edge_color: @color_set_a2;
 	edge_width: 0;
-
+background_color: @color_set_a2;
 }
 .keytop.for-numpad-big-panel-holder {
     elevation: 0;
