@@ -1,3 +1,1 @@
-# RboardThemeCreator
-
-Build it yourself :)
+# Build it yourself 🙂
