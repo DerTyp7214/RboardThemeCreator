@@ -1,2 +1,2 @@
 rootProject.name = "Rboard Theme Creator"
-include ':app'
+include(":app")

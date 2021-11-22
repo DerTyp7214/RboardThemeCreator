@@ -1,11 +1,19 @@
 package de.dertyp7214.rboardthemecreator
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.preference.SwitchPreference
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
+import de.Maxr1998.modernpreferences.Preference
+import de.Maxr1998.modernpreferences.PreferenceScreen
+import de.Maxr1998.modernpreferences.helpers.*
+import de.Maxr1998.modernpreferences.preferences.choice.SelectionItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import com.devs.vectorchildfinder.VectorDrawableCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -24,14 +32,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val generateTheme = findViewById<MaterialButton>(R.id.generate_theme)
+        val generateTheme = findViewById<Button>(R.id.generate_theme)
         val shareTheme = findViewById<MaterialButton>(R.id.share_theme)
         colorPicker = findViewById(R.id.colorPicker)
         switch = findViewById(R.id.dark)
         monet = findViewById(R.id.monet)
 
         monet.visibility =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) View.VISIBLE else View.GONE
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         monet.isChecked = true
 
         currentColor = ThemeUtils.getSystemAccent(this)

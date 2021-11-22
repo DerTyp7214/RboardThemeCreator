@@ -39,7 +39,7 @@ object ThemeUtils {
 
         val defs = StringBuilder()
 
-        val newOs = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
+        val newOs = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
 
         val colorSetA1 =
             when {

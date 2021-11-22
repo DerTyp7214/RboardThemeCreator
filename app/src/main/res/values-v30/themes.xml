@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.RboardThemeCreator" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:colorBackground">@color/app_background</item>
+        <item name="android:windowLightStatusBar">true</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/accent</item>
         <item name="colorPrimaryVariant">@color/accent</item>
@@ -15,7 +16,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/foreground</item>
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">@color/foreground</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="switchStyle">@style/Widget.App.Switch</item>
 
     </style>

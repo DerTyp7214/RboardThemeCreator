@@ -4,7 +4,7 @@
     android:height="432dp"
     android:viewportWidth="432"
     android:viewportHeight="432">
-  <path
-      android:pathData="M0.27,0.338h432v432H0.27z"
-      android:fillColor="@color/ic_launcher_background"/>
+    <path
+        android:pathData="M0.27,0.338h432v432H0.27z"
+        android:fillColor="@color/ic_launcher_background_monet"/>
 </vector>
