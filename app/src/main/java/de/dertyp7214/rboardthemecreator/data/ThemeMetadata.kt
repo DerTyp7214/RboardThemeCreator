@@ -9,7 +9,6 @@ data class ThemeMetadata(
     val prefer_key_border: Boolean = true,
     val lock_key_border: Boolean = false,
     val is_light_theme: Boolean,
-    val is_redesign_theme: Boolean = true,
     val style_sheets: List<String> = listOf(
         "style_sheet_variables.css",
         "style_sheet_md2.css"

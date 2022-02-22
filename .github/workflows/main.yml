@@ -50,6 +50,9 @@ jobs:
           key: ${{ runner.os }}-build-cache-${{ github.sha }}
           restore-keys: ${{ runner.os }}-build-cache-
 
+      - name: Accept Preview SDK License
+        run: echo -n -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > /usr/local/lib/android/sdk/licenses/android-sdk-preview-license
+
       - name: Build apk
         id: buildAllApks
         uses: gradle/gradle-build-action@v2
