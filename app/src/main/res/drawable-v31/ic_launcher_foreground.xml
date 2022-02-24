@@ -1,45 +1,38 @@
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:width="432dp"
     android:height="432dp"
     android:viewportWidth="432"
     android:viewportHeight="432">
-    <group>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillAlpha=".8"
-            android:pathData="M154.57 307.14c0-2.76 2.24-5 5-5h113.4c2.76 0 5 2.24 5 5v11.14c0 2.76-2.24 5-5 5h-113.4c-2.76 0-5-2.24-5-5z"/>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillAlpha=".8"
-            android:pathData="M133.67 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5z"/>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillAlpha=".8"
-            android:pathData="M133.67 234.66c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5z"/>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillAlpha=".8"
-            android:pathData="M170.49 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5z"/>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillAlpha=".8"
-            android:pathData="M242.15 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5z"/>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillAlpha=".8"
-            android:pathData="M278.97 234.66c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5z"/>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillAlpha=".8"
-            android:pathData="M278.97 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5z"/>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillType="evenOdd"
-            android:pathData="M169.27 132.34v76.54l47.03 39.4l47.5-39.48l0.37-76.46h-94.9zm-5-20H269.2c8.31 0 15.04 6.76 15 15.07l-0.41 83.82c-0.03 4.43-2 8.63-5.42 11.46l-58.91 48.98c-1.86 1.54-4.56 1.54-6.4-0.01l-58.42-48.94c-3.4-2.85-5.37-7.06-5.37-11.5v-83.88c0-8.29 6.72-15 15-15z"/>
-        <path
-            android:fillColor="@color/ic_launcher_foreground_monet"
-            android:fillType="evenOdd"
-            android:pathData="M202 156.5c-7.74 0-14 6.26-14 14V195c0 3.85 3.15 7 7 7h10.5v14c0 3.85 3.15 7 7 7h7c3.85 0 7-3.15 7-7v-14H237c3.85 0 6.97-3.15 6.97-7l0.03-38.5h-42zm0 7h14v7h7v-7h3.5v14h7v-14h3.5V181h-42v-10.5c0-3.85 3.15-7 7-7zm-7 31.5v-7h42v7h-42z"/>
-    </group>
+    <path
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:fillAlpha=".8"
+        android:pathData="M153.9 307.14c0-2.76 2.24-5 5-5h113.4c2.76 0 5 2.24 5 5v11.14c0 2.76-2.24 5-5 5H158.9c-2.76 0-5-2.24-5-5v-11.14Z"/>
+    <path
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:fillAlpha=".8"
+        android:pathData="M133 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5H138c-2.76 0-5-2.24-5-5V270.9Z"/>
+    <path
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:fillAlpha=".8"
+        android:pathData="M133 234.66c0-2.76 2.24-5 5-5h9.9c2.77 0 5 2.24 5 5v10.13c0 2.77-2.23 5-5 5H138c-2.76 0-5-2.23-5-5v-10.13Z"/>
+    <path
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:fillAlpha=".8"
+        android:pathData="M169.82 270.9c0-2.76 2.24-5 5-5h9.9c2.77 0 5 2.24 5 5v10.13c0 2.76-2.23 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z"/>
+    <path
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:fillAlpha=".8"
+        android:pathData="M241.48 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z"/>
+    <path
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:fillAlpha=".8"
+        android:pathData="M278.3 234.66c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.77-2.24 5-5 5h-9.9c-2.76 0-5-2.23-5-5v-10.13Z"/>
+    <path
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:fillAlpha=".8"
+        android:pathData="M278.3 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z"/>
+    <path
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:fillType="evenOdd"
+        android:pathData="M274 225.95c5.92-4.94 9.33-12.25 9.33-19.95v-94h-98c-20.43 0-37 16.57-37 37v57.11c0 7.64 3.36 14.89 9.18 19.83l53.33 45.25c2.6 2.2 6.4 2.21 9.01 0.03l54.16-45.27ZM168.34 195v13.9h47.1l47.9-0.1V195h-95Zm95-20v-43h-9v24c0 5.52-4.48 10-10 10s-10-4.48-10-10v-24h-9v7c0 5.52-4.48 10-10 10s-10-4.48-10-10v-7h-20c-9.39 0-17 7.61-17 17v26h95Z"/>
 </vector>

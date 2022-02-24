@@ -16,7 +16,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/foreground</item>
         <!-- Customize your theme here. -->
-        <item name="android:navigationBarColor">@color/foreground</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
         <item name="switchStyle">@style/Widget.App.Switch</item>
 
     </style>

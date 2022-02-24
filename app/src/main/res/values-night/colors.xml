@@ -14,8 +14,7 @@
     <color name="white">#ffffff</color>
     <color name="black">#ffffff</color>
     <color name="transparentBlack">#80000000</color>
-    <color name="ic_launcher_background">#000000</color>
-    <color name="ic_launcher_foreground">#7AACFF</color>
-    <color name="ic_launcher_foreground_2">#ffffff</color>
+    <color name="ic_launcher_background">#778BA1</color>
+    <color name="ic_launcher_foreground">#ffffff</color>
 
 </resources>

@@ -4,8 +4,8 @@
     android:viewportWidth="360"
     android:viewportHeight="247">
     <path
-        android:name="FFD0DB_1"
-        android:fillColor="#FFD0DB"
+        android:name="FFBCCC_1"
+        android:fillColor="#FFBCCC"
         android:pathData="M0,0h360v93H0z" />
     <path
         android:fillAlpha="0.1"
@@ -125,8 +125,8 @@
         android:fillColor="#FFD0DB"
         android:pathData="M100,196L117,196A7,7 0,0 1,124 203L124,232A7,7 0,0 1,117 239L100,239A7,7 0,0 1,93 232L93,203A7,7 0,0 1,100 196z" />
     <path
-        android:name="FFD0DB_24"
-        android:fillColor="#FFD0DB"
+        android:name="FFBCCC_24"
+        android:fillColor="#FFBCCC"
         android:pathData="M65,196L82,196A7,7 0,0 1,89 203L89,232A7,7 0,0 1,82 239L65,239A7,7 0,0 1,58 232L58,203A7,7 0,0 1,65 196z" />
     <path
         android:name="FFD0DB_25"
@@ -149,24 +149,24 @@
         android:fillColor="#FFD0DB"
         android:pathData="M278.315,145.951L295.315,145.951A7,7 0,0 1,302.315 152.951L302.315,181.951A7,7 0,0 1,295.315 188.951L278.315,188.951A7,7 0,0 1,271.315 181.951L271.315,152.951A7,7 0,0 1,278.315 145.951z" />
     <path
-        android:name="FFD0DB_30"
-        android:fillColor="#FFD0DB"
+        android:name="FFBCCC_30"
+        android:fillColor="#FFBCCC"
         android:pathData="M278,196L295,196A7,7 0,0 1,302 203L302,232A7,7 0,0 1,295 239L278,239A7,7 0,0 1,271 232L271,203A7,7 0,0 1,278 196z" />
     <path
         android:name="EE5479_4"
         android:fillColor="#EE5479"
         android:pathData="M314,196L348,196A7,7 0,0 1,355 203L355,232A7,7 0,0 1,348 239L314,239A7,7 0,0 1,307 232L307,203A7,7 0,0 1,314 196z" />
     <path
-        android:name="FFD0DB_31"
-        android:fillColor="#FFD0DB"
+        android:name="FFBCCC_31"
+        android:fillColor="#FFBCCC"
         android:pathData="M314,146L348,146A7,7 0,0 1,355 153L355,182A7,7 0,0 1,348 189L314,189A7,7 0,0 1,307 182L307,153A7,7 0,0 1,314 146z" />
     <path
-        android:name="FFD0DB_32"
-        android:fillColor="#FFD0DB"
+        android:name="FFBCCC_32"
+        android:fillColor="#FFBCCC"
         android:pathData="M12,146L46,146A7,7 0,0 1,53 153L53,182A7,7 0,0 1,46 189L12,189A7,7 0,0 1,5 182L5,153A7,7 0,0 1,12 146z" />
     <path
-        android:name="FFD0DB_33"
-        android:fillColor="#FFD0DB"
+        android:name="FFBCCC_33"
+        android:fillColor="#FFBCCC"
         android:pathData="M12,196L46,196A7,7 0,0 1,53 203L53,232A7,7 0,0 1,46 239L12,239A7,7 0,0 1,5 232L5,203A7,7 0,0 1,12 196z" />
     <path
         android:name="FFD0DB_34"
