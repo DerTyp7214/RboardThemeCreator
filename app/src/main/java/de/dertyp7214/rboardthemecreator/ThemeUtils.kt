@@ -70,9 +70,9 @@ object ThemeUtils {
         val colorSetA4 =
             if (ColorUtils.calculateLuminance(colorSetA1) < .5) Color.WHITE else Color.BLACK
         val colorSetA5 =
-            if (monet && newOs) context.getColor(R.color.accent_200) else changeHSL(color, 0, 0, 0)
+            if (monet && newOs) context.getColor(R.color.accent_200) else changeHSL(color, 0, 0, -10)
         val colorSetA6 =
-            if (dark) changeHSL(colorSetA5, -1, -27, 15) else changeHSL(colorSetA5, -1, 27, -41)
+            if (dark) changeHSL(colorSetA5, -1, -5, -10) else changeHSL(colorSetA5, -1, -5, -10)
         val colorSetA7 =
             when {
                 monet && newOs && dark -> context.getColor(R.color.neutral_800)
@@ -87,6 +87,10 @@ object ThemeUtils {
             }
         val colorSetA8 =
             if (dark) changeHSL(colorSetA7, -1, 16, 14) else changeHSL(colorSetA7, -1, -16, -14)
+        val colorSetA9 =
+            if (monet && newOs) context.getColor(R.color.accent_300) else changeHSL(color, 0, 0, 10)
+        val colorSetA10 =
+            if (dark) changeHSL(colorSetA9, -1, -5, -10) else changeHSL(colorSetA9, -1, -5, -10)
 
         defs.append("@def color_set_a1 ${colorSetA1.toHex()}FF;\n")
         defs.append("@def color_set_a2 ${colorSetA2.toHex()}FF;\n")
@@ -96,6 +100,8 @@ object ThemeUtils {
         defs.append("@def color_set_a6 ${colorSetA6.toHex()}FF;\n")
         defs.append("@def color_set_a7 ${colorSetA7.toHex()}FF;\n")
         defs.append("@def color_set_a8 ${colorSetA8.toHex()}FF;\n")
+        defs.append("@def color_set_a9 ${colorSetA9.toHex()}FF;\n")
+        defs.append("@def color_set_a10 ${colorSetA10.toHex()}FF;\n")
 
         val themeName = "Color Theme (${color.toHex()})"
 
@@ -240,9 +246,9 @@ object ThemeUtils {
         val colorSetA4 =
             if (ColorUtils.calculateLuminance(colorSetA1) < .5) Color.WHITE else Color.BLACK
         val colorSetA5 =
-            if (monet && newOs) context.getColor(R.color.accent_200) else changeHSL(color, 0, 0, 0)
+            if (monet && newOs) context.getColor(R.color.accent_200) else changeHSL(color, 0, 0, -10)
         val colorSetA6 =
-            if (dark) changeHSL(colorSetA5, -1, -27, 15) else changeHSL(colorSetA5, -1, 27, -41)
+            if (dark) changeHSL(colorSetA5, -1, -5, -10) else changeHSL(colorSetA5, -1, -5, -10)
         val colorSetA7 =
             when {
                 monet && newOs && dark -> context.getColor(R.color.neutral_800)
@@ -257,6 +263,10 @@ object ThemeUtils {
             }
         val colorSetA8 =
             if (dark) changeHSL(colorSetA7, -1, 16, 14) else changeHSL(colorSetA7, -1, -16, -14)
+        val colorSetA9 =
+            if (monet && newOs) context.getColor(R.color.accent_300) else changeHSL(color, 0, 0, 10)
+        val colorSetA10 =
+            if (dark) changeHSL(colorSetA9, -1, -5, -10) else changeHSL(colorSetA9, -1, -5, -10)
 
         val colors = listOf(
             colorSetA1,
@@ -266,7 +276,9 @@ object ThemeUtils {
             colorSetA5,
             colorSetA6,
             colorSetA7,
-            colorSetA8
+            colorSetA8,
+            colorSetA9,
+            colorSetA10
         )
 
         val colorMap = listOf(
@@ -284,6 +296,8 @@ object ThemeUtils {
             Pair(colors[0], listOf("FFE8ED_1", "FFE8ED_2")),
             Pair(colors[4], listOf("EE5479_1", "EE5479_2", "EE5479_3", "EE5479_4")),
             Pair(colors[6], listOf("FFBCCC_24", "FFBCCC_30", "FFBCCC_31", "FFBCCC_32", "FFBCCC_33", "FFBCCC_1" )),
+            /*
+            Pair(colors[7], listOf("EE5479_4" )),*/
             Pair(
                 if (ColorUtils.calculateLuminance(colors[4]) < .3) Color.WHITE else Color.BLACK,
                 listOf("000000_8")
