@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var switch: SwitchMaterial
     private lateinit var monet: SwitchMaterial
     private lateinit var tertiary: SwitchMaterial
+    private lateinit var hidesecondarylabel: SwitchMaterial
     var currentColor = Color.RED
 
     @SuppressLint("ResourceType")
@@ -34,6 +35,7 @@ class MainActivity : AppCompatActivity() {
         switch = findViewById(R.id.dark)
         monet = findViewById(R.id.monet)
         tertiary = findViewById(R.id.tertiary)
+        hidesecondarylabel = findViewById(R.id.hide_secondary_label)
         monet.visibility =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         monet.isChecked = true
@@ -58,6 +60,7 @@ class MainActivity : AppCompatActivity() {
                     switch.isChecked,
                     monet.visibility == View.VISIBLE && monet.isChecked,
                     tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
+                    hidesecondarylabel.isChecked,
                     (findViewById<ImageView>(R.id.keyboard).drawable as VectorDrawableCompat).getBitmap()
                 )
             )
@@ -71,6 +74,7 @@ class MainActivity : AppCompatActivity() {
                     switch.isChecked,
                     monet.visibility == View.VISIBLE && monet.isChecked,
                     tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
+                    hidesecondarylabel.isChecked,
                     (findViewById<ImageView>(R.id.keyboard).drawable as VectorDrawableCompat).getBitmap()
                 ),
                 false
@@ -82,6 +86,7 @@ class MainActivity : AppCompatActivity() {
         switch.setOnCheckedChangeListener { _, _ -> refresh() }
         monet.setOnCheckedChangeListener { _, _ -> refresh() }
         tertiary.setOnCheckedChangeListener { _, _ -> refresh() }
+        hidesecondarylabel.setOnCheckedChangeListener { _, _ -> refresh() }
 
         colorPicker.setColorSelectionListener(object : SimpleColorSelectionListener() {
             override fun onColorSelected(color: Int) {
@@ -98,6 +103,7 @@ class MainActivity : AppCompatActivity() {
             switch.isChecked,
             monet.visibility == View.VISIBLE && monet.isChecked,
             tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
+            hidesecondarylabel.isChecked,
             findViewById(R.id.keyboard)
         )
     }

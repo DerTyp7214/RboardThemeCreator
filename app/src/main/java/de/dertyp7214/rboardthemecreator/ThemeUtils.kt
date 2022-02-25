@@ -25,13 +25,14 @@ import java.io.InputStreamReader
 import kotlin.math.min
 
 object ThemeUtils {
-    @SuppressLint("NewApi")
+    @SuppressLint("NewApi", "ResourceType")
     fun generateTheme(
         context: Context,
         @ColorInt color: Int,
         dark: Boolean = false,
         monet: Boolean = true,
         tertiary: Boolean = false,
+        hidesecondarylabel: Boolean = false,
         image: Bitmap? = null
     ): File {
         val workingDir = File(context.filesDir, "theme")
@@ -92,7 +93,8 @@ object ThemeUtils {
             }
         val colorSetA8 =
             if (dark) changeHSL(colorSetA7, -1, 0, 5) else changeHSL(colorSetA7, -1, 0, -5)
-
+        val colorSetA9 =
+            if (hidesecondarylabel) Color.TRANSPARENT else colorSetA4
         defs.append("@def color_set_a1 ${colorSetA1.toHex()}FF;\n")
         defs.append("@def color_set_a2 ${colorSetA2.toHex()}FF;\n")
         defs.append("@def color_set_a3 ${colorSetA3.toHex()}FF;\n")
@@ -101,6 +103,11 @@ object ThemeUtils {
         defs.append("@def color_set_a6 ${colorSetA6.toHex()}FF;\n")
         defs.append("@def color_set_a7 ${colorSetA7.toHex()}FF;\n")
         defs.append("@def color_set_a8 ${colorSetA8.toHex()}FF;\n")
+        if (hidesecondarylabel){
+            defs.append("@def color_set_a9 ${colorSetA9.toHex()}00;\n")
+        }else{
+            defs.append("@def color_set_a9 ${colorSetA4.toHex()}FF;\n")
+        }
 
         val themeName = "Color Theme (${color.toHex()})"
 
@@ -205,13 +212,14 @@ object ThemeUtils {
         return typedValue.data
     }
 
-    @SuppressLint("NewApi")
+    @SuppressLint("NewApi", "ResourceType")
     fun parseImage(
         context: Context,
         color: Int,
         dark: Boolean,
         monet: Boolean,
         tertiary: Boolean,
+        hidesecondarylabel: Boolean,
         imageView: ImageView
     ) {
 
@@ -267,6 +275,8 @@ object ThemeUtils {
             }
         val colorSetA8 =
             if (dark) changeHSL(colorSetA7, -1, 0, 5) else changeHSL(colorSetA7, -1, 0, -5)
+        val colorSetA9 =
+            if (hidesecondarylabel) Color.TRANSPARENT else colorSetA4
 
         val colors = listOf(
             colorSetA1,
@@ -277,6 +287,7 @@ object ThemeUtils {
             colorSetA6,
             colorSetA7,
             colorSetA8,
+            colorSetA9
         )
 
         val colorMap = listOf(
@@ -294,13 +305,14 @@ object ThemeUtils {
             Pair(colors[0], listOf("FFE8ED_3", "FFE8ED_1", "FFE8ED_2")),
             Pair(colors[4], listOf("EE5479_1", "EE5479_2", "EE5479_4")),
             Pair(colors[6], listOf("FFBCCC_24", "FFBCCC_30", "FFBCCC_31", "FFBCCC_32", "FFBCCC_33", "FFBCCC_1" )),
+            Pair(colors[8], listOf("000000_3")),
             Pair(
                 if (ColorUtils.calculateLuminance(colors[4]) < .3) Color.WHITE else Color.BLACK,
                 listOf("000000_8")
             ),
             Pair(
                 colors[3], listOf(
-                    "000000_1", "000000_2", "000000_3", "000000_4",
+                    "000000_1", "000000_2", "000000_4",
                     "000000_5", "000000_6_S", "000000_7"
                 )
             )

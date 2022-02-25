@@ -6,4 +6,5 @@
     <string name="share_generate_theme">Do share my theme pls sur</string>
     <string name="monet">Monet</string>
     <string name="tertiary">Tertiary Accent</string>
+    <string name="hide_secondary_label">Hide Secondary Label</string>
 </resources>
