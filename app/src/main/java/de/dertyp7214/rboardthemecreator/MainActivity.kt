@@ -4,16 +4,10 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.preference.SwitchPreference
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
-import de.Maxr1998.modernpreferences.Preference
-import de.Maxr1998.modernpreferences.PreferenceScreen
-import de.Maxr1998.modernpreferences.helpers.*
-import de.Maxr1998.modernpreferences.preferences.choice.SelectionItem
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SwitchCompat
 import com.devs.vectorchildfinder.VectorDrawableCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
@@ -26,8 +20,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var colorPicker: ColorPicker
     private lateinit var switch: SwitchMaterial
     private lateinit var monet: SwitchMaterial
+    private lateinit var tertiary: SwitchMaterial
     var currentColor = Color.RED
 
+    @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -37,10 +33,21 @@ class MainActivity : AppCompatActivity() {
         colorPicker = findViewById(R.id.colorPicker)
         switch = findViewById(R.id.dark)
         monet = findViewById(R.id.monet)
-
+        tertiary = findViewById(R.id.tertiary)
         monet.visibility =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         monet.isChecked = true
+        tertiary.visibility =
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
+        /*monet.setOnClickListener {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && monet.isChecked) {
+                tertiary.visibility = View.VISIBLE
+            } else {
+                tertiary.visibility = View.GONE
+            }
+        }*/
+        // TODO: It still needs to be hidden if Monet is off and the colorpicker size needs to be refreshed.
+        tertiary.isChecked = false
 
         currentColor = ThemeUtils.getSystemAccent(this)
         colorPicker.setColor(currentColor)
@@ -52,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                     this, getColor(),
                     switch.isChecked,
                     monet.visibility == View.VISIBLE && monet.isChecked,
+                    tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
                     (findViewById<ImageView>(R.id.keyboard).drawable as VectorDrawableCompat).getBitmap()
                 )
             )
@@ -64,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                     this, getColor(),
                     switch.isChecked,
                     monet.visibility == View.VISIBLE && monet.isChecked,
+                    tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
                     (findViewById<ImageView>(R.id.keyboard).drawable as VectorDrawableCompat).getBitmap()
                 ),
                 false
@@ -74,6 +83,7 @@ class MainActivity : AppCompatActivity() {
 
         switch.setOnCheckedChangeListener { _, _ -> refresh() }
         monet.setOnCheckedChangeListener { _, _ -> refresh() }
+        tertiary.setOnCheckedChangeListener { _, _ -> refresh() }
 
         colorPicker.setColorSelectionListener(object : SimpleColorSelectionListener() {
             override fun onColorSelected(color: Int) {
@@ -89,6 +99,7 @@ class MainActivity : AppCompatActivity() {
             getColor(),
             switch.isChecked,
             monet.visibility == View.VISIBLE && monet.isChecked,
+            tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
             findViewById(R.id.keyboard)
         )
     }
