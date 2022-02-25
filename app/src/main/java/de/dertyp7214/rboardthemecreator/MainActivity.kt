@@ -37,17 +37,14 @@ class MainActivity : AppCompatActivity() {
         monet.visibility =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         monet.isChecked = true
-        tertiary.visibility =
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
-        /*monet.setOnClickListener {
+        monet.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && monet.isChecked) {
                 tertiary.visibility = View.VISIBLE
             } else {
-                tertiary.visibility = View.GONE
+                tertiary.visibility = View.INVISIBLE
+                tertiary.isChecked = false
             }
-        }*/
-        // TODO: It still needs to be hidden if Monet is off and the colorpicker size needs to be refreshed.
-        tertiary.isChecked = false
+        }
 
         currentColor = ThemeUtils.getSystemAccent(this)
         colorPicker.setColor(currentColor)
