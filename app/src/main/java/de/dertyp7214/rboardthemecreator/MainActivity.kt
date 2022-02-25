@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         monet.visibility =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         monet.isChecked = true
+        tertiary.visibility = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         monet.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && monet.isChecked) {
                 tertiary.visibility = View.VISIBLE
