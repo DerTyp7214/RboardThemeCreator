@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var monet: SwitchMaterial
     private lateinit var tertiary: SwitchMaterial
     private lateinit var hidesecondarylabel: SwitchMaterial
+    private lateinit var amoled: SwitchMaterial
     var currentColor = Color.RED
 
     @SuppressLint("ResourceType")
@@ -36,19 +37,29 @@ class MainActivity : AppCompatActivity() {
         monet = findViewById(R.id.monet)
         tertiary = findViewById(R.id.tertiary)
         hidesecondarylabel = findViewById(R.id.hide_secondary_label)
+        amoled = findViewById(R.id.amoled)
         monet.visibility =
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         monet.isChecked = true
-        tertiary.visibility = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         monet.setOnClickListener {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && monet.isChecked) {
                 tertiary.visibility = View.VISIBLE
+                tertiary.isEnabled = true
             } else {
-                tertiary.visibility = View.INVISIBLE
+                tertiary.isEnabled = false
                 tertiary.isChecked = false
             }
         }
-
+        amoled.isEnabled = false
+        switch.setOnClickListener {
+            if (switch.isChecked) {
+                amoled.visibility = View.VISIBLE
+                amoled.isEnabled = true
+            } else {
+                amoled.isEnabled = false
+                amoled.isChecked = false
+            }
+        }
         currentColor = ThemeUtils.getSystemAccent(this)
         colorPicker.setColor(currentColor)
 
@@ -61,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                     monet.visibility == View.VISIBLE && monet.isChecked,
                     tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
                     hidesecondarylabel.isChecked,
+                    amoled.isChecked,
                     (findViewById<ImageView>(R.id.keyboard).drawable as VectorDrawableCompat).getBitmap()
                 )
             )
@@ -75,6 +87,7 @@ class MainActivity : AppCompatActivity() {
                     monet.visibility == View.VISIBLE && monet.isChecked,
                     tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
                     hidesecondarylabel.isChecked,
+                    amoled.visibility == View.VISIBLE && switch.isChecked,
                     (findViewById<ImageView>(R.id.keyboard).drawable as VectorDrawableCompat).getBitmap()
                 ),
                 false
@@ -87,6 +100,7 @@ class MainActivity : AppCompatActivity() {
         monet.setOnCheckedChangeListener { _, _ -> refresh() }
         tertiary.setOnCheckedChangeListener { _, _ -> refresh() }
         hidesecondarylabel.setOnCheckedChangeListener { _, _ -> refresh() }
+        amoled.setOnCheckedChangeListener { _, _ -> refresh() }
 
         colorPicker.setColorSelectionListener(object : SimpleColorSelectionListener() {
             override fun onColorSelected(color: Int) {
@@ -104,6 +118,7 @@ class MainActivity : AppCompatActivity() {
             monet.visibility == View.VISIBLE && monet.isChecked,
             tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
             hidesecondarylabel.isChecked,
+            amoled.isChecked,
             findViewById(R.id.keyboard)
         )
     }

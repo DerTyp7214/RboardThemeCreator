@@ -33,6 +33,7 @@ object ThemeUtils {
         monet: Boolean = true,
         tertiary: Boolean = false,
         hidesecondarylabel: Boolean = false,
+        amoled: Boolean = false,
         image: Bitmap? = null
     ): File {
         val workingDir = File(context.filesDir, "theme")
@@ -45,6 +46,7 @@ object ThemeUtils {
 
         val colorSetA1 =
             when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_background)
                 monet && newOs && dark -> context.getColor(R.color.neutral_900)
                 monet && newOs -> context.getColor(R.color.accent2_50)
                 dark -> changeHSL(
@@ -57,6 +59,7 @@ object ThemeUtils {
             }
         val colorSetA2 =
             when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_key_background)
                 monet && newOs && dark -> context.getColor(R.color.neutral_700)
                 monet && newOs -> context.getColor(R.color.neutral_0)
                 dark -> changeHSL(
@@ -81,6 +84,7 @@ object ThemeUtils {
             if (dark) changeHSL(colorSetA5, -1, -5, -10) else changeHSL(colorSetA5, -1, -5, -10)
         val colorSetA7 =
             when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_dark_key_background)
                 monet && newOs && dark -> context.getColor(R.color.neutral_800)
                 monet && newOs -> context.getColor(R.color.neutral_100)
                 dark -> changeHSL(
@@ -220,6 +224,7 @@ object ThemeUtils {
         monet: Boolean,
         tertiary: Boolean,
         hidesecondarylabel: Boolean,
+        amoled: Boolean,
         imageView: ImageView
     ) {
 
@@ -227,6 +232,7 @@ object ThemeUtils {
 
         val colorSetA1 =
             when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_background)
                 monet && newOs && dark -> context.getColor(R.color.neutral_900)
                 monet && newOs -> context.getColor(R.color.accent2_50)
                 dark -> changeHSL(
@@ -239,6 +245,7 @@ object ThemeUtils {
             }
         val colorSetA2 =
             when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_key_background)
                 monet && newOs && dark -> context.getColor(R.color.neutral_700)
                 monet && newOs -> context.getColor(R.color.neutral_0)
                 dark -> changeHSL(
@@ -263,6 +270,7 @@ object ThemeUtils {
             if (dark) changeHSL(colorSetA5, -1, -5, -10) else changeHSL(colorSetA5, -1, -5, -10)
         val colorSetA7 =
             when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_dark_key_background)
                 monet && newOs && dark -> context.getColor(R.color.neutral_800)
                 monet && newOs -> context.getColor(R.color.neutral_100)
                 dark -> changeHSL(

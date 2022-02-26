@@ -19,4 +19,7 @@
     <color name="light_blue_900">#FF01579B</color>
     <color name="ic_launcher_background">#778BA1</color>
     <color name="ic_launcher_foreground">#ffffff</color>
+    <color name="theme_amoled_background">#000000</color>
+    <color name="theme_amoled_key_background">#222222</color>
+    <color name="theme_amoled_dark_key_background">#303030</color>
 </resources>
