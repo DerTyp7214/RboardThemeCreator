@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         switch = findViewById(R.id.dark)
         monet = findViewById(R.id.monet)
         tertiary = findViewById(R.id.tertiary)
+        tertiary.visibility = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
         hidesecondarylabel = findViewById(R.id.hide_secondary_label)
         amoled = findViewById(R.id.amoled)
         monet.visibility =
