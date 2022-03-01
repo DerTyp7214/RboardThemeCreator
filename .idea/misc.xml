@@ -8,13 +8,23 @@
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v24/switch_track.xml" value="0.3635" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v31/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v31/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_amoled.xml" value="0.3625" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_dark.xml" value="0.263" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_dark_mode.xml" value="0.3635" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_keyboard_2.xml" value="0.3635" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_monet_theme.xml" value="0.3635" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_secondary_label.xml" value="0.3625" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_share.xml" value="0.262" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/keyboard.xml" value="0.2" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/switch_thumb.xml" value="0.3635" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/switch_track.xml" value="0.1325" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/action_bar.xml" value="0.18541666666666667" />
-        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/activity_main.xml" value="0.2936708860759494" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/activity_popup.xml" value="0.25" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/activity_preferences.xml" value="0.33" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/prefernces.xml" value="0.25" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.263" />
         <entry key="..\:/Users/lengw/AndroidStudioProjects/RboardThemeCreator/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/lengw/AndroidStudioProjects/RboardThemeCreator/app/src/main/res/drawable/dummy_keyboard.xml" value="0.3651041666666667" />

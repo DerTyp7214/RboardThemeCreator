@@ -88,8 +88,8 @@
 @def color_expression_corpus_selector_background_active @color_set_a5;
 @def internal_space_branding_color @color_set_a4;
 /* begin of pill shaped key colors */
-@def default_action_key_background_color @color_set_a7;
-@def default_action_key_background_color_pressed @color_set_a8;
+@def default_action_key_background_color @color_set_a5;
+@def default_action_key_background_color_pressed @color_set_a6;
 @def default_pill_shaped_key_color @color_set_a7;
 @def default_pill_shaped_key_color_pressed @color_set_a8;
 @def default_pill_shaped_key_label_color @color_set_a4;
@@ -204,6 +204,12 @@
 	alpha: 1;
 }
 .progress-bar{
+   color: @color_set_a4;
+}
+
+.icon.for-emojify-key:pressed,
+.icon.for-emojify-key{
+   background_color: @color_set_a2;
    color: @color_set_a4;
 }
 
@@ -437,14 +443,14 @@ alpha: 1;
 }
 .icon.for-action-key:pressed,
 .icon.for-action-key {
-    color: @color_set_a4;
-    background_color: @color_set_a4;
+    color: @color_set_a1;
+    background_color: @color_set_a1;
 alpha: 1;
 }
 .icon.for-action-key.for-action-default-key:pressed,
 .icon.for-action-key.for-action-default-key {
-    color: @color_set_a4;
-    background_color: @color_set_a4;
+    color: @color_set_a1;
+    background_color: @color_set_a1;
 alpha: 1;
 }
 .label.for-emoji-handwriting-hint {
@@ -458,10 +464,10 @@ alpha: 1;
 }
 
 .background-icon.for-action-key:pressed {
-    color: @color_set_a1;
+    color: @color_set_a6;
 }
 .background-icon.for-action-key {
-    color: @color_set_a1;
+    color: @color_set_a5;
 }
 .popup-item.for-action-popup:pressed {
     background_color: @color_state_action_pressed;
@@ -716,7 +722,7 @@ alpha: 1;
     background_shape: "";
 }
 .background-icon.for-action-key.for-preview {
-    color: @color_set_a1;
+    color: @color_set_a5;
 }
 
 .icon_key_del {
