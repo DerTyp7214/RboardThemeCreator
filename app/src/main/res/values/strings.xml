@@ -8,4 +8,6 @@
     <string name="tertiary">Tertiary Accent</string>
     <string name="hide_secondary_label">Hide Secondary Label</string>
     <string name="amoled">Amoled</string>
+    <string name="unreleased">This app is unreleased, some features may not work. Please don\'t report any errors to the main group.</string>
+    <string name="notice">Notice</string>
 </resources>

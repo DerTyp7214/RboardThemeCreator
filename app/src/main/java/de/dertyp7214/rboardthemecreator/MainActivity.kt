@@ -1,6 +1,7 @@
 package de.dertyp7214.rboardthemecreator
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -8,12 +9,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.edit
 import com.devs.vectorchildfinder.VectorDrawableCompat
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import de.dertyp7214.rboardthemecreator.core.getBitmap
+import de.dertyp7214.rboardthememanager.core.openDialog
+import de.dertyp7214.rboardthememanager.core.preferences
 
 class MainActivity : AppCompatActivity() {
 
@@ -109,6 +113,25 @@ class MainActivity : AppCompatActivity() {
                 refresh()
             }
         })
+        validApp(this) {
+            preferences.edit { putBoolean("initialized", true) }
+        }
+    }
+
+    private fun validApp(activity: AppCompatActivity, callback: (valid: Boolean) -> Unit) {
+        preferences.apply {
+            var valid = getBoolean("verified", false)
+            if (valid) callback(valid)
+            else activity.openDialog(R.string.unreleased, R.string.notice, false, {
+                it.dismiss()
+                callback(valid)
+            }) {
+                it.dismiss()
+                valid = true
+                callback(valid)
+                edit { putBoolean("verified", true) }
+            }
+        }
     }
 
     private fun refresh() {

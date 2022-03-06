@@ -16,8 +16,8 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
         targetSdk = 32
-        versionCode = 101003
-        versionName = "1.0.1"
+        versionCode = 102000
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -61,18 +61,18 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0-alpha04")
 
     implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.0-alpha02")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.0-alpha02")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.5.0-alpha03")
+    implementation("androidx.navigation:navigation-ui-ktx:2.5.0-alpha03")
     implementation("org.apache.commons:commons-text:1.9")
 
-    implementation("androidx.core:core-ktx:1.7.0")
+    implementation("androidx.core:core-ktx:1.9.0-alpha01")
     //noinspection DifferentStdlibGradleVersion
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.6.0-alpha02")
+    implementation("androidx.appcompat:appcompat:1.6.0-alpha01")
+    implementation("com.google.android.material:material:1.6.0-alpha03")
     implementation("androidx.constraintlayout:constraintlayout:2.1.3")
     implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("androidx.activity:activity-ktx:1.4.0")
-    implementation("androidx.fragment:fragment-ktx:1.5.0-alpha02")
+    implementation("androidx.activity:activity-ktx:1.5.0-alpha03")
+    implementation("androidx.fragment:fragment-ktx:1.5.0-alpha03")
     implementation("com.jaredrummler:android-shell:1.0.0")
     implementation("com.google.code.gson:gson:2.9.0")
     implementation("com.bignerdranch.android:simple-item-decoration:1.0.0")
@@ -84,5 +84,5 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10")
 
-    debugImplementation("androidx.compose.ui:ui-tooling:1.2.0-alpha03")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.2.0-alpha04")
 }
