@@ -176,10 +176,40 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun update() {
+        val maxProgress = 100
+        val notificationId = 42069
+        val builder =
+            NotificationCompat.Builder(this, getString(R.string.download_notification_channel_id))
+                .apply {
+                    setContentTitle(getString(R.string.update))
+                    setContentText(getString(R.string.download_update))
+                    setSmallIcon(R.drawable.ic_baseline_get_app_24)
+                    priority = NotificationCompat.PRIORITY_LOW
+                }
+        val manager = NotificationManagerCompat.from(this).apply {
+            builder.setProgress(maxProgress, 0, false)
+            notify(notificationId, builder.build())
+        }
         var finished = false
         UpdateHelper(updateUrl, this).apply {
+            addOnProgressListener { progress, bytes, total ->
+                if (!finished) {
+                    builder
+                        .setContentText(
+                            getString(
+                                R.string.download_update_progress,
+                                "${bytes.toHumanReadableBytes(this@MainActivity)}/${
+                                    total.toHumanReadableBytes(this@MainActivity)
+                                }"
+                            )
+                        )
+                        .setProgress(maxProgress, progress.toInt(), false)
+                    manager.notify(notificationId, builder.build())
+                }
+            }
             setFinishListener { path, _ ->
                 finished = true
+                manager.cancel(notificationId)
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                     content.setRenderEffect(
                         RenderEffect.createBlurEffect(
@@ -198,7 +228,9 @@ class MainActivity : AppCompatActivity() {
             }
             setErrorListener {
                 finished = true
-                Toast.makeText(this@MainActivity, R.string.download_error, Toast.LENGTH_LONG).show()
+                builder.setContentText(getString(R.string.download_error))
+                    .setProgress(0, 0, false)
+                manager.notify(notificationId, builder.build())
                 it?.connectionException?.printStackTrace()
                 Log.d("ERROR", it?.serverErrorMessage ?: "NOO")
             }

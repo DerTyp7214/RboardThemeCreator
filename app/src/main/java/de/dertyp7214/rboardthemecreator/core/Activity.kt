@@ -1,5 +1,6 @@
 package de.dertyp7214.rboardthemecreator.core
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.DialogInterface
 import android.content.SharedPreferences
@@ -8,6 +9,10 @@ import android.graphics.Shader
 import android.net.Uri
 import android.os.Build
 import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -28,6 +33,11 @@ inline val Activity.content: View
         return findViewById(android.R.id.content)
     }
 
+
+
+operator fun <T : ViewModel> FragmentActivity.get(modelClass: Class<T>): T =
+    run(::ViewModelProvider)[modelClass]
+
 fun Activity.openUrl(url: String) {
     CustomTabsIntent.Builder()
         .setShowTitle(true)
@@ -43,10 +53,6 @@ fun Activity.openUrl(url: String) {
         .build()
         .launchUrl(this, Uri.parse(url))
 }
-
-operator fun <T : ViewModel> FragmentActivity.get(modelClass: Class<T>): T =
-    run(::ViewModelProvider)[modelClass]
-
 
 fun Activity.openDialog(
     message: CharSequence,
@@ -135,7 +141,6 @@ fun Activity.openDialog(
     negative,
     positive
 )
-
 
 fun Activity.openDialog(
     @LayoutRes layout: Int,
