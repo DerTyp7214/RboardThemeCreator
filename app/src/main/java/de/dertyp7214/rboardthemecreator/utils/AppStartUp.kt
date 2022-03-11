@@ -85,9 +85,6 @@ class AppStartUp(private val activity: AppCompatActivity) {
             val scheme = intent.scheme
             val data = intent.data
 
-            Config.useMagisk = preferences.getBoolean("useMagisk", false)
-
-
 
             when {
                 initialized && data != null -> {
@@ -101,9 +98,7 @@ class AppStartUp(private val activity: AppCompatActivity) {
                             Config.RBOARD_THEME_PACKAGE_NAME,
                             packageManager
                         )
-                    createNotificationChannels(this)
-                    /*FirebaseMessaging.getInstance()
-                        .subscribeToTopic("update-${BuildConfig.BUILD_TYPE.lowercase()}")*/
+
                     isReady = !gboardInstalled || !rboardInstalled
                     when {
                         !gboardInstalled -> openDialog(
@@ -166,35 +161,6 @@ class AppStartUp(private val activity: AppCompatActivity) {
                 valid = true
                 callback(valid)
                 edit { putBoolean("verified", true) }
-            }
-        }
-    }
-
-    private fun createNotificationChannels(activity: AppCompatActivity) {
-        activity.apply {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val namePush = getString(R.string.channel_name)
-                val channelIdPush = getString(R.string.default_notification_channel_id)
-                val descriptionTextPush = getString(R.string.channel_description)
-                val importancePush = NotificationManager.IMPORTANCE_DEFAULT
-                val channelPush =
-                    NotificationChannel(channelIdPush, namePush, importancePush).apply {
-                        description = descriptionTextPush
-                    }
-
-                val nameDownload = getString(R.string.channel_name_download)
-                val channelIdDownload = getString(R.string.download_notification_channel_id)
-                val descriptionTextDownload = getString(R.string.channel_description_download)
-                val importanceDownload = NotificationManager.IMPORTANCE_LOW
-                val channelDownload =
-                    NotificationChannel(channelIdDownload, nameDownload, importanceDownload).apply {
-                        description = descriptionTextDownload
-                    }
-
-                val notificationManager: NotificationManager =
-                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                notificationManager.createNotificationChannel(channelPush)
-                notificationManager.createNotificationChannel(channelDownload)
             }
         }
     }

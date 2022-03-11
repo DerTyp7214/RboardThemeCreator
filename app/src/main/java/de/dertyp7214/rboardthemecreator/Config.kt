@@ -5,7 +5,6 @@ import android.os.Build
 
 @Suppress("MemberVisibilityCanBePrivate", "unused", "SdCardPath")
 object Config {
-    var useMagisk = false
     var newGboard = true
     val PLAY_URL = { packageName: String ->
         "https://play.google.com/store/apps/details?id=$packageName"

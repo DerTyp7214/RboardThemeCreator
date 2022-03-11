@@ -24,7 +24,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.RboardThemeCreator">
         <activity
-            android:name=".MainActivity"
+            android:name=".screens.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity">

@@ -1,4 +1,4 @@
-package de.dertyp7214.rboardthemecreator
+package de.dertyp7214.rboardthemecreator.utils
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -16,6 +16,8 @@ import androidx.core.content.FileProvider
 import androidx.core.graphics.ColorUtils
 import com.devs.vectorchildfinder.VectorChildFinder
 import com.devs.vectorchildfinder.VectorDrawableCompat
+import de.dertyp7214.rboardthemecreator.R
+import de.dertyp7214.rboardthemecreator.Zip
 import de.dertyp7214.rboardthemecreator.core.toHex
 import de.dertyp7214.rboardthemecreator.data.ThemeMetadata
 import java.io.BufferedReader

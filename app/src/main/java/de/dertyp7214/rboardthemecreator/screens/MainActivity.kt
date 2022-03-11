@@ -1,4 +1,4 @@
-package de.dertyp7214.rboardthemecreator
+package de.dertyp7214.rboardthemecreator.screens
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -22,6 +22,8 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.switchmaterial.SwitchMaterial
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
+import de.dertyp7214.rboardthemecreator.R
+import de.dertyp7214.rboardthemecreator.utils.ThemeUtils
 import de.dertyp7214.rboardthemecreator.core.content
 import de.dertyp7214.rboardthemecreator.core.getBitmap
 import de.dertyp7214.rboardthemecreator.core.openDialog
@@ -174,34 +176,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun update() {
-        val maxProgress = 100
-        val builder =
-            NotificationCompat.Builder(this, getString(R.string.download_notification_channel_id))
-                .apply {
-                    setContentTitle(getString(R.string.update))
-                    setContentText(getString(R.string.download_update))
-                    setSmallIcon(R.drawable.ic_baseline_get_app_24)
-                    priority = NotificationCompat.PRIORITY_LOW
-                }
-        val manager = NotificationManagerCompat.from(this).apply {
-            builder.setProgress(maxProgress, 0, false)
-        }
         var finished = false
         UpdateHelper(updateUrl, this).apply {
-            addOnProgressListener { progress, bytes, total ->
-                if (!finished) {
-                    builder
-                        .setContentText(
-                            getString(
-                                R.string.download_update_progress,
-                                "${bytes.toHumanReadableBytes(this@MainActivity)}/${
-                                    total.toHumanReadableBytes(this@MainActivity)
-                                }"
-                            )
-                        )
-                        .setProgress(maxProgress, progress.toInt(), false)
-                }
-            }
             setFinishListener { path, _ ->
                 finished = true
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -222,8 +198,7 @@ class MainActivity : AppCompatActivity() {
             }
             setErrorListener {
                 finished = true
-                builder.setContentText(getString(R.string.download_error))
-                    .setProgress(0, 0, false)
+                Toast.makeText(this@MainActivity, R.string.download_error, Toast.LENGTH_LONG).show()
                 it?.connectionException?.printStackTrace()
                 Log.d("ERROR", it?.serverErrorMessage ?: "NOO")
             }
