@@ -1,4 +1,5 @@
 <resources>
+
     <style name="Dialog.RboardThemeCreator.MaterialAlertDialog" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded
         </item>
@@ -8,6 +9,7 @@
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">@dimen/roundCorners</item>
     </style>
+
     <style name="Widget.MaterialComponents.CompoundButton.Switch" parent="Widget.AppCompat.CompoundButton.Switch">
         <item name="enforceMaterialTheme">true</item>
         <item name="useMaterialThemeColors">true</item>
@@ -23,5 +25,5 @@
         <item name="trackTintMode">src_in</item>
     </style>
 
-    <style name="Widget.Material3.CompoundButton.Switch" parent="Base.Widget.Material3.CompoundButton.Switch"/>
+    <style name="Widget.Material3.CompoundButton.Switch" parent="Base.Widget.Material3.CompoundButton.Switch" />
 </resources>

@@ -3,18 +3,22 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v24/ic_baseline_get_app_24.xml" value="0.3635" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1925" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v24/ic_notification.xml" value="0.177" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v24/switch_thumb.xml" value="0.3635" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v24/switch_track.xml" value="0.3635" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v31/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable-v31/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_amoled.xml" value="0.3625" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_baseline_get_app_24.xml" value="0.177" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_dark.xml" value="0.263" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_dark_mode.xml" value="0.3635" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_keyboard_2.xml" value="0.3635" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_monet_theme.xml" value="0.3635" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_notification.xml" value="0.177" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_secondary_label.xml" value="0.3625" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/ic_share.xml" value="0.262" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/drawable/keyboard.xml" value="0.2605" />
@@ -25,6 +29,7 @@
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/activity_popup.xml" value="0.25" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/activity_preferences.xml" value="0.33" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/prefernces.xml" value="0.25" />
+        <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/layout/share_popup.xml" value="0.22" />
         <entry key="..\:/Akos/RboardThemeCreator/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.263" />
         <entry key="..\:/Users/lengw/AndroidStudioProjects/RboardThemeCreator/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.20729166666666668" />
         <entry key="..\:/Users/lengw/AndroidStudioProjects/RboardThemeCreator/app/src/main/res/drawable/dummy_keyboard.xml" value="0.3651041666666667" />
@@ -38,11 +43,5 @@
         <entry key="..\:/Users/lengw/AndroidStudioProjects/RboardThemeCreator/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.20729166666666668" />
       </map>
     </option>
-  </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
-    <output url="file://$PROJECT_DIR$/build/classes" />
-  </component>
-  <component name="ProjectType">
-    <option name="id" value="Android" />
   </component>
 </project>

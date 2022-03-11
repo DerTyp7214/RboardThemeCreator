@@ -78,7 +78,7 @@ object ThemeUtils {
             when {
                 monet && newOs && tertiary -> context.getColor(R.color.accent_300)
                 monet && newOs -> context.getColor(R.color.accent_200)
-                else ->  changeHSL(color, 0, 0, -10)
+                else -> changeHSL(color, 0, 0, -10)
             }
         val colorSetA6 =
             if (dark) changeHSL(colorSetA5, -1, -5, -10) else changeHSL(colorSetA5, -1, -5, -10)
@@ -107,9 +107,9 @@ object ThemeUtils {
         defs.append("@def color_set_a6 ${colorSetA6.toHex()}FF;\n")
         defs.append("@def color_set_a7 ${colorSetA7.toHex()}FF;\n")
         defs.append("@def color_set_a8 ${colorSetA8.toHex()}FF;\n")
-        if (hidesecondarylabel){
+        if (hidesecondarylabel) {
             defs.append("@def color_set_a9 ${colorSetA9.toHex()}00;\n")
-        }else{
+        } else {
             defs.append("@def color_set_a9 ${colorSetA4.toHex()}FF;\n")
         }
 
@@ -264,7 +264,7 @@ object ThemeUtils {
             when {
                 monet && newOs && tertiary -> context.getColor(R.color.accent_300)
                 monet && newOs -> context.getColor(R.color.accent_200)
-                else ->  changeHSL(color, 0, 0, -10)
+                else -> changeHSL(color, 0, 0, -10)
             }
         val colorSetA6 =
             if (dark) changeHSL(colorSetA5, -1, -5, -10) else changeHSL(colorSetA5, -1, -5, -10)
@@ -312,7 +312,10 @@ object ThemeUtils {
             ),
             Pair(colors[0], listOf("FFE8ED_3", "FFE8ED_1", "FFE8ED_2")),
             Pair(colors[4], listOf("EE5479_1", "EE5479_2", "EE5479_4")),
-            Pair(colors[6], listOf("FFBCCC_24", "FFBCCC_30", "FFBCCC_31", "FFBCCC_32", "FFBCCC_33", "FFBCCC_1" )),
+            Pair(
+                colors[6],
+                listOf("FFBCCC_24", "FFBCCC_30", "FFBCCC_31", "FFBCCC_32", "FFBCCC_33", "FFBCCC_1")
+            ),
             Pair(colors[8], listOf("000000_3")),
             Pair(
                 if (ColorUtils.calculateLuminance(colors[4]) < .3) Color.WHITE else Color.BLACK,

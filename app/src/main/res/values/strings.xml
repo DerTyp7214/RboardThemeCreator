@@ -10,4 +10,21 @@
     <string name="amoled">Amoled</string>
     <string name="unreleased">This app is unreleased, some features may not work. Please don\'t report any errors to the main group.</string>
     <string name="notice">Notice</string>
+    <string name="update_ready">Update ready, do you want to install it?</string>
+    <string name="update">Update</string>
+    <string name="install_gboard">Do you want to install Gboard?</string>
+    <string name="gboard_not_installed">Gboard is not installed</string>
+    <string name="install_rboard">Do you want to install Rboard?</string>
+    <string name="rboard_not_installed">Rboard is not installed</string>
+    <string name="default_notification_channel_id">push_channel</string>
+    <string name="download_notification_channel_id">download_channel</string>
+    <string name="channel_name">Push Notifications</string>
+    <string name="channel_description">For updates and information.</string>
+    <string name="channel_name_download">Download Notifications</string>
+    <string name="channel_description_download">For download notifications</string>
+    <string name="download_update">Downloading Update</string>
+    <string name="download_update_progress">Downloading Update (%s)</string>
+    <string name="download_complete">Download complete</string>
+    <string name="download_error">Error while downloading</string>
+    <string name="error">Error</string>
 </resources>

@@ -4,35 +4,35 @@
     android:viewportWidth="432"
     android:viewportHeight="432">
     <path
-        android:fillColor="@color/ic_launcher_foreground_monet"
         android:fillAlpha=".8"
-        android:pathData="M153.9 307.14c0-2.76 2.24-5 5-5h113.4c2.76 0 5 2.24 5 5v11.14c0 2.76-2.24 5-5 5H158.9c-2.76 0-5-2.24-5-5v-11.14Z"/>
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:pathData="M153.9 307.14c0-2.76 2.24-5 5-5h113.4c2.76 0 5 2.24 5 5v11.14c0 2.76-2.24 5-5 5H158.9c-2.76 0-5-2.24-5-5v-11.14Z" />
     <path
-        android:fillColor="@color/ic_launcher_foreground_monet"
         android:fillAlpha=".8"
-        android:pathData="M133 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5H138c-2.76 0-5-2.24-5-5V270.9Z"/>
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:pathData="M133 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5H138c-2.76 0-5-2.24-5-5V270.9Z" />
     <path
-        android:fillColor="@color/ic_launcher_foreground_monet"
         android:fillAlpha=".8"
-        android:pathData="M133 234.66c0-2.76 2.24-5 5-5h9.9c2.77 0 5 2.24 5 5v10.13c0 2.77-2.23 5-5 5H138c-2.76 0-5-2.23-5-5v-10.13Z"/>
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:pathData="M133 234.66c0-2.76 2.24-5 5-5h9.9c2.77 0 5 2.24 5 5v10.13c0 2.77-2.23 5-5 5H138c-2.76 0-5-2.23-5-5v-10.13Z" />
     <path
-        android:fillColor="@color/ic_launcher_foreground_monet"
         android:fillAlpha=".8"
-        android:pathData="M169.82 270.9c0-2.76 2.24-5 5-5h9.9c2.77 0 5 2.24 5 5v10.13c0 2.76-2.23 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z"/>
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:pathData="M169.82 270.9c0-2.76 2.24-5 5-5h9.9c2.77 0 5 2.24 5 5v10.13c0 2.76-2.23 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z" />
     <path
-        android:fillColor="@color/ic_launcher_foreground_monet"
         android:fillAlpha=".8"
-        android:pathData="M241.48 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z"/>
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:pathData="M241.48 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z" />
     <path
-        android:fillColor="@color/ic_launcher_foreground_monet"
         android:fillAlpha=".8"
-        android:pathData="M278.3 234.66c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.77-2.24 5-5 5h-9.9c-2.76 0-5-2.23-5-5v-10.13Z"/>
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:pathData="M278.3 234.66c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.77-2.24 5-5 5h-9.9c-2.76 0-5-2.23-5-5v-10.13Z" />
     <path
-        android:fillColor="@color/ic_launcher_foreground_monet"
         android:fillAlpha=".8"
-        android:pathData="M278.3 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z"/>
+        android:fillColor="@color/ic_launcher_foreground_monet"
+        android:pathData="M278.3 270.9c0-2.76 2.24-5 5-5h9.9c2.76 0 5 2.24 5 5v10.13c0 2.76-2.24 5-5 5h-9.9c-2.76 0-5-2.24-5-5V270.9Z" />
     <path
         android:fillColor="@color/ic_launcher_foreground_monet"
         android:fillType="evenOdd"
-        android:pathData="M274 225.95c5.92-4.94 9.33-12.25 9.33-19.95v-94h-98c-20.43 0-37 16.57-37 37v57.11c0 7.64 3.36 14.89 9.18 19.83l53.33 45.25c2.6 2.2 6.4 2.21 9.01 0.03l54.16-45.27ZM168.34 195v13.9h47.1l47.9-0.1V195h-95Zm95-20v-43h-9v24c0 5.52-4.48 10-10 10s-10-4.48-10-10v-24h-9v7c0 5.52-4.48 10-10 10s-10-4.48-10-10v-7h-20c-9.39 0-17 7.61-17 17v26h95Z"/>
+        android:pathData="M274 225.95c5.92-4.94 9.33-12.25 9.33-19.95v-94h-98c-20.43 0-37 16.57-37 37v57.11c0 7.64 3.36 14.89 9.18 19.83l53.33 45.25c2.6 2.2 6.4 2.21 9.01 0.03l54.16-45.27ZM168.34 195v13.9h47.1l47.9-0.1V195h-95Zm95-20v-43h-9v24c0 5.52-4.48 10-10 10s-10-4.48-10-10v-24h-9v7c0 5.52-4.48 10-10 10s-10-4.48-10-10v-7h-20c-9.39 0-17 7.61-17 17v26h95Z" />
 </vector>
