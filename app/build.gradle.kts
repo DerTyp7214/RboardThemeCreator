@@ -10,7 +10,7 @@ val kotlinVersion: String = KotlinCompilerVersion.VERSION
 
 android {
     compileSdkPreview = "Tiramisu"
-    buildToolsVersion = "33.0.0 rc1"
+    buildToolsVersion = "33.0.0 rc2"
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
@@ -48,16 +48,17 @@ android {
         jniLibs {
             useLegacyPackaging = true
         }
+        resources.excludes.add("META-INF/*")
     }
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:29.1.0"))
-    implementation("com.google.firebase:firebase-messaging-ktx:23.0.0")
-    implementation("com.google.firebase:firebase-analytics-ktx:20.1.0")
+    implementation(platform("com.google.firebase:firebase-bom:29.2.0"))
+    implementation("com.google.firebase:firebase-messaging-ktx:23.0.2")
+    implementation("com.google.firebase:firebase-analytics-ktx:20.1.1")
     
-    implementation("com.google.firebase:firebase-analytics:20.1.0")
-    implementation("com.google.firebase:firebase-messaging:23.0.0")
+    implementation("com.google.firebase:firebase-analytics:20.1.1")
+    implementation("com.google.firebase:firebase-messaging:23.0.2")
 
     implementation("dev.chrisbanes.insetter:insetter:0.6.1")
     //noinspection DifferentStdlibGradleVersion
@@ -89,8 +90,8 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     implementation("com.github.bumptech.glide:glide:4.13.1")
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.10")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.10")
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.6.20-RC")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.20-RC")
 
-    debugImplementation("androidx.compose.ui:ui-tooling:1.2.0-alpha04")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.2.0-alpha05")
 }
