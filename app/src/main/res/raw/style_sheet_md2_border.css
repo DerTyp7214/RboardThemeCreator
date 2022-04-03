@@ -5,17 +5,23 @@
 }
 .keytop.for-candidate-key,
 .keytop.for-dashboard-key,
-.keytop.for-category-key,
+.keytop.for-category-key {
+    elevation: 0;
+    shadow_color: @color_set_a2;
+
+}
+
 .keytop.transparent {
     elevation: 0;
     shadow_color: @color_set_a2;
-    
+	background_color: @color_set_a7;
 }
 
 .keytop.transparent:pressed{
 	background_color: @color_set_a7;
     shadow_color: @color_set_a7;
     elevation: 0;
+	alpha: 0.4;
 }
 
 /* MD2 */

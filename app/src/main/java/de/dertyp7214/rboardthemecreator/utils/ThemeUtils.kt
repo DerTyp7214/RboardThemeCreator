@@ -114,6 +114,7 @@ object ThemeUtils {
         } else {
             defs.append("@def color_set_a9 ${colorSetA4.toHex()}FF;\n")
         }
+        defs.append("@def color_set_a10 ${colorSetA7.toHex()}00;\n")
 
         val themeName = "Color Theme (${color.toHex()})"
 

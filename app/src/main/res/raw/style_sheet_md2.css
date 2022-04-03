@@ -33,7 +33,7 @@
 @def color_state_key_dark_pressed @color_set_a1;
 @def color_state_key_dark @color_set_a1;
 @def color_state_key_transparent_pressed @color_set_a7;
-@def color_state_key_transparent @color_set_a7;
+@def color_state_key_transparent @color_set_a1;
 @def color_state_space_bar_pressed @color_set_a3;
 @def color_state_space_bar @color_set_a2;
 /* Undocumented */
@@ -526,7 +526,7 @@ alpha: 1;
 .keytop.for-candidate-key,
 .keytop.transparent,
 .keytop.for-prime-header-tab {
-    background_color: @color_state_key_transparent;
+    background_color: @color_set_a10;
 }
 .notice.for-notice-key {
     color: @color_notice_text;
