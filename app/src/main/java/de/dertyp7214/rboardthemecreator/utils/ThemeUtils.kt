@@ -20,6 +20,7 @@ import de.dertyp7214.rboardthemecreator.R
 import de.dertyp7214.rboardthemecreator.Zip
 import de.dertyp7214.rboardthemecreator.core.toHex
 import de.dertyp7214.rboardthemecreator.data.ThemeMetadata
+import org.apache.commons.lang3.ObjectUtils.isEmpty
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileOutputStream
@@ -34,6 +35,7 @@ object ThemeUtils {
         dark: Boolean = false,
         monet: Boolean = true,
         tertiary: Boolean = false,
+        NameTheme: String,
         hidesecondarylabel: Boolean = false,
         amoled: Boolean = false,
         image: Bitmap? = null
@@ -116,7 +118,8 @@ object ThemeUtils {
         }
         defs.append("@def color_set_a10 ${colorSetA7.toHex()}00;\n")
 
-        val themeName = "Color Theme (${color.toHex()})"
+
+        val themeName = if (NameTheme.isEmpty()){"Color Theme (${color.toHex()}) ${if (dark) "dark" else "light"}${if (tertiary) "_tertiary" else ""}"} else NameTheme.toString()
 
         File(workingDir, "style_sheet_variables.css").writeText(defs.toString())
         File(workingDir, "metadata.json").writeText(
@@ -137,7 +140,7 @@ object ThemeUtils {
             workingDir,
             "${
                 themeName.replace(" ", "_").replace(Regex("[()#]"), "")
-            }_${if (dark) "dark" else "light"}${if (tertiary) "_tertiary" else ""}.zip"
+            }.zip"
         )
         val pack = File(context.cacheDir, "theme.pack")
 

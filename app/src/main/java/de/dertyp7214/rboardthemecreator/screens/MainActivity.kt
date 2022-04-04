@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -44,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var tertiary: SwitchMaterial
     private lateinit var hidesecondarylabel: SwitchMaterial
     private lateinit var amoled: SwitchMaterial
+    private lateinit var NameTheme: EditText
     var currentColor = Color.RED
 
     @SuppressLint("ResourceType")
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
                 val generateTheme = findViewById<Button>(R.id.generate_theme)
                 val shareTheme = findViewById<MaterialButton>(R.id.share_theme)
+                val NameTheme = findViewById<EditText>(R.id.ThemeName)
                 colorPicker = findViewById(R.id.colorPicker)
                 switch = findViewById(R.id.dark)
                 monet = findViewById(R.id.monet)
@@ -104,6 +107,7 @@ class MainActivity : AppCompatActivity() {
                             switch.isChecked,
                             monet.visibility == View.VISIBLE && monet.isChecked,
                             tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
+                            NameTheme.text.toString(),
                             hidesecondarylabel.isChecked,
                             amoled.isChecked,
                             (findViewById<ImageView>(R.id.keyboard).drawable as VectorDrawableCompat).getBitmap()
@@ -119,6 +123,7 @@ class MainActivity : AppCompatActivity() {
                             switch.isChecked,
                             monet.visibility == View.VISIBLE && monet.isChecked,
                             tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
+                            NameTheme.text.toString(),
                             hidesecondarylabel.isChecked,
                             amoled.visibility == View.VISIBLE && switch.isChecked,
                             (findViewById<ImageView>(R.id.keyboard).drawable as VectorDrawableCompat).getBitmap()
