@@ -112,7 +112,7 @@ object ThemeUtils {
         defs.append("@def color_set_a10 ${colorSetA7.toHex()}00;\n")
 
         val parsedThemeName =
-            themeName.ifEmpty { "Color Theme (${color.toHex()}) ${if (dark) "dark" else "light"}${if (tertiary) "_tertiary" else ""}" }
+            themeName.ifEmpty { "Color Theme (${color.toHex()}) ${if (dark) "dark" else "light"}${if (tertiary) "_tertiary" else ""}${if (amoled) "_amoled" else ""}" }
 
         File(workingDir, "style_sheet_variables.css").writeText(defs.toString())
         File(workingDir, "metadata.json").writeText(

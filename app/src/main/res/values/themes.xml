@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.RboardThemeCreator" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:colorBackground">@color/app_background</item>
+        <item name="colorBackgroundFloating">@color/foreground</item>
         <item name="android:windowLightStatusBar">true</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/accent</item>

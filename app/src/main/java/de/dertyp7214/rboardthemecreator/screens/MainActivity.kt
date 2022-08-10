@@ -121,17 +121,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shareTheme(install: Boolean) {
+        val dBool = darkMode.isChecked
+        val mBool = monet.visibility == View.VISIBLE && monet.isChecked
+        val tBool = mBool && tertiary.visibility == View.VISIBLE && tertiary.isChecked
+        val aBool = amoled.visibility == View.VISIBLE && dBool && amoled.isChecked
         openShareThemeDialog { dialog, name, author ->
             ThemeUtils.shareTheme(
                 this,
                 ThemeUtils.generateTheme(
                     this, getColor(),
-                    darkMode.isChecked,
-                    monet.visibility == View.VISIBLE && monet.isChecked,
-                    tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
-                    name,
-                    author.ifEmpty { null },
-                    amoled.visibility == View.VISIBLE && darkMode.isChecked,
+                    dBool, mBool, tBool, name, author.ifEmpty { null }, aBool,
                     findViewById<ImageView>(R.id.keyboard).drawable.toBitmap()
                 ),
                 install
@@ -147,7 +146,7 @@ class MainActivity : AppCompatActivity() {
             darkMode.isChecked,
             monet.visibility == View.VISIBLE && monet.isChecked,
             tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
-            amoled.isChecked,
+            amoled.visibility == View.VISIBLE && amoled.isChecked,
             findViewById(R.id.keyboard)
         )
     }
