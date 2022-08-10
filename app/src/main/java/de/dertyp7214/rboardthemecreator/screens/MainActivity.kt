@@ -124,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         val dBool = darkMode.isChecked
         val mBool = monet.visibility == View.VISIBLE && monet.isChecked
         val tBool = mBool && tertiary.visibility == View.VISIBLE && tertiary.isChecked
-        val aBool = amoled.visibility == View.VISIBLE && darkMode.isChecked
+        val aBool = amoled.visibility == View.VISIBLE && dBool && amoled.isChecked
         openShareThemeDialog { dialog, name, author ->
             ThemeUtils.shareTheme(
                 this,
@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
             darkMode.isChecked,
             monet.visibility == View.VISIBLE && monet.isChecked,
             tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
-            amoled.isChecked,
+            amoled.visibility == View.VISIBLE && amoled.isChecked,
             findViewById(R.id.keyboard)
         )
     }
