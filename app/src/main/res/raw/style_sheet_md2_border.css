@@ -68,10 +68,6 @@
     elevation: 0;
 }
 .keytop {
-    padding_ratio_left: 0.7;
-    padding_ratio_top: 0.85;
-    padding_ratio_right: 0.7;
-    padding_ratio_bottom: 0.85;
     shadow_color: @color_set_a2;
     elevation: 0;
     edge_width: 0;

@@ -20,7 +20,6 @@ import de.dertyp7214.rboardthemecreator.R
 import de.dertyp7214.rboardthemecreator.Zip
 import de.dertyp7214.rboardthemecreator.core.toHex
 import de.dertyp7214.rboardthemecreator.data.ThemeMetadata
-import org.apache.commons.lang3.ObjectUtils.isEmpty
 import java.io.BufferedReader
 import java.io.File
 import java.io.FileOutputStream
@@ -35,8 +34,8 @@ object ThemeUtils {
         dark: Boolean = false,
         monet: Boolean = true,
         tertiary: Boolean = false,
-        NameTheme: String,
-        hidesecondarylabel: Boolean = false,
+        themeName: String,
+        author: String? = null,
         amoled: Boolean = false,
         image: Bitmap? = null
     ): File {
@@ -101,8 +100,6 @@ object ThemeUtils {
             }
         val colorSetA8 =
             if (dark) changeHSL(colorSetA7, -1, 0, 5) else changeHSL(colorSetA7, -1, 0, -5)
-        val colorSetA9 =
-            if (hidesecondarylabel) Color.TRANSPARENT else colorSetA4
         defs.append("@def color_set_a1 ${colorSetA1.toHex()}FF;\n")
         defs.append("@def color_set_a2 ${colorSetA2.toHex()}FF;\n")
         defs.append("@def color_set_a3 ${colorSetA3.toHex()}FF;\n")
@@ -111,20 +108,16 @@ object ThemeUtils {
         defs.append("@def color_set_a6 ${colorSetA6.toHex()}FF;\n")
         defs.append("@def color_set_a7 ${colorSetA7.toHex()}FF;\n")
         defs.append("@def color_set_a8 ${colorSetA8.toHex()}FF;\n")
-        if (hidesecondarylabel) {
-            defs.append("@def color_set_a9 ${colorSetA9.toHex()}00;\n")
-        } else {
-            defs.append("@def color_set_a9 ${colorSetA4.toHex()}FF;\n")
-        }
+        defs.append("@def color_set_a9 ${colorSetA4.toHex()}FF;\n")
         defs.append("@def color_set_a10 ${colorSetA7.toHex()}00;\n")
 
-
-        val themeName = if (NameTheme.isEmpty()){"Color Theme (${color.toHex()}) ${if (dark) "dark" else "light"}${if (tertiary) "_tertiary" else ""}"} else NameTheme.toString()
+        val parsedThemeName =
+            themeName.ifEmpty { "Color Theme (${color.toHex()}) ${if (dark) "dark" else "light"}${if (tertiary) "_tertiary" else ""}" }
 
         File(workingDir, "style_sheet_variables.css").writeText(defs.toString())
         File(workingDir, "metadata.json").writeText(
             ThemeMetadata(
-                name = themeName,
+                name = parsedThemeName,
                 is_light_theme = ColorUtils.calculateLuminance(colorSetA1) > .5
             ).toString()
         )
@@ -139,7 +132,7 @@ object ThemeUtils {
         val zip = File(
             workingDir,
             "${
-                themeName.replace(" ", "_").replace(Regex("[()#]"), "")
+                parsedThemeName.replace(" ", "_").replace(Regex("[()#]"), "")
             }.zip"
         )
         val pack = File(context.cacheDir, "theme.pack")
@@ -152,7 +145,7 @@ object ThemeUtils {
             )
             val img = File(zip.absolutePath.replace(".zip", ""))
             val meta = File(workingDir, "pack.meta").apply {
-                writeText("name=$themeName\nauthor=Gboard Theme Creator\n")
+                writeText("name=$parsedThemeName\nauthor=${author ?: "Gboard Theme Creator"}\n")
             }
             zip(
                 arrayListOf(zip.absolutePath, meta.absolutePath).apply {
@@ -177,11 +170,12 @@ object ThemeUtils {
             activity.packageName,
             themePack
         )
-        ShareCompat.IntentBuilder.from(activity)
+        val action = if (install) Intent.ACTION_VIEW else Intent.ACTION_SEND
+        ShareCompat.IntentBuilder(activity)
             .setStream(uri)
             .setType("application/pack")
             .intent
-            .setAction(if (install) Intent.ACTION_VIEW else Intent.ACTION_SEND)
+            .setAction(action)
             .setDataAndType(uri, "application/pack")
             .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION).apply {
                 activity.startActivity(
@@ -229,18 +223,15 @@ object ThemeUtils {
         dark: Boolean,
         monet: Boolean,
         tertiary: Boolean,
-        hidesecondarylabel: Boolean,
         amoled: Boolean,
         imageView: ImageView
     ) {
 
-        val newOs = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
-
         val colorSetA1 =
             when {
                 amoled && dark -> context.getColor(R.color.theme_amoled_background)
-                monet && newOs && dark -> context.getColor(R.color.neutral_900)
-                monet && newOs -> context.getColor(R.color.accent2_50)
+                monet && dark -> context.getColor(R.color.neutral_900)
+                monet -> context.getColor(R.color.accent2_50)
                 dark -> changeHSL(
                     color,
                     -1,
@@ -252,8 +243,8 @@ object ThemeUtils {
         val colorSetA2 =
             when {
                 amoled && dark -> context.getColor(R.color.theme_amoled_key_background)
-                monet && newOs && dark -> context.getColor(R.color.neutral_700)
-                monet && newOs -> context.getColor(R.color.neutral_0)
+                monet && dark -> context.getColor(R.color.neutral_700)
+                monet -> context.getColor(R.color.neutral_0)
                 dark -> changeHSL(
                     colorSetA1,
                     -1,
@@ -268,8 +259,8 @@ object ThemeUtils {
             if (ColorUtils.calculateLuminance(colorSetA1) < .5) Color.WHITE else Color.BLACK
         val colorSetA5 =
             when {
-                monet && newOs && tertiary -> context.getColor(R.color.accent_300)
-                monet && newOs -> context.getColor(R.color.accent_200)
+                monet && tertiary -> context.getColor(R.color.accent_300)
+                monet -> context.getColor(R.color.accent_200)
                 else -> changeHSL(color, 0, 0, -10)
             }
         val colorSetA6 =
@@ -277,8 +268,8 @@ object ThemeUtils {
         val colorSetA7 =
             when {
                 amoled && dark -> context.getColor(R.color.theme_amoled_dark_key_background)
-                monet && newOs && dark -> context.getColor(R.color.neutral_800)
-                monet && newOs -> context.getColor(R.color.neutral_100)
+                monet && dark -> context.getColor(R.color.neutral_800)
+                monet -> context.getColor(R.color.neutral_100)
                 dark -> changeHSL(
                     colorSetA2,
                     -1,
@@ -289,8 +280,6 @@ object ThemeUtils {
             }
         val colorSetA8 =
             if (dark) changeHSL(colorSetA7, -1, 0, 5) else changeHSL(colorSetA7, -1, 0, -5)
-        val colorSetA9 =
-            if (hidesecondarylabel) Color.TRANSPARENT else colorSetA4
 
         val colors = listOf(
             colorSetA1,
@@ -301,7 +290,7 @@ object ThemeUtils {
             colorSetA6,
             colorSetA7,
             colorSetA8,
-            colorSetA9
+            colorSetA4
         )
 
         val colorMap = listOf(

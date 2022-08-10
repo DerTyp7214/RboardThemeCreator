@@ -28,4 +28,6 @@
     <string name="download_error">Error while downloading</string>
     <string name="error">Error</string>
     <string name="name">Theme Name</string>
+    <string name="addToManager">Add theme</string>
+    <string name="author">Author</string>
 </resources>
