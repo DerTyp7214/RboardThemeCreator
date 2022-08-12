@@ -27,6 +27,7 @@ android {
 
     buildTypes {
         getByName("release") {
+            isDebuggable = false
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -64,7 +65,7 @@ dependencies {
 
     implementation("dev.chrisbanes.insetter:insetter:0.6.1")
     //noinspection DifferentStdlibGradleVersion
-    implementation("androidx.core:core:1.9.0-alpha05")
+    implementation("androidx.core:core:1.9.0-beta01")
     implementation("de.dertyp7214:PRDownloader:v0.6.0")
     implementation("androidx.browser:browser:1.4.0")
     kapt("com.github.bumptech.glide:compiler:4.13.2")
@@ -78,10 +79,10 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.5.1")
     implementation("androidx.navigation:navigation-ui-ktx:2.5.1")
     implementation("org.apache.commons:commons-text:1.9")
-    implementation("androidx.core:core-ktx:1.9.0-alpha05")
+    implementation("androidx.core:core-ktx:1.9.0-beta01")
     //noinspection DifferentStdlibGradleVersion
-    implementation("androidx.appcompat:appcompat:1.6.0-alpha05")
-    implementation("com.google.android.material:material:1.7.0-alpha03")
+    implementation("androidx.appcompat:appcompat:1.6.0-beta01")
+    implementation("com.google.android.material:material:1.7.0-beta01")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.preference:preference-ktx:1.2.0")
     implementation("androidx.activity:activity-ktx:1.6.0-alpha05")

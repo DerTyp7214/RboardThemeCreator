@@ -31,7 +31,6 @@ inline val Activity.content: View
         return findViewById(android.R.id.content)
     }
 
-
 operator fun <T : ViewModel> FragmentActivity.get(modelClass: Class<T>): T =
     run(::ViewModelProvider)[modelClass]
 
