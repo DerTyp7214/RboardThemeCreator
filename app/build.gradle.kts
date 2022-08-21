@@ -17,8 +17,8 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
         targetSdk = 33
-        versionCode = 104000
-        versionName = "1.0.4"
+        versionCode = 105000
+        versionName = "1.0.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -85,7 +85,7 @@ dependencies {
     implementation("com.google.android.material:material:1.7.0-beta01")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("androidx.activity:activity-ktx:1.6.0-alpha05")
+    implementation("androidx.activity:activity-ktx:1.6.0-beta01")
     implementation("androidx.fragment:fragment-ktx:1.6.0-alpha01")
     implementation("com.jaredrummler:android-shell:1.0.0")
     implementation("com.google.code.gson:gson:2.9.1")
@@ -96,5 +96,5 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10")
 
-    debugImplementation("androidx.compose.ui:ui-tooling:1.3.0-alpha02")
+    debugImplementation("androidx.compose.ui:ui-tooling:1.3.0-alpha03")
 }

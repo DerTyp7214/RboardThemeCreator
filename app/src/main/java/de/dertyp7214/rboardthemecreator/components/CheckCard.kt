@@ -16,8 +16,8 @@ import de.dertyp7214.rboardthemecreator.core.getAttr
 class CheckCard(context: Context, attrs: AttributeSet? = null) : LinearLayout(context, attrs) {
 
     private val strokeWidth = 5.dp(context)
-    private val iconTintSelected = ColorStateList.valueOf(context.getAttr(R.attr.colorSecondary))
-    private val iconTint = ColorStateList.valueOf(context.getAttr(R.attr.colorOnSecondary))
+    private val iconTintSelected = ColorStateList.valueOf(context.getAttr(R.attr.colorPrimary))
+    private val iconTint = ColorStateList.valueOf(context.getAttr(R.attr.colorOnSurfaceVariant))
 
     private val card by lazy { findViewById<MaterialCardView>(R.id.card) }
     private val imageView by lazy { findViewById<ImageView>(R.id.icon) }

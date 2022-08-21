@@ -80,7 +80,7 @@ object ThemeUtils {
         val colorSetA5 =
             when {
                 monet && newOs && tertiary -> context.getColor(R.color.accent_300)
-                monet && newOs -> context.getColor(R.color.accent_200)
+                monet && newOs -> context.getColor(R.color.accent_100)
                 else -> changeHSL(color, 0, 0, -10)
             }
         val colorSetA6 =
@@ -260,7 +260,7 @@ object ThemeUtils {
         val colorSetA5 =
             when {
                 monet && tertiary -> context.getColor(R.color.accent_300)
-                monet -> context.getColor(R.color.accent_200)
+                monet -> context.getColor(R.color.accent_100)
                 else -> changeHSL(color, 0, 0, -10)
             }
         val colorSetA6 =
