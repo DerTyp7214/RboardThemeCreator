@@ -6,8 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.os.Build
 import android.util.TypedValue
 import android.widget.ImageView
+import androidx.annotation.ColorInt
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.app.ShareCompat
 import androidx.core.content.FileProvider
@@ -28,9 +30,13 @@ object ThemeUtils {
     @SuppressLint("NewApi", "ResourceType")
     fun generateTheme(
         context: Context,
-        colorSets: List<Int>,
+        @ColorInt color: Int,
+        dark: Boolean = false,
+        monet: Boolean = true,
+        tertiary: Boolean = false,
         themeName: String,
         author: String? = null,
+        amoled: Boolean = false,
         image: Bitmap? = null
     ): File {
         val workingDir = File(context.filesDir, "theme")
@@ -39,32 +45,80 @@ object ThemeUtils {
 
         val defs = StringBuilder()
 
-        defs.append("@def color_set_a1 ${colorSets[0].toHex()}FF;\n")
-        defs.append("@def color_set_a2 ${colorSets[1].toHex()}FF;\n")
-        defs.append("@def color_set_a3 ${colorSets[2].toHex()}FF;\n")
-        defs.append("@def color_set_a4 ${colorSets[3].toHex()}FF;\n")
-        defs.append("@def color_set_a5 ${colorSets[4].toHex()}FF;\n")
-        defs.append("@def color_set_a6 ${colorSets[5].toHex()}FF;\n")
-        defs.append("@def color_set_a7 ${colorSets[6].toHex()}FF;\n")
-        defs.append("@def color_set_a8 ${colorSets[7].toHex()}FF;\n")
-        defs.append("@def color_set_a9 ${colorSets[8].toHex()}FF;\n")
-        defs.append("@def color_set_a10 ${colorSets[9].toHex()}00;\n")
+        val newOs = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
+
+        val colorSetA1 =
+            when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_background)
+                monet && newOs && dark -> context.getColor(R.color.neutral_900)
+                monet && newOs -> context.getColor(R.color.accent2_50)
+                dark -> changeHSL(
+                    color,
+                    -1,
+                    -40,
+                    -40
+                )
+                else -> changeHSL(color, -1, 40, 40)
+            }
+        val colorSetA2 =
+            when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_key_background)
+                monet && newOs && dark -> context.getColor(R.color.neutral_700)
+                monet && newOs -> context.getColor(R.color.neutral_0)
+                dark -> changeHSL(
+                    colorSetA1,
+                    -1,
+                    0,
+                    4
+                )
+                else -> changeHSL(colorSetA1, -1, 0, -4)
+            }
+        val colorSetA3 =
+            if (dark) changeHSL(colorSetA2, -1, 0, 5) else changeHSL(colorSetA2, -1, 0, -5)
+        val colorSetA4 =
+            if (ColorUtils.calculateLuminance(colorSetA1) < .5) Color.WHITE else Color.BLACK
+        val colorSetA5 =
+            when {
+                monet && newOs && tertiary -> context.getColor(R.color.accent_300)
+                monet && newOs -> context.getColor(R.color.accent_100)
+                else -> changeHSL(color, 0, 0, -10)
+            }
+        val colorSetA6 =
+            if (dark) changeHSL(colorSetA5, -1, -5, -10) else changeHSL(colorSetA5, -1, -5, -10)
+        val colorSetA7 =
+            when {
+                amoled && dark -> context.getColor(R.color.theme_amoled_dark_key_background)
+                monet && newOs && dark -> context.getColor(R.color.neutral_800)
+                monet && newOs -> context.getColor(R.color.neutral_100)
+                dark -> changeHSL(
+                    colorSetA2,
+                    -1,
+                    0,
+                    4
+                )
+                else -> changeHSL(colorSetA2, -1, 0, -4)
+            }
+        val colorSetA8 =
+            if (dark) changeHSL(colorSetA7, -1, 0, 5) else changeHSL(colorSetA7, -1, 0, -5)
+        defs.append("@def color_set_a1 ${colorSetA1.toHex()}FF;\n")
+        defs.append("@def color_set_a2 ${colorSetA2.toHex()}FF;\n")
+        defs.append("@def color_set_a3 ${colorSetA3.toHex()}FF;\n")
+        defs.append("@def color_set_a4 ${colorSetA4.toHex()}FF;\n")
+        defs.append("@def color_set_a5 ${colorSetA5.toHex()}FF;\n")
+        defs.append("@def color_set_a6 ${colorSetA6.toHex()}FF;\n")
+        defs.append("@def color_set_a7 ${colorSetA7.toHex()}FF;\n")
+        defs.append("@def color_set_a8 ${colorSetA8.toHex()}FF;\n")
+        defs.append("@def color_set_a9 ${colorSetA4.toHex()}FF;\n")
+        defs.append("@def color_set_a10 ${colorSetA7.toHex()}00;\n")
 
         val parsedThemeName =
-            themeName.ifEmpty {
-                "Color Theme (${colorSets[0].toHex()}) ${
-                    if (ColorUtils.calculateLuminance(
-                            colorSets[0]
-                        ) > .5
-                    ) "light" else "dark"
-                }"
-            }
+            themeName.ifEmpty { "Color Theme (${color.toHex()}) ${if (dark) "dark" else "light"}${if (tertiary) "_tertiary" else ""}${if (amoled) "_amoled" else ""}" }
 
         File(workingDir, "style_sheet_variables.css").writeText(defs.toString())
         File(workingDir, "metadata.json").writeText(
             ThemeMetadata(
                 name = parsedThemeName,
-                is_light_theme = ColorUtils.calculateLuminance(colorSets[0]) > .5
+                is_light_theme = ColorUtils.calculateLuminance(colorSetA1) > .5
             ).toString()
         )
         File(workingDir, "style_sheet_md2.css").writeText(getRaw(context, R.raw.style_sheet_md2))
@@ -162,14 +216,17 @@ object ThemeUtils {
         return typedValue.data
     }
 
-    fun buildColorSets(
+    @SuppressLint("NewApi", "ResourceType")
+    fun parseImage(
         context: Context,
         color: Int,
         dark: Boolean,
         monet: Boolean,
         tertiary: Boolean,
-        amoled: Boolean
-    ): List<Int> {
+        amoled: Boolean,
+        imageView: ImageView
+    ) {
+
         val colorSetA1 =
             when {
                 amoled && dark -> context.getColor(R.color.theme_amoled_background)
@@ -224,7 +281,7 @@ object ThemeUtils {
         val colorSetA8 =
             if (dark) changeHSL(colorSetA7, -1, 0, 5) else changeHSL(colorSetA7, -1, 0, -5)
 
-        return listOf(
+        val colors = listOf(
             colorSetA1,
             colorSetA2,
             colorSetA3,
@@ -233,20 +290,12 @@ object ThemeUtils {
             colorSetA6,
             colorSetA7,
             colorSetA8,
-            colorSetA4,
-            colorSetA7
+            colorSetA4
         )
-    }
 
-    @SuppressLint("NewApi", "ResourceType")
-    fun parseImage(
-        context: Context,
-        colorSets: List<Int>,
-        imageView: ImageView
-    ) {
         val colorMap = listOf(
             Pair(
-                colorSets[1], listOf(
+                colors[1], listOf(
                     "FFD0DB_2", "FFD0DB_3", "FFD0DB_4", "FFD0DB_5",
                     "FFD0DB_6", "FFD0DB_7", "FFD0DB_8", "FFD0DB_9", "FFD0DB_10",
                     "FFD0DB_11", "FFD0DB_12", "FFD0DB_13", "FFD0DB_14", "FFD0DB_15",
@@ -256,19 +305,19 @@ object ThemeUtils {
                     "FFD0DB_31", "FFD0DB_32", "FFD0DB_33", "FFD0DB_34"
                 )
             ),
-            Pair(colorSets[0], listOf("FFE8ED_3", "FFE8ED_1", "FFE8ED_2")),
-            Pair(colorSets[4], listOf("EE5479_1", "EE5479_2", "EE5479_4")),
+            Pair(colors[0], listOf("FFE8ED_3", "FFE8ED_1", "FFE8ED_2")),
+            Pair(colors[4], listOf("EE5479_1", "EE5479_2", "EE5479_4")),
             Pair(
-                colorSets[6],
+                colors[6],
                 listOf("FFBCCC_24", "FFBCCC_30", "FFBCCC_31", "FFBCCC_32", "FFBCCC_33", "FFBCCC_1")
             ),
-            Pair(colorSets[8], listOf("000000_3")),
+            Pair(colors[8], listOf("000000_3")),
             Pair(
-                if (ColorUtils.calculateLuminance(colorSets[4]) < .3) Color.WHITE else Color.BLACK,
+                if (ColorUtils.calculateLuminance(colors[4]) < .3) Color.WHITE else Color.BLACK,
                 listOf("000000_8")
             ),
             Pair(
-                colorSets[3], listOf(
+                colors[3], listOf(
                     "000000_1", "000000_2", "000000_4",
                     "000000_5", "000000_6_S", "000000_7"
                 )

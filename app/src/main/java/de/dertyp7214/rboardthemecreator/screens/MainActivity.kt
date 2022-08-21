@@ -5,28 +5,17 @@ import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.children
-import androidx.core.view.get
-import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.button.MaterialButton
-import com.google.android.material.card.MaterialCardView
+import com.google.android.material.color.DynamicColors
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
-import de.dertyp7214.colorutilsc.ColorUtilsC
-import de.dertyp7214.rboardcomponents.components.CheckCard
-import de.dertyp7214.rboardcomponents.components.CheckCardGroup
 import de.dertyp7214.rboardthemecreator.R
-import de.dertyp7214.rboardthemecreator.components.HexColorAdapter
-import de.dertyp7214.rboardthemecreator.core.getAttr
+import de.dertyp7214.rboardthemecreator.components.CheckCard
+import de.dertyp7214.rboardthemecreator.components.CheckCardGroup
 import de.dertyp7214.rboardthemecreator.core.openShareThemeDialog
 import de.dertyp7214.rboardthemecreator.utils.AppStartUp
 import de.dertyp7214.rboardthemecreator.utils.ThemeUtils
@@ -34,18 +23,6 @@ import de.dertyp7214.rboardthemecreator.utils.ThemeUtils
 class MainActivity : AppCompatActivity() {
     private val colorPicker by lazy { findViewById<ColorPicker>(R.id.colorPicker) }
     private val checkCardGroup by lazy { findViewById<CheckCardGroup>(R.id.checkCardGroup) }
-
-    private val viewPager by lazy { findViewById<ViewPager>(R.id.viewPager) }
-    private val tabLayout by lazy { findViewById<LinearLayout>(R.id.tabLayout) }
-
-    private val colorRecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerViewColors) }
-
-    private val colorSetAdapter by lazy {
-        HexColorAdapter(this, colorSets) { index, color ->
-            colorSets[index] = color
-            refresh(index)
-        }
-    }
 
     private val darkMode by lazy {
         CheckCard(this).apply {
@@ -76,95 +53,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val colorSets by lazy {
-        ArrayList(
-            ThemeUtils.buildColorSets(
-                this, getColor(),
-                dark = false, monet = false,
-                tertiary = false, amoled = false
-            )
-        )
-    }
-
-    var currentColor = Color.MAGENTA
-    var usingHex = false
+    var currentColor = Color.RED
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
+        DynamicColors.applyToActivityIfAvailable(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         AppStartUp(this).apply {
             setUp()
             onCreate {
-                currentColor = ThemeUtils.getSystemAccent(this)
-
-                colorRecyclerView.adapter = colorSetAdapter
-                colorRecyclerView.setHasFixedSize(true)
-
-                viewPager.adapter = object : PagerAdapter() {
-                    override fun instantiateItem(container: ViewGroup, position: Int) =
-                        viewPager[position]
-
-                    override fun getCount() = viewPager.childCount
-                    override fun isViewFromObject(view: View, any: Any) = view == any
-                }
-                viewPager.currentItem = 0
-
-                viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-                    override fun onPageScrolled(
-                        position: Int,
-                        positionOffset: Float,
-                        positionOffsetPixels: Int
-                    ) {
-                        val primaryContainer = getAttr(R.attr.colorPrimaryContainer)
-                        val onPrimaryContainer = getAttr(R.attr.colorOnPrimaryContainer)
-                        val surfaceVariant = getAttr(R.attr.colorSurfaceVariant)
-                        val onSurfaceVariant = getAttr(R.attr.colorOnSurfaceVariant)
-                        fun MaterialCardView.blend(
-                            color1a: Int, color1b: Int,
-                            color2a: Int, color2b: Int,
-                            factor: Float
-                        ) {
-                            setCardBackgroundColor(
-                                ColorUtilsC.blendARGB(color1a, color1b, factor)
-                            )
-                            get(0).let { text ->
-                                if (text is TextView) text.setTextColor(
-                                    ColorUtilsC.blendARGB(color2a, color2b, factor)
-                                )
-                            }
-                        }
-                        tabLayout[position].let { card ->
-                            if (card is MaterialCardView) card.blend(
-                                primaryContainer, surfaceVariant,
-                                onPrimaryContainer, onSurfaceVariant,
-                                positionOffset
-                            )
-                        }
-                        if (tabLayout.childCount > position + 1) tabLayout[position + 1].let { card ->
-                            if (card is MaterialCardView) card.blend(
-                                surfaceVariant, primaryContainer,
-                                onSurfaceVariant, onPrimaryContainer,
-                                positionOffset
-                            )
-                        }
-                    }
-
-                    override fun onPageScrollStateChanged(state: Int) {}
-                    override fun onPageSelected(position: Int) {
-                        usingHex = position == 1
-                        refresh()
-                    }
-                })
-
-                tabLayout.children.forEachIndexed { index, tab ->
-                    if (tab is MaterialCardView) {
-                        tab.setOnClickListener {
-                            viewPager.setCurrentItem(index, true)
-                        }
-                    }
-                }
-
                 checkCardGroup.addCard(darkMode)
                 checkCardGroup.addCard(monet)
                 checkCardGroup.addCard(tertiary)
@@ -203,6 +101,7 @@ class MainActivity : AppCompatActivity() {
                     }
                     refresh()
                 }
+                currentColor = ThemeUtils.getSystemAccent(this)
                 colorPicker.setColor(currentColor)
 
                 generateTheme.setOnClickListener { shareTheme(true) }
@@ -224,11 +123,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun shareTheme(install: Boolean) {
+        val dBool = darkMode.isChecked
+        val mBool = monet.visibility == View.VISIBLE && monet.isChecked
+        val tBool = mBool && tertiary.visibility == View.VISIBLE && tertiary.isChecked
+        val aBool = amoled.visibility == View.VISIBLE && dBool && amoled.isChecked
         openShareThemeDialog { dialog, name, author ->
             ThemeUtils.shareTheme(
                 this,
                 ThemeUtils.generateTheme(
-                    this, getColorSets(), name, author.ifEmpty { null },
+                    this, getColor(),
+                    dBool, mBool, tBool, name, author.ifEmpty { null }, aBool,
                     findViewById<ImageView>(R.id.keyboard).drawable.toBitmap()
                 ),
                 install
@@ -237,26 +141,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun refresh(index: Int = -1) {
-        if (index >= 0) colorSetAdapter.notifyItemChanged(index)
+    private fun refresh() {
         ThemeUtils.parseImage(
             this,
-            getColorSets(),
+            getColor(),
+            darkMode.isChecked,
+            monet.visibility == View.VISIBLE && monet.isChecked,
+            tertiary.visibility == View.VISIBLE && monet.isChecked && tertiary.isChecked,
+            amoled.visibility == View.VISIBLE && amoled.isChecked,
             findViewById(R.id.keyboard)
-        )
-    }
-
-    private fun getColorSets(): List<Int> {
-        if (usingHex) return colorSets
-
-        val dBool = darkMode.isChecked
-        val mBool = monet.visibility == View.VISIBLE && monet.isChecked
-        val tBool = mBool && tertiary.visibility == View.VISIBLE && tertiary.isChecked
-        val aBool = amoled.visibility == View.VISIBLE && dBool && amoled.isChecked
-
-        return ThemeUtils.buildColorSets(
-            this, getColor(),
-            dBool, mBool, tBool, aBool
         )
     }
 
