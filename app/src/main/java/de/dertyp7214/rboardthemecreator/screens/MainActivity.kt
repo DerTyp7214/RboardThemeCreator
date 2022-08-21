@@ -10,6 +10,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.color.DynamicColors
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import de.dertyp7214.rboardcomponents.components.CheckCard
@@ -56,6 +57,7 @@ class MainActivity : AppCompatActivity() {
 
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
+        DynamicColors.applyToActivityIfAvailable(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         AppStartUp(this).apply {
