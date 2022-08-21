@@ -6,10 +6,10 @@
     android:layout_width="120dp"
     android:layout_height="120dp"
     android:layout_margin="6dp"
-    app:cardBackgroundColor="?attr/colorBackgroundFloating"
+    app:cardBackgroundColor="?attr/colorSurfaceVariant"
     app:cardCornerRadius="24dp"
     app:cardElevation="0dp"
-    app:strokeColor="?attr/colorSecondary"
+    app:strokeColor="?attr/colorPrimary"
     app:strokeWidth="0dp">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             android:id="@+id/icon"
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            app:tint="?attr/colorOnSecondary"
+            app:tint="?attr/colorOnSurfaceVariant"
             tools:ignore="ContentDescription"
             tools:srcCompat="@drawable/ic_dark_mode" />
 
@@ -35,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:textColor="?attr/colorOnSecondary"
+            android:textColor="?attr/colorOnSurfaceVariant"
             tools:text="TextView" />
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>
