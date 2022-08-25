@@ -11,6 +11,8 @@ plugins {
 val kotlinVersion: String = KotlinCompilerVersion.VERSION
 
 android {
+    namespace = "de.dertyp7214.rboardthemecreator"
+
     compileSdk = 33
 
     defaultConfig {
@@ -38,19 +40,12 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_15
+        targetCompatibility = JavaVersion.VERSION_15
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_15.toString()
     }
-    packagingOptions {
-        jniLibs {
-            useLegacyPackaging = true
-        }
-        resources.excludes.add("META-INF/*")
-    }
-    namespace = "de.dertyp7214.rboardthemecreator"
 }
 
 dependencies {
