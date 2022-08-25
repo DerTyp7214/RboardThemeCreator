@@ -13,9 +13,9 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.color.DynamicColors
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
+import de.dertyp7214.rboardcomponents.components.CheckCard
+import de.dertyp7214.rboardcomponents.components.CheckCardGroup
 import de.dertyp7214.rboardthemecreator.R
-import de.dertyp7214.rboardthemecreator.components.CheckCard
-import de.dertyp7214.rboardthemecreator.components.CheckCardGroup
 import de.dertyp7214.rboardthemecreator.core.openShareThemeDialog
 import de.dertyp7214.rboardthemecreator.utils.AppStartUp
 import de.dertyp7214.rboardthemecreator.utils.ThemeUtils

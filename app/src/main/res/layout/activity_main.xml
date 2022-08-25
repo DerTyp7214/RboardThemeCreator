@@ -29,7 +29,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <de.dertyp7214.rboardthemecreator.components.CheckCardGroup
+        <de.dertyp7214.rboardcomponents.components.CheckCardGroup
             android:id="@+id/checkCardGroup"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
