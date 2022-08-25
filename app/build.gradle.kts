@@ -11,16 +11,16 @@ plugins {
 val kotlinVersion: String = KotlinCompilerVersion.VERSION
 
 android {
+    namespace = "de.dertyp7214.rboardthemecreator"
+
     compileSdk = 33
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
         targetSdk = 33
-        versionCode = 105000
-        versionName = "1.0.5"
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        versionCode = 106000
+        versionName = "1.0.6"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -40,23 +40,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_15
+        targetCompatibility = JavaVersion.VERSION_15
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = JavaVersion.VERSION_15.toString()
     }
-    packagingOptions {
-        jniLibs {
-            useLegacyPackaging = true
-        }
-        resources.excludes.add("META-INF/*")
-    }
-    namespace = "de.dertyp7214.rboardthemecreator"
 }
 
 dependencies {
-    implementation(platform("com.google.firebase:firebase-bom:29.3.0"))
+    implementation(project(":colorutilsc"))
+    implementation(project(":rboardcomponents"))
+
+    implementation(platform("com.google.firebase:firebase-bom:30.3.2"))
     implementation("com.google.firebase:firebase-messaging-ktx:23.0.7")
     implementation("com.google.firebase:firebase-analytics-ktx:21.1.0")
     
