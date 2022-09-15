@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.RboardThemeCreator" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
@@ -8,6 +8,10 @@
 
         <item name="materialAlertDialogTheme">
             @style/Dialog.RboardThemeCreator.MaterialAlertDialog
+        </item>
+
+        <item name="android:windowSplashScreenBrandingImage" tools:ignore="NewApi">
+            @drawable/dertyp_branding
         </item>
     </style>
 </resources>
