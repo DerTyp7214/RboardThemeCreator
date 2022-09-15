@@ -1,4 +1,4 @@
 rootProject.name = "Rboard Theme Creator"
-include(":app")
-include(":colorutilsc")
-include(":rboardcomponents")
+include ':app'
+include ':colorutilsc'
+include ':rboardcomponents'
