@@ -19,8 +19,8 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
         targetSdk = 33
-        versionCode = 107000
-        versionName = "1.0.7"
+        versionCode = 108000
+        versionName = "1.0.8"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -81,7 +81,7 @@ dependencies {
     implementation("com.google.android.material:material:1.8.0-alpha01")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("androidx.activity:activity-ktx:1.6.0-rc02")
+    implementation("androidx.activity:activity-ktx:1.6.0")
     implementation("androidx.fragment:fragment-ktx:1.6.0-alpha02")
     implementation("com.jaredrummler:android-shell:1.0.0")
     implementation("com.google.code.gson:gson:2.9.1")
@@ -91,6 +91,4 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.7.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.7.10")
-
-    debugImplementation("androidx.compose.ui:ui-tooling:1.3.0-beta02")
 }
