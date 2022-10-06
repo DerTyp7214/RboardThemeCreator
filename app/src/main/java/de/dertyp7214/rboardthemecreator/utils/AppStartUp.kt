@@ -8,7 +8,7 @@ import android.content.Intent
 import android.os.Build
 import android.view.View
 import android.view.ViewTreeObserver
-import android.view.animation.AnticipateInterpolator
+import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.animation.doOnEnd
 import de.dertyp7214.rboardthemecreator.R
@@ -23,11 +23,11 @@ class AppStartUp(private val activity: AppCompatActivity) {
             activity.splashScreen.setOnExitAnimationListener { splashScreenView ->
                 val slideUp = ObjectAnimator.ofFloat(
                     splashScreenView,
-                    View.TRANSLATION_Y,
-                    0f,
-                    -splashScreenView.height.toFloat()
+                    View.ALPHA,
+                    1f,
+                    0f
                 )
-                slideUp.interpolator = AnticipateInterpolator()
+                slideUp.interpolator = AccelerateDecelerateInterpolator()
                 slideUp.duration = 200L
 
                 slideUp.doOnEnd { splashScreenView.remove() }

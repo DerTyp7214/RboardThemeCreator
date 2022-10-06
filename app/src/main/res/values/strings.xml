@@ -1,4 +1,4 @@
-<resources>
+<resources translatable="false">
     <string name="app_name">Rboard Theme Creator</string>
     <string name="share_theme">Share Theme</string>
     <string name="generate_theme">Do me theme pls</string>
@@ -30,4 +30,10 @@
     <string name="name">Theme Name</string>
     <string name="addToManager">Add theme</string>
     <string name="author">Author</string>
+    <string name="colorWheel">Color wheel</string>
+    <string name="hexPicker">Hex picker</string>
+    <string name="pickColor">Pick color</string>
+    <string name="pick">Pick</string>
+    <string name="cancel">Cancel</string>
+    <string name="hex">HEX</string>
 </resources>
