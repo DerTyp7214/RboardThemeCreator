@@ -9,6 +9,7 @@ import androidx.core.content.edit
 import androidx.preference.PreferenceManager
 import com.dertyp7214.logs.helpers.Logger
 import com.downloader.PRDownloader
+import de.dertyp7214.colorutilsc.ColorUtilsC
 import de.dertyp7214.rboardcomponents.utils.ThemeUtils
 import de.dertyp7214.rboardthemecreator.core.isReachable
 import de.dertyp7214.rboardthemecreator.utils.doInBackground
@@ -26,6 +27,7 @@ class Application : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        ColorUtilsC.init()
         ThemeUtils.registerActivityLifecycleCallbacks(this)
         ThemeUtils.applyTheme(this)
         PRDownloader.initialize(this)
