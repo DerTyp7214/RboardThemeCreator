@@ -28,7 +28,7 @@ class AppStartUp(private val activity: AppCompatActivity) {
                     0f
                 )
                 slideUp.interpolator = AccelerateDecelerateInterpolator()
-                slideUp.duration = 200L
+                slideUp.duration = 300L
 
                 slideUp.doOnEnd { splashScreenView.remove() }
 
@@ -51,8 +51,11 @@ class AppStartUp(private val activity: AppCompatActivity) {
 
             createNotificationChannels(this)
 
-            isReady = true
-            onCreate(this, Intent())
+            Thread {
+                Thread.sleep(resources.getInteger(R.integer.splashAnimationDuration).toLong())
+                isReady = true
+                runOnUiThread { onCreate(this, Intent()) }
+            }.start()
         }
     }
 

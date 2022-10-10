@@ -10,6 +10,12 @@
             @style/Dialog.RboardThemeCreator.MaterialAlertDialog
         </item>
 
+        <item name="android:windowSplashScreenAnimatedIcon" tools:ignore="NewApi">
+            @drawable/ic_launcher_animation
+        </item>
+        <item name="android:windowSplashScreenAnimationDuration" tools:ignore="NewApi">
+            @integer/splashAnimationDuration
+        </item>
         <item name="android:windowSplashScreenBrandingImage" tools:ignore="NewApi">
             @drawable/dertyp_branding
         </item>
