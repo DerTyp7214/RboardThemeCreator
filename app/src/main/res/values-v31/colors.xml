@@ -3,6 +3,7 @@
     <color name="ic_launcher_background">@android:color/system_accent1_100</color>
     <color name="ic_launcher_foreground">@android:color/system_neutral2_700</color>
 
+    <color name="accent_50">@android:color/system_accent1_50</color>
     <color name="accent_100">@android:color/system_accent1_100</color>
     <color name="accent_300">@android:color/system_accent3_400</color>
     <color name="neutral_500">@android:color/system_neutral1_500</color>

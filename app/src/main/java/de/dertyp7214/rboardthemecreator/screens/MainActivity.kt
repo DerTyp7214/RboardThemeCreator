@@ -6,14 +6,14 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebView
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.children
 import androidx.core.view.get
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
@@ -28,21 +28,47 @@ import de.dertyp7214.rboardthemecreator.R
 import de.dertyp7214.rboardthemecreator.components.HexColorAdapter
 import de.dertyp7214.rboardthemecreator.core.getAttr
 import de.dertyp7214.rboardthemecreator.core.openShareThemeDialog
+import de.dertyp7214.rboardthemecreator.data.RepoManifest
+import de.dertyp7214.rboardthemecreator.data.ThemeColors
 import de.dertyp7214.rboardthemecreator.utils.AppStartUp
+import de.dertyp7214.rboardthemecreator.utils.RepoHelper
 import de.dertyp7214.rboardthemecreator.utils.ThemeUtils
+import de.dertyp7214.rboardthemecreator.utils.doInBackground
 
+@SuppressLint("NotifyDataSetChanged")
 class MainActivity : AppCompatActivity() {
+    companion object {
+        val webViews: MutableMap<String, WebView> = mutableMapOf()
+    }
     private val colorPicker by lazy { findViewById<ColorPicker>(R.id.colorPicker) }
     private val checkCardGroup by lazy { findViewById<CheckCardGroup>(R.id.checkCardGroup) }
 
     private val viewPager by lazy { findViewById<ViewPager>(R.id.viewPager) }
+    private val viewPager2 by lazy { findViewById<ViewPager>(R.id.viewPager2) }
     private val tabLayout by lazy { findViewById<LinearLayout>(R.id.tabLayout) }
+
+    private val templateList = mutableListOf<String>()
 
     private val colorRecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerViewColors) }
 
+    private val themeColorMap by lazy {
+        mutableMapOf<String, Int>().apply {
+            refreshThemeColorMap(
+                this
+            )
+        }
+    }
+
     private val colorSetAdapter by lazy {
-        HexColorAdapter(this, colorSets) { index, color ->
-            colorSets[index] = color
+        HexColorAdapter(this, themeColorMap) { index, color ->
+            when (index) {
+                0 -> themeColors.mainBackground = color
+                1 -> themeColors.keyBackground = color
+                2 -> themeColors.keyColor = color
+                3 -> themeColors.secondaryKeyBackground = color
+                4 -> themeColors.accentBackground = color
+            }
+            refreshThemeColorMap()
             refresh(index)
         }
     }
@@ -76,23 +102,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private val colorSets by lazy {
-        ArrayList(
-            ThemeUtils.buildColorSets(
-                this, getColor(),
-                dark = false, monet = false,
-                tertiary = false, amoled = false
-            )
+    private var template = "default"
+
+    private val themeColors by lazy {
+        ThemeUtils.buildColorSets(
+            this, getColor(),
+            dark = false, monet = false,
+            tertiary = false, amoled = false,
+            template = template
         )
     }
+
+    private val repoHelper by lazy { RepoHelper.init(this) }
+
+    private val repoManifestLiveData = MutableLiveData<RepoManifest>()
 
     var currentColor = Color.MAGENTA
     var usingHex = false
 
-    @SuppressLint("ResourceType")
+    @SuppressLint("ResourceType", "ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        doInBackground {
+            repoHelper.cacheAndGetManifest()?.let { manifest ->
+                repoManifestLiveData.postValue(manifest)
+                templateList.clear()
+                templateList.addAll(manifest.templates.map { it.value.name })
+                runOnUiThread {
+                    viewPager2.adapter?.notifyDataSetChanged()
+                    ThemeUtils.parsePreview(getColorSets())
+                }
+            }
+        }
+
         AppStartUp(this).apply {
             setUp()
             onCreate {
@@ -100,6 +144,53 @@ class MainActivity : AppCompatActivity() {
 
                 colorRecyclerView.adapter = colorSetAdapter
                 colorRecyclerView.setHasFixedSize(true)
+
+                viewPager2.adapter = object : PagerAdapter() {
+                    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+                        val pageTemplate = templateList[position]
+                        if (webViews.containsKey(pageTemplate)) {
+                            return webViews[pageTemplate]!!
+                        } else {
+                            val webView = WebView(this@MainActivity).apply {
+                                layoutParams = ViewGroup.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.MATCH_PARENT
+                                )
+                                container.addView(this)
+                            }
+                            webViews[pageTemplate] = webView
+                            val customColors = ThemeColors(
+                                themeColors.mainBackground,
+                                themeColors.keyBackground,
+                                themeColors.keyColor,
+                                themeColors.secondaryKeyBackground,
+                                themeColors.accentBackground,
+                                pageTemplate
+                            )
+                            ThemeUtils.parsePreview(customColors)
+                            return webView
+                        }
+                    }
+
+                    override fun getCount() = templateList.size
+                    override fun isViewFromObject(view: View, any: Any) = view == any
+                }
+                viewPager2.currentItem = 0
+
+                viewPager2.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                    override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int
+                    ) {
+
+                    }
+
+                    override fun onPageScrollStateChanged(state: Int) {}
+                    override fun onPageSelected(position: Int) {
+                        template = templateList[position]
+                    }
+                })
 
                 viewPager.adapter = object : PagerAdapter() {
                     override fun instantiateItem(container: ViewGroup, position: Int) =
@@ -116,10 +207,15 @@ class MainActivity : AppCompatActivity() {
                         positionOffset: Float,
                         positionOffsetPixels: Int
                     ) {
-                        val primaryContainer = getAttr(R.attr.colorPrimaryContainer)
-                        val onPrimaryContainer = getAttr(R.attr.colorOnPrimaryContainer)
-                        val surfaceVariant = getAttr(R.attr.colorSurfaceVariant)
-                        val onSurfaceVariant = getAttr(R.attr.colorOnSurfaceVariant)
+                        val primaryContainer =
+                            getAttr(com.google.android.material.R.attr.colorPrimaryContainer)
+                        val onPrimaryContainer =
+                            getAttr(com.google.android.material.R.attr.colorOnPrimaryContainer)
+                        val surfaceVariant =
+                            getAttr(com.google.android.material.R.attr.colorSurfaceVariant)
+                        val onSurfaceVariant =
+                            getAttr(com.google.android.material.R.attr.colorOnSurfaceVariant)
+
                         fun MaterialCardView.blend(
                             color1a: Int, color1b: Int,
                             color2a: Int, color2b: Int,
@@ -153,6 +249,7 @@ class MainActivity : AppCompatActivity() {
                     override fun onPageScrollStateChanged(state: Int) {}
                     override fun onPageSelected(position: Int) {
                         usingHex = position == 1
+                        refreshThemeColorMap()
                         refresh()
                     }
                 })
@@ -225,29 +322,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun shareTheme(install: Boolean) {
         openShareThemeDialog { dialog, name, author ->
-            ThemeUtils.shareTheme(
-                this,
-                ThemeUtils.generateTheme(
-                    this, getColorSets(), name, author.ifEmpty { null },
-                    findViewById<ImageView>(R.id.keyboard).drawable.toBitmap()
-                ),
-                install
-            )
-            dialog.dismiss()
+            val colors = getColorSets()
+            ThemeUtils.getPreviewImage(this, colors) { bitmap ->
+                ThemeUtils.shareTheme(
+                    this,
+                    ThemeUtils.generateTheme(
+                        this, colors, name, author.ifEmpty { null },
+                        bitmap
+                    ),
+                    install
+                )
+                dialog.dismiss()
+            }
         }
     }
 
     private fun refresh(index: Int = -1) {
         if (index >= 0) colorSetAdapter.notifyItemChanged(index)
-        ThemeUtils.parseImage(
-            this,
-            getColorSets(),
-            findViewById(R.id.keyboard)
-        )
+        else colorSetAdapter.notifyDataSetChanged()
+        ThemeUtils.updateColors(getColorSets())
     }
 
-    private fun getColorSets(): List<Int> {
-        if (usingHex) return colorSets
+    private fun getColorSets(): ThemeColors {
+        if (usingHex) return themeColors.apply { this.template = this@MainActivity.template }
 
         val dBool = darkMode.isChecked
         val mBool = monet.visibility == View.VISIBLE && monet.isChecked
@@ -256,11 +353,26 @@ class MainActivity : AppCompatActivity() {
 
         return ThemeUtils.buildColorSets(
             this, getColor(),
-            dBool, mBool, tBool, aBool
+            dBool, mBool, tBool, aBool,
+            template
         )
     }
 
     private fun getColor(): Int {
         return currentColor
+    }
+
+    private fun refreshThemeColorMap(map: MutableMap<String, Int> = themeColorMap): MutableMap<String, Int> {
+        map.clear()
+        map.putAll(
+            listOf(
+                "Main Background" to themeColors.mainBackground,
+                "Key Background" to themeColors.keyBackground,
+                "Key Color" to themeColors.keyColor,
+                "Secondary Key Background" to themeColors.secondaryKeyBackground,
+                "Accent Background" to themeColors.accentBackground
+            )
+        )
+        return map
     }
 }

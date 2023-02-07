@@ -1,15 +1,21 @@
 package de.dertyp7214.rboardthemecreator.data
 
 import com.google.gson.Gson
+import com.google.gson.annotations.SerializedName
 
 data class ThemeMetadata(
-    val format_version: Int = 3,
+    @SerializedName("format_version")
+    val formatVersion: Int = 3,
     val id: String = "gboard_theme_creator_${Math.random()}",
     val name: String,
-    val prefer_key_border: Boolean = true,
-    val lock_key_border: Boolean = false,
-    val is_light_theme: Boolean,
-    val style_sheets: List<String> = listOf(
+    @SerializedName("prefer_key_border")
+    val preferKeyBorder: Boolean = true,
+    @SerializedName("lock_key_border")
+    val lockKeyBorder: Boolean = false,
+    @SerializedName("is_light_theme")
+    val isLightTheme: Boolean,
+    @SerializedName("style_sheets")
+    val styleSheets: List<String> = listOf(
         "style_sheet_variables.css",
         "style_sheet_md2.css"
     ),
@@ -24,7 +30,8 @@ data class ThemeMetadata(
 
 data class Flavor(
     val type: String = "BORDER",
-    val style_sheets: List<String> = listOf(
+    @SerializedName("style_sheets")
+    val styleSheets: List<String> = listOf(
         "style_sheet_md2_border.css"
     )
 )

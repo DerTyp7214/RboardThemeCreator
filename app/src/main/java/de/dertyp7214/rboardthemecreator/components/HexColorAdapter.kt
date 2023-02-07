@@ -16,14 +16,15 @@ import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import de.dertyp7214.rboardthemecreator.R
 import de.dertyp7214.rboardthemecreator.core.openDialog
 import de.dertyp7214.rboardthemecreator.core.toHex
-import java.util.*
+import java.util.Locale
 import java.util.regex.Pattern
 
 class HexColorAdapter(
     private val activity: Activity,
-    private val colorSets: List<Int>,
+    private val colors: Map<String, Int>,
     private val onChange: (index: Int, color: Int) -> Unit
 ) : RecyclerView.Adapter<HexColorAdapter.ViewHolder>() {
+
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
         val wrapper: View = v.findViewById(R.id.wrapper)
         val inputLayout: TextInputLayout = v.findViewById(R.id.inputLayout)
@@ -33,13 +34,13 @@ class HexColorAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         ViewHolder(LayoutInflater.from(activity).inflate(R.layout.hex_color_item, parent, false))
 
-    override fun getItemCount() = colorSets.size
+    override fun getItemCount() = colors.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val colorSet = colorSets[position]
+        val (name, color) = colors.entries.toList()[position]
 
-        holder.inputLayout.hint = "Color Set ${position + 1}"
-        holder.editText.setText(colorSet.toHex())
+        holder.inputLayout.hint = name
+        holder.editText.setText(color.toHex())
 
         holder.wrapper.setOnClickListener {
             activity.openDialog(R.layout.color_picker_dialog, cancelable = false) { dialog ->
@@ -72,9 +73,9 @@ class HexColorAdapter(
                     }
                 )
 
-                editText.setText(Integer.toHexString(colorSet).substring(2))
+                editText.setText(Integer.toHexString(color).substring(2))
 
-                colorPicker.setColor(colorSet)
+                colorPicker.setColor(color)
                 colorPicker.setColorSelectionListener(object : SimpleColorSelectionListener() {
                     override fun onColorSelected(color: Int) {
                         editText.setText(Integer.toHexString(color).substring(2))
@@ -90,9 +91,9 @@ class HexColorAdapter(
                 }
 
                 btnDice.setOnClickListener {
-                    val color = randomColor()
-                    editText.setText(color)
-                    colorPicker.setColor(parseColor(color))
+                    val randomColor = randomColor()
+                    editText.setText(randomColor)
+                    colorPicker.setColor(parseColor(randomColor))
                 }
                 btnCancel.setOnClickListener { dialog.dismiss() }
                 btnPick.setOnClickListener {
