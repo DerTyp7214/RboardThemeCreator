@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -20,7 +19,6 @@ import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.card.MaterialCardView
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.madrapps.pikolo.ColorPicker
 import com.madrapps.pikolo.listeners.SimpleColorSelectionListener
 import de.dertyp7214.colorutilsc.ColorUtilsC
@@ -39,24 +37,17 @@ import de.dertyp7214.rboardthemecreator.utils.doInBackground
 
 @SuppressLint("NotifyDataSetChanged")
 class MainActivity : AppCompatActivity() {
+    companion object {
+        val webViews: MutableMap<String, WebView> = mutableMapOf()
+    }
     private val colorPicker by lazy { findViewById<ColorPicker>(R.id.colorPicker) }
     private val checkCardGroup by lazy { findViewById<CheckCardGroup>(R.id.checkCardGroup) }
 
     private val viewPager by lazy { findViewById<ViewPager>(R.id.viewPager) }
+    private val viewPager2 by lazy { findViewById<ViewPager>(R.id.viewPager2) }
     private val tabLayout by lazy { findViewById<LinearLayout>(R.id.tabLayout) }
 
     private val templateList = mutableListOf<String>()
-
-    private val webView by lazy { findViewById<WebView>(R.id.keyboard) }
-    private val autoCompleteTextView by lazy { findViewById<MaterialAutoCompleteTextView>(R.id.autoCompleteTextView) }
-
-    private val autocompleteAdapter by lazy {
-        ArrayAdapter(
-            this,
-            R.layout.list_item,
-            templateList
-        )
-    }
 
     private val colorRecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerViewColors) }
 
@@ -140,10 +131,8 @@ class MainActivity : AppCompatActivity() {
                 templateList.clear()
                 templateList.addAll(manifest.templates.map { it.value.name })
                 runOnUiThread {
-                    ThemeUtils.parsePreview(
-                        getColorSets(),
-                        webView,
-                    )
+                    viewPager2.adapter?.notifyDataSetChanged()
+                    ThemeUtils.parsePreview(getColorSets())
                 }
             }
         }
@@ -153,18 +142,55 @@ class MainActivity : AppCompatActivity() {
             onCreate {
                 currentColor = ThemeUtils.getSystemAccent(this)
 
-                autoCompleteTextView.setAdapter(autocompleteAdapter)
-                autoCompleteTextView.setText(template, false)
-                autoCompleteTextView.setOnItemClickListener { _, _, position, _ ->
-                    template = templateList.find {
-                        it == templateList[position]
-                    } ?: "default"
-                    refreshThemeColorMap()
-                    refresh()
-                }
-
                 colorRecyclerView.adapter = colorSetAdapter
                 colorRecyclerView.setHasFixedSize(true)
+
+                viewPager2.adapter = object : PagerAdapter() {
+                    override fun instantiateItem(container: ViewGroup, position: Int): Any {
+                        val pageTemplate = templateList[position]
+                        if (webViews.containsKey(pageTemplate)) {
+                            return webViews[pageTemplate]!!
+                        } else {
+                            val webView = WebView(this@MainActivity).apply {
+                                layoutParams = ViewGroup.LayoutParams(
+                                    ViewGroup.LayoutParams.MATCH_PARENT,
+                                    ViewGroup.LayoutParams.MATCH_PARENT
+                                )
+                                container.addView(this)
+                            }
+                            webViews[pageTemplate] = webView
+                            val customColors = ThemeColors(
+                                themeColors.mainBackground,
+                                themeColors.keyBackground,
+                                themeColors.keyColor,
+                                themeColors.secondaryKeyBackground,
+                                themeColors.accentBackground,
+                                pageTemplate
+                            )
+                            ThemeUtils.parsePreview(customColors)
+                            return webView
+                        }
+                    }
+
+                    override fun getCount() = templateList.size
+                    override fun isViewFromObject(view: View, any: Any) = view == any
+                }
+                viewPager2.currentItem = 0
+
+                viewPager2.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+                    override fun onPageScrolled(
+                        position: Int,
+                        positionOffset: Float,
+                        positionOffsetPixels: Int
+                    ) {
+
+                    }
+
+                    override fun onPageScrollStateChanged(state: Int) {}
+                    override fun onPageSelected(position: Int) {
+                        template = templateList[position]
+                    }
+                })
 
                 viewPager.adapter = object : PagerAdapter() {
                     override fun instantiateItem(container: ViewGroup, position: Int) =

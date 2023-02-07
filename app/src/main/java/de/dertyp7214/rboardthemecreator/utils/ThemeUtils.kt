@@ -29,9 +29,11 @@ import androidx.webkit.WebViewAssetLoader
 import de.dertyp7214.colorutilsc.ColorUtilsC
 import de.dertyp7214.rboardthemecreator.R
 import de.dertyp7214.rboardthemecreator.Zip
+import de.dertyp7214.rboardthemecreator.core.capitalize
 import de.dertyp7214.rboardthemecreator.core.toHex
 import de.dertyp7214.rboardthemecreator.data.ThemeColors
 import de.dertyp7214.rboardthemecreator.data.ThemeMetadata
+import de.dertyp7214.rboardthemecreator.screens.MainActivity
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.math.min
@@ -276,16 +278,29 @@ object ThemeUtils {
         )
     }
 
+    fun parsePreview(colors: ThemeColors) {
+        currentTemplate = colors.template
+        MainActivity.webViews.forEach { (name, webView) ->
+            val templateColors = ThemeColors(
+                colors.mainBackground,
+                colors.keyBackground,
+                colors.keyColor,
+                colors.secondaryKeyBackground,
+                colors.accentBackground,
+                name
+            )
+            parsePreview(templateColors, webView)
+        }
+    }
+
     @SuppressLint("NewApi", "ResourceType", "SetJavaScriptEnabled")
     fun parsePreview(
         colors: ThemeColors,
-        webView: WebView,
+        webView: WebView
     ) {
         val repoHelper = RepoHelper.instance ?: return
 
         val template = repoHelper.getTemplate(colors.template) ?: return
-
-        currentTemplate = template.name
 
         val rootStyle = """
             html, body {
@@ -315,6 +330,7 @@ object ThemeUtils {
             }
             .space {
                 width: 6.56em !important;
+                overflow: hidden !important;
             }
         """.trimIndent()
 
@@ -358,6 +374,9 @@ object ThemeUtils {
             template.preview.replace(
                 "<style>",
                 "$script\n<style>\n$rootStyle"
+            ).replace(
+                "<span class=\"letter lspace\">Rboard</span>",
+                "<span class=\"letter lspace\">${template.name.capitalize()}</span>"
             ),
             "text/html; charset=utf-8",
             "UTF-8", null
@@ -392,7 +411,11 @@ object ThemeUtils {
             observer = Observer<String> { base64 ->
                 listener(base64ToBitmap(base64))
                 called = true
-                observer?.let { observer -> currentPreview[themeColors.template]?.removeObserver(observer) }
+                observer?.let { observer ->
+                    currentPreview[themeColors.template]?.removeObserver(
+                        observer
+                    )
+                }
             }
             currentPreview[themeColors.template]?.observe(lifecycleOwner, observer)
 
@@ -405,14 +428,12 @@ object ThemeUtils {
         }
 
         updateColors = { themeColors ->
-            if (themeColors.template != currentTemplate)  {
-                parsePreview(themeColors, webView)
-            } else {
+            MainActivity.webViews.forEach { (_, webView) ->
                 webView.loadUrl(
                     "javascript:${setColorVars(themeColors)}"
                 )
-                currentTemplate = themeColors.template
             }
+            currentTemplate = themeColors.template
         }
     }
 
