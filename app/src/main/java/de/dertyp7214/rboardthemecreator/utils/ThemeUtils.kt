@@ -237,7 +237,7 @@ object ThemeUtils {
         val keyBackground =
             when {
                 amoled && dark -> context.getColor(R.color.theme_amoled_key_background)
-                monet && dark -> context.getColor(R.color.neutral_700)
+                monet && dark -> context.getColor(R.color.neutral2_800)
                 monet -> context.getColor(R.color.neutral_100)
                 else -> {
                     if (dark) lightenColor(mainBackground, .2f) else darkenColor(
