@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         val webViews: MutableMap<String, WebView> = mutableMapOf()
     }
+
     private val colorPicker by lazy { findViewById<ColorPicker>(R.id.colorPicker) }
     private val checkCardGroup by lazy { findViewById<CheckCardGroup>(R.id.checkCardGroup) }
 
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                 2 -> themeColors.keyColor = color
                 3 -> themeColors.secondaryKeyBackground = color
                 4 -> themeColors.accentBackground = color
+                5 -> themeColors.tertiaryBackground = color
             }
             refreshThemeColorMap()
             refresh(index)
@@ -130,9 +132,11 @@ class MainActivity : AppCompatActivity() {
                 repoManifestLiveData.postValue(manifest)
                 templateList.clear()
                 templateList.addAll(manifest.templates.map { it.value.name })
+                template = templateList.first()
                 runOnUiThread {
                     viewPager2.adapter?.notifyDataSetChanged()
-                    ThemeUtils.parsePreview(getColorSets())
+                    refreshThemeColorMap()
+                    refresh()
                 }
             }
         }
@@ -165,6 +169,7 @@ class MainActivity : AppCompatActivity() {
                                 themeColors.keyColor,
                                 themeColors.secondaryKeyBackground,
                                 themeColors.accentBackground,
+                                themeColors.tertiaryBackground,
                                 pageTemplate
                             )
                             ThemeUtils.parsePreview(customColors)
@@ -172,6 +177,7 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
+                    override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {}
                     override fun getCount() = templateList.size
                     override fun isViewFromObject(view: View, any: Any) = view == any
                 }
@@ -270,11 +276,11 @@ class MainActivity : AppCompatActivity() {
                 val generateTheme = findViewById<Button>(R.id.generateTheme)
                 val shareTheme = findViewById<MaterialButton>(R.id.shareButton)
 
-                monet.isChecked = true
+                monet.isChecked = false
                 amoled.isEnabled = false
 
                 tertiary.visibility =
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && monet.isChecked) View.VISIBLE else View.GONE
                 monet.visibility =
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
                 amoled.visibility = View.GONE
@@ -322,8 +328,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun shareTheme(install: Boolean) {
         openShareThemeDialog { dialog, name, author ->
-            val colors = getColorSets()
-            ThemeUtils.getPreviewImage(this, colors) { bitmap ->
+            ThemeUtils.getPreview(this, getColorSets()) { bitmap ->
+                val colors = getColorSets()
                 ThemeUtils.shareTheme(
                     this,
                     ThemeUtils.generateTheme(
@@ -370,7 +376,8 @@ class MainActivity : AppCompatActivity() {
                 "Key Background" to themeColors.keyBackground,
                 "Key Color" to themeColors.keyColor,
                 "Secondary Key Background" to themeColors.secondaryKeyBackground,
-                "Accent Background" to themeColors.accentBackground
+                "Accent Background" to themeColors.accentBackground,
+                "Tertiary Background" to themeColors.tertiaryBackground,
             )
         )
         return map
