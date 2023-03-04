@@ -172,6 +172,10 @@ class MainActivity : AppCompatActivity() {
                         }
                     }
 
+                    override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
+                        container.removeView(obj as View)
+                    }
+
                     override fun getCount() = templateList.size
                     override fun isViewFromObject(view: View, any: Any) = view == any
                 }
