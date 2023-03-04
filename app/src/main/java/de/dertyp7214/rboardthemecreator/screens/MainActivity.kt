@@ -135,6 +135,7 @@ class MainActivity : AppCompatActivity() {
                 template = templateList.first()
                 runOnUiThread {
                     viewPager2.adapter?.notifyDataSetChanged()
+                    refreshThemeColorMap()
                     refresh()
                 }
             }
@@ -275,11 +276,11 @@ class MainActivity : AppCompatActivity() {
                 val generateTheme = findViewById<Button>(R.id.generateTheme)
                 val shareTheme = findViewById<MaterialButton>(R.id.shareButton)
 
-                monet.isChecked = true
+                monet.isChecked = false
                 amoled.isEnabled = false
 
                 tertiary.visibility =
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && monet.isChecked) View.VISIBLE else View.GONE
                 monet.visibility =
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) View.VISIBLE else View.GONE
                 amoled.visibility = View.GONE
@@ -327,16 +328,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun shareTheme(install: Boolean) {
         openShareThemeDialog { dialog, name, author ->
-            val colors = getColorSets()
-            ThemeUtils.shareTheme(
-                this,
-                ThemeUtils.generateTheme(
-                    this, colors, name, author.ifEmpty { null },
-                    ThemeUtils.getPreview(colors)
-                ),
-                install
-            )
-            dialog.dismiss()
+            ThemeUtils.getPreview(this, getColorSets()) { bitmap ->
+                val colors = getColorSets()
+                ThemeUtils.shareTheme(
+                    this,
+                    ThemeUtils.generateTheme(
+                        this, colors, name, author.ifEmpty { null },
+                        bitmap
+                    ),
+                    install
+                )
+                dialog.dismiss()
+            }
         }
     }
 

@@ -6,7 +6,7 @@ import org.jetbrains.kotlin.config.KotlinCompilerVersion
 plugins {
     id("com.android.application")
     kotlin("android")
-    kotlin("kapt")
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
 }
 
 val kotlinVersion: String = KotlinCompilerVersion.VERSION
@@ -22,8 +22,8 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
         targetSdk = 33
-        versionCode = 110000
-        versionName = "1.1.0"
+        versionCode = 111000
+        versionName = "1.1.1"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -68,7 +68,6 @@ dependencies {
     implementation("de.dertyp7214:PRDownloader:v0.6.0")
     implementation("androidx.browser:browser:1.5.0")
     implementation("androidx.webkit:webkit:1.6.0")
-    kapt("com.github.bumptech.glide:compiler:4.14.2")
     implementation("de.dertyp7214:PreferencesPlus:1.1")
     implementation("com.github.murgupluoglu:flagkit-android:1.0.2")
     implementation("com.github.madrapps:pikolo:2.0.2")
@@ -95,4 +94,6 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
     implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
+
+    ksp("com.github.bumptech.glide:ksp:4.14.2")
 }

@@ -40,8 +40,8 @@ import java.io.FileOutputStream
 object ThemeUtils {
 
     private val previewListeners = mutableListOf<(String) -> Unit>()
-    var getPreviewImage: ((LifecycleOwner, ThemeColors, (Bitmap?) -> Unit) -> Unit) =
-        { _, _, c -> c(null) }
+    var getPreviewImage: HashMap<String, ((LifecycleOwner, ThemeColors, (Bitmap?) -> Unit) -> Unit)> =
+        HashMap()
         private set
     var updateColors: ((ThemeColors) -> Unit) = {}
         private set
@@ -49,10 +49,12 @@ object ThemeUtils {
     private var currentTemplate = ""
     private val currentPreview = HashMap<String, MutableLiveData<String>>()
 
-    fun getPreview(colors: ThemeColors): Bitmap? {
-        return currentPreview[colors.template]?.value?.let {
-            return base64ToBitmap(it)
-        }
+    fun getPreview(
+        lifecycleOwner: LifecycleOwner,
+        colors: ThemeColors,
+        callback: (Bitmap?) -> Unit
+    ) {
+        getPreviewImage[colors.template]?.invoke(lifecycleOwner, colors, callback) ?: callback(null)
     }
 
     @SuppressLint("NewApi", "ResourceType")
@@ -444,7 +446,7 @@ object ThemeUtils {
             }
         }
 
-        getPreviewImage = { lifecycleOwner, themeColors, listener ->
+        getPreviewImage[colors.template] = { lifecycleOwner, themeColors, listener ->
             webView.loadUrl(
                 "javascript:${getImage(themeColors)}"
             )
