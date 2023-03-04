@@ -36,8 +36,6 @@ import de.dertyp7214.rboardthemecreator.data.ThemeMetadata
 import de.dertyp7214.rboardthemecreator.screens.MainActivity
 import java.io.File
 import java.io.FileOutputStream
-import kotlin.math.min
-import kotlin.math.roundToInt
 
 object ThemeUtils {
 
@@ -50,6 +48,12 @@ object ThemeUtils {
 
     private var currentTemplate = ""
     private val currentPreview = HashMap<String, MutableLiveData<String>>()
+
+    fun getPreview(colors: ThemeColors): Bitmap? {
+        return currentPreview[colors.template]?.value?.let {
+            return base64ToBitmap(it)
+        }
+    }
 
     @SuppressLint("NewApi", "ResourceType")
     fun generateTheme(
@@ -75,9 +79,30 @@ object ThemeUtils {
         defs.appendLine("@def web_color_accent ${colors.accentBackground.toHex()};")
         defs.appendLine(
             "@def web_color_accent_pressed ${
-                shadeColor(
+                if (ColorUtils.calculateLuminance(
+                        colors.accentBackground
+                    ) > .5
+                ) darkenColor(
                     colors.accentBackground,
-                    .05f
+                    .2f
+                ).toHex() else lightenColor(
+                    colors.accentBackground,
+                    .2f
+                ).toHex()
+            };"
+        )
+        defs.appendLine("@def web_color_tertiary_key_bg ${colors.tertiaryBackground.toHex()};")
+        defs.appendLine(
+            "@def web_color_tertiary_key_bg_pressed ${
+                if (ColorUtils.calculateLuminance(
+                        colors.tertiaryBackground
+                    ) > .5
+                ) darkenColor(
+                    colors.tertiaryBackground,
+                    .2f
+                ).toHex() else lightenColor(
+                    colors.tertiaryBackground,
+                    .2f
                 ).toHex()
             };"
         )
@@ -88,9 +113,15 @@ object ThemeUtils {
         defs.appendLine("@def web_color_secondary_key_bg ${colors.secondaryKeyBackground.toHex()};")
         defs.appendLine(
             "@def web_color_secondary_key_bg_pressed ${
-                shadeColor(
+                if (ColorUtils.calculateLuminance(
+                        colors.secondaryKeyBackground
+                    ) > .5
+                ) darkenColor(
                     colors.secondaryKeyBackground,
-                    .05f
+                    .2f
+                ).toHex() else lightenColor(
+                    colors.secondaryKeyBackground,
+                    .2f
                 ).toHex()
             };"
         )
@@ -267,6 +298,16 @@ object ThemeUtils {
                     ColorUtilsC.HSLToColor(hsl)
                 }
             }
+        val tertiaryBg =
+            when {
+                monet && !tertiary -> context.getColor(R.color.accent_300)
+                else -> {
+                    val hsl = floatArrayOf(0f, 0f, 0f)
+                    ColorUtilsC.colorToHSL(accentBg, hsl)
+                    hsl[0] = if (hsl[0] > 180) hsl[0] - 180 else hsl[0] + 180
+                    ColorUtilsC.HSLToColor(hsl)
+                }
+            }
 
         return ThemeColors(
             mainBackground,
@@ -274,6 +315,7 @@ object ThemeUtils {
             keyColor,
             secondKeyBackground,
             accentBg,
+            tertiaryBg,
             template,
         )
     }
@@ -287,6 +329,7 @@ object ThemeUtils {
                 colors.keyColor,
                 colors.secondaryKeyBackground,
                 colors.accentBackground,
+                colors.tertiaryBackground,
                 name
             )
             parsePreview(templateColors, webView)
@@ -342,6 +385,7 @@ object ThemeUtils {
                 document.documentElement.style.setProperty('--key-color', '${themeColors.keyColor.toHex()}');
                 document.documentElement.style.setProperty('--second-key-bg', '${themeColors.secondaryKeyBackground.toHex()}');
                 document.documentElement.style.setProperty('--accent-bg', '${themeColors.accentBackground.toHex()}');
+                document.documentElement.style.setProperty('--tertiary-bg', '${themeColors.tertiaryBackground.toHex()}');
             })()
         """.trimIndent()
         }
@@ -408,7 +452,7 @@ object ThemeUtils {
             var observer: Observer<String>? = null
             if (!currentPreview.containsKey(themeColors.template))
                 currentPreview[themeColors.template] = MutableLiveData<String>()
-            observer = Observer<String> { base64 ->
+            observer = Observer { base64 ->
                 listener(base64ToBitmap(base64))
                 called = true
                 observer?.let { observer ->
@@ -435,15 +479,6 @@ object ThemeUtils {
             }
             currentTemplate = themeColors.template
         }
-    }
-
-    @Suppress("SameParameterValue")
-    private fun shadeColor(color: Int, factor: Float): Int {
-        val a = Color.alpha(color)
-        val r = (Color.red(color) * factor).roundToInt()
-        val g = (Color.green(color) * factor).roundToInt()
-        val b = (Color.blue(color) * factor).roundToInt()
-        return Color.argb(a, min(r, 255), min(g, 255), min(b, 255))
     }
 
     private fun base64ToBitmap(base64: String): Bitmap {

@@ -8,5 +8,6 @@ data class ThemeColors(
     @ColorInt var keyColor: Int,
     @ColorInt var secondaryKeyBackground: Int,
     @ColorInt var accentBackground: Int,
+    @ColorInt var tertiaryBackground: Int,
     var template: String,
 )

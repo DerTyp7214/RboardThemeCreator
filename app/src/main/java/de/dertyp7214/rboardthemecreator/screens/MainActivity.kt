@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         val webViews: MutableMap<String, WebView> = mutableMapOf()
     }
+
     private val colorPicker by lazy { findViewById<ColorPicker>(R.id.colorPicker) }
     private val checkCardGroup by lazy { findViewById<CheckCardGroup>(R.id.checkCardGroup) }
 
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                 2 -> themeColors.keyColor = color
                 3 -> themeColors.secondaryKeyBackground = color
                 4 -> themeColors.accentBackground = color
+                5 -> themeColors.tertiaryBackground = color
             }
             refreshThemeColorMap()
             refresh(index)
@@ -130,9 +132,10 @@ class MainActivity : AppCompatActivity() {
                 repoManifestLiveData.postValue(manifest)
                 templateList.clear()
                 templateList.addAll(manifest.templates.map { it.value.name })
+                template = templateList.first()
                 runOnUiThread {
                     viewPager2.adapter?.notifyDataSetChanged()
-                    ThemeUtils.parsePreview(getColorSets())
+                    refresh()
                 }
             }
         }
@@ -165,6 +168,7 @@ class MainActivity : AppCompatActivity() {
                                 themeColors.keyColor,
                                 themeColors.secondaryKeyBackground,
                                 themeColors.accentBackground,
+                                themeColors.tertiaryBackground,
                                 pageTemplate
                             )
                             ThemeUtils.parsePreview(customColors)
@@ -173,7 +177,6 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {}
-
                     override fun getCount() = templateList.size
                     override fun isViewFromObject(view: View, any: Any) = view == any
                 }
@@ -325,17 +328,15 @@ class MainActivity : AppCompatActivity() {
     private fun shareTheme(install: Boolean) {
         openShareThemeDialog { dialog, name, author ->
             val colors = getColorSets()
-            ThemeUtils.getPreviewImage(this, colors) { bitmap ->
-                ThemeUtils.shareTheme(
-                    this,
-                    ThemeUtils.generateTheme(
-                        this, colors, name, author.ifEmpty { null },
-                        bitmap
-                    ),
-                    install
-                )
-                dialog.dismiss()
-            }
+            ThemeUtils.shareTheme(
+                this,
+                ThemeUtils.generateTheme(
+                    this, colors, name, author.ifEmpty { null },
+                    ThemeUtils.getPreview(colors)
+                ),
+                install
+            )
+            dialog.dismiss()
         }
     }
 
@@ -372,7 +373,8 @@ class MainActivity : AppCompatActivity() {
                 "Key Background" to themeColors.keyBackground,
                 "Key Color" to themeColors.keyColor,
                 "Secondary Key Background" to themeColors.secondaryKeyBackground,
-                "Accent Background" to themeColors.accentBackground
+                "Accent Background" to themeColors.accentBackground,
+                "Tertiary Background" to themeColors.tertiaryBackground,
             )
         )
         return map
