@@ -1,0 +1,77 @@
+[versions]
+activity-ktx = "1.7.2"
+android-shell = "1.0.0"
+appcompat = "1.6.1"
+browser = "1.6.0"
+commons-text = "1.10.0"
+constraintlayout = "2.2.0-alpha12"
+core = "1.12.0"
+core-ktx = "1.12.0"
+espresso-core = "3.5.1"
+firebase-bom = "32.3.1"
+firebase-analytics-ktx = "21.3.0"
+firebase-messaging-ktx = "23.2.1"
+flagkit-android = "1.0.2"
+fragment-ktx = "1.6.1"
+github-ksp = "4.16.0"
+gradle = "8.3.0-alpha06"
+gson = "2.10.1"
+insetter = "0.6.1"
+junit = "1.1.5"
+junit-junit = "4.13.2"
+kotlin-gradle-plugin = "1.9.10"
+kotlin-reflect = "1.9.10"
+material = "1.9.0"
+navigation-ui-ktx = "2.7.3"
+navigation-fragment-ktx = "2.7.3"
+legacy-support-v4 = "1.0.0"
+pikolo = "2.0.2"
+prdownloader = "v0.6.0"
+preference-ktx = "1.2.1"
+preferencesplus = "1.1"
+simple-item-decoration = "1.0.0"
+vectorchildfinder = "1.0.0"
+webkit = "1.8.0"
+kspPlugin = "1.9.10-1.0.13"
+
+[libraries]
+android-shell = { module = "com.jaredrummler:android-shell", version.ref = "android-shell" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity-ktx" }
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+androidx-browser = { module = "androidx.browser:browser", version.ref = "browser" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+androidx-core = { module = "androidx.core:core", version.ref = "core" }
+espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "espresso-core" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
+androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit" }
+preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preference-ktx" }
+androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
+commons-text = { module = "org.apache.commons:commons-text", version.ref = "commons-text" }
+androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
+androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
+androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacy-support-v4" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+firebase-analytics = { module = "com.google.firebase:firebase-analytics", version.ref = "firebase-analytics-ktx" }
+firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase-analytics-ktx" }
+firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebase-messaging-ktx" }
+firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx", version.ref = "firebase-messaging-ktx" }
+flagkit-android = { module = "com.github.murgupluoglu:flagkit-android", version.ref = "flagkit-android" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "github-ksp" }
+glide-ksp = { module = "com.github.bumptech.glide:ksp", version.ref = "github-ksp" }
+gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
+gson = { module = "com.google.code.gson:gson", version.ref = "gson" }
+insetter = { module = "dev.chrisbanes.insetter:insetter", version.ref = "insetter" }
+junit = { module = "junit:junit", version.ref = "junit-junit" }
+kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin-gradle-plugin" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin-reflect" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin-reflect" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+pikolo = { module = "com.github.madrapps:pikolo", version.ref = "pikolo" }
+prdownloader = { module = "de.dertyp7214:PRDownloader", version.ref = "prdownloader" }
+preferencesplus = { module = "de.dertyp7214:PreferencesPlus", version.ref = "preferencesplus" }
+simple-item-decoration = { module = "com.bignerdranch.android:simple-item-decoration", version.ref = "simple-item-decoration" }
+vectorchildfinder = { module = "com.github.devsideal:VectorChildFinder", version.ref = "vectorchildfinder" }
+firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
+
+[plugins]
+ksp = { id = "com.google.devtools.ksp", version.ref = "kspPlugin" }
