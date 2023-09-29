@@ -1,19 +1,21 @@
 @file:Suppress("UNUSED_VARIABLE")
-
 plugins {
-    id("com.google.devtools.ksp") version "1.8.10-1.0.9" apply false
+    alias(libs.plugins.ksp) apply false
 }
-
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     repositories {
         google()
         mavenCentral()
+        maven("https://jitpack.io")
+        maven("https://maven.fabric.io/public")
+        maven("https://maven.google.com")
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
     }
     dependencies {
-        classpath("com.android.tools.build:gradle:8.1.0-alpha07")
+        classpath(libs.gradle)
         //noinspection DifferentKotlinGradleVersion
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.8.10")
+        classpath(libs.kotlin.gradle.plugin)
     }
 }
 
@@ -22,11 +24,8 @@ allprojects {
         google()
         mavenCentral()
         maven("https://jitpack.io")
-    }
-}
-
-tasks {
-    val clean by registering(Delete::class) {
-        delete(buildDir)
+        maven("https://maven.fabric.io/public")
+        maven("https://maven.google.com")
+        maven("https://oss.sonatype.org/content/repositories/snapshots/")
     }
 }
