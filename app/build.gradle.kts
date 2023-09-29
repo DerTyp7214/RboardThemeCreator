@@ -1,29 +1,25 @@
-@file:Suppress("UnstableApiUsage")
 
 import org.jetbrains.kotlin.config.JvmTarget
-import org.jetbrains.kotlin.config.KotlinCompilerVersion
-
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
+    alias(libs.plugins.ksp)
 }
-
-val kotlinVersion: String = KotlinCompilerVersion.VERSION
 
 android {
     namespace = "de.dertyp7214.rboardthemecreator"
 
-    compileSdk = 33
-
+    compileSdk = 34
+    buildToolsVersion = "34.0.0"
     buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
-        targetSdk = 33
-        versionCode = 111000
-        versionName = "1.1.1"
+        targetSdk = 34
+        versionCode = 120000
+        versionName = "1.2.0"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -43,11 +39,29 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_19
-        targetCompatibility = JavaVersion.VERSION_19
+        sourceCompatibility = JavaVersion.VERSION_20
+        targetCompatibility = JavaVersion.VERSION_20
     }
+
     kotlinOptions {
-        jvmTarget = JvmTarget.JVM_19.toString()
+        jvmTarget = JvmTarget.JVM_20.description
+        freeCompilerArgs += listOf(
+            "-P",
+            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+        )
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = JvmTarget.JVM_20.description
+        }
+    }
+
+    packaging {
+        jniLibs {
+            useLegacyPackaging = true
+        }
+        resources.excludes.add("/META-INF/{AL2.0,LGPL2.1}")
     }
 }
 
@@ -55,45 +69,45 @@ dependencies {
     implementation(project(":colorutilsc"))
     implementation(project(":rboardcomponents"))
 
-    implementation(platform("com.google.firebase:firebase-bom:30.3.2"))
-    implementation("com.google.firebase:firebase-messaging-ktx:23.1.2")
-    implementation("com.google.firebase:firebase-analytics-ktx:21.2.0")
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging.ktx)
+    implementation(libs.firebase.analytics.ktx)
     
-    implementation("com.google.firebase:firebase-analytics:21.2.0")
-    implementation("com.google.firebase:firebase-messaging:23.1.2")
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.messaging)
 
-    implementation("dev.chrisbanes.insetter:insetter:0.6.1")
+    implementation(libs.insetter)
     //noinspection DifferentStdlibGradleVersion
-    implementation("androidx.core:core:1.9.0")
-    implementation("de.dertyp7214:PRDownloader:v0.6.0")
-    implementation("androidx.browser:browser:1.5.0")
-    implementation("androidx.webkit:webkit:1.6.0")
-    implementation("de.dertyp7214:PreferencesPlus:1.1")
-    implementation("com.github.murgupluoglu:flagkit-android:1.0.2")
-    implementation("com.github.madrapps:pikolo:2.0.2")
-    implementation("com.github.devsideal:VectorChildFinder:1.0.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.5.3")
-    implementation("androidx.navigation:navigation-ui-ktx:2.5.3")
-    implementation("org.apache.commons:commons-text:1.10.0")
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation(libs.androidx.core)
+    implementation(libs.prdownloader)
+    implementation(libs.androidx.browser)
+    implementation(libs.androidx.webkit)
+    implementation(libs.preferencesplus)
+    implementation(libs.flagkit.android)
+    implementation(libs.pikolo)
+    implementation(libs.vectorchildfinder)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.espresso.core)
+    implementation(libs.androidx.legacy.support.v4)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.commons.text)
+    implementation(libs.core.ktx)
     //noinspection DifferentStdlibGradleVersion
-    implementation("androidx.appcompat:appcompat:1.7.0-alpha02")
-    implementation("com.google.android.material:material:1.9.0-alpha02")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.preference:preference-ktx:1.2.0")
-    implementation("androidx.activity:activity-ktx:1.6.1")
-    implementation("androidx.fragment:fragment-ktx:1.6.0-alpha06")
-    implementation("com.jaredrummler:android-shell:1.0.0")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.bignerdranch.android:simple-item-decoration:1.0.0")
-    testImplementation("junit:junit:4.13.2")
-    implementation("com.github.bumptech.glide:glide:4.14.2")
+    implementation(libs.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+    implementation(libs.preference.ktx)
+    implementation(libs.androidx.activity.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.android.shell)
+    implementation(libs.gson)
+    implementation(libs.simple.item.decoration)
+    testImplementation(libs.junit)
+    implementation(libs.glide)
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
-    implementation("org.jetbrains.kotlin:kotlin-reflect:1.8.10")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.8.10")
+    implementation(libs.kotlin.reflect)
+    implementation(libs.kotlin.stdlib)
 
-    ksp("com.github.bumptech.glide:ksp:4.14.2")
+    ksp(libs.glide.ksp)
 }
