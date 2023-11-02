@@ -9,7 +9,6 @@ on:
       - 'build.gradle.kts'
       - 'gradle.properties'
       - 'settings.gradle.kts'
-      - '.github/workflows/deployToGoogle.yml'
   workflow_dispatch:
 
 jobs:
@@ -31,6 +30,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 20
+          distribution: temurin
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
@@ -82,7 +82,7 @@ jobs:
           path: app/build/outputs/bundle/release/app-release.aab
 
       - name: Create whatsNew
-        run: mkdir distribution/; echo '${{ github.event.head_commit.message }}' > whatsnew-en-US
+        run: mkdir distribution/; echo '${{ github.event.head_commit.message }}' > distribution/whatsnew-en-US
 
       - name: Create service_account.json
         run: echo '${{ secrets.SERVICE_ACCOUNT_JSON }}' > service_account.json

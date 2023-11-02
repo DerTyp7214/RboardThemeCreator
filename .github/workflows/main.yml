@@ -36,6 +36,7 @@ jobs:
         with:
           distribution: temurin
           java-version: 20
+          distribution: temurin
 
       - name: Cache Gradle dependencies
         uses: actions/cache@v3
