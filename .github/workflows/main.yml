@@ -34,7 +34,6 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v3
         with:
-          distribution: temurin
           java-version: 20
           distribution: temurin
 
