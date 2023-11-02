@@ -25,7 +25,7 @@ jobs:
 
       - uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r26
+          ndk-version: r26b
 
       - name: Get Commit Message
         id: commitMessage
@@ -34,6 +34,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v3
         with:
+          distribution: temurin
           java-version: 20
           distribution: temurin
 
