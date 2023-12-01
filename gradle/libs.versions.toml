@@ -1,26 +1,27 @@
 [versions]
-activity-ktx = "1.8.0"
+activity-ktx = "1.9.0-alpha01"
 android-shell = "1.0.0"
 appcompat = "1.7.0-alpha03"
-browser = "1.7.0-rc01"
+browser = "1.8.0-beta01"
 commons-text = "1.11.0"
 constraintlayout = "2.2.0-alpha13"
-core = "1.13.0-alpha01"
-core-ktx = "1.13.0-alpha01"
-espresso-core = "3.6.0-alpha01"
-firebase-bom = "32.5.0"
+core = "1.13.0-alpha02"
+core-ktx = "1.13.0-alpha02"
+desugar_jdk_libs_nio = "2.0.4"
+espresso-core = "3.6.0-alpha02"
+firebase-bom = "32.6.0"
 firebase-analytics-ktx = "21.5.0"
 firebase-messaging-ktx = "23.3.1"
 flagkit-android = "1.0.2"
-fragment-ktx = "1.7.0-alpha06"
+fragment-ktx = "1.7.0-alpha07"
 github-ksp = "5.0.0-SNAPSHOT"
-gradle = "8.3.0-alpha11"
+gradle = "8.3.0-alpha16"
 gson = "2.10.1"
 insetter = "0.6.1"
 junit = "1.1.5"
 junit-junit = "4.13.2"
-kotlin-gradle-plugin = "1.9.20"
-kotlin-reflect = "1.9.20"
+kotlin-gradle-plugin = "1.9.21"
+kotlin-reflect = "1.9.21"
 material = "1.10.0"
 navigation-ui-ktx = "2.7.5"
 navigation-fragment-ktx = "2.7.5"
@@ -31,8 +32,8 @@ preference-ktx = "1.2.1"
 preferencesplus = "1.1"
 simple-item-decoration = "1.0.0"
 vectorchildfinder = "1.0.0"
-webkit = "1.9.0-beta01"
-kspPlugin = "1.9.20-1.0.13"
+webkit = "1.10.0-alpha01"
+kspPlugin = "1.9.21-1.0.15"
 
 [libraries]
 android-shell = { module = "com.jaredrummler:android-shell", version.ref = "android-shell" }
@@ -47,6 +48,7 @@ androidx-junit = { module = "androidx.test.ext:junit", version.ref = "junit" }
 preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preference-ktx" }
 androidx-webkit = { module = "androidx.webkit:webkit", version.ref = "webkit" }
 commons-text = { module = "org.apache.commons:commons-text", version.ref = "commons-text" }
+desugar_jdk_libs_nio = { module = "com.android.tools:desugar_jdk_libs_nio", version.ref = "desugar_jdk_libs_nio" }
 androidx-navigation-ui-ktx = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation-ui-ktx" }
 androidx-navigation-fragment-ktx = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation-fragment-ktx" }
 androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacy-support-v4" }
