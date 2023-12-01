@@ -18,7 +18,7 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
         targetSdk = 34
-        versionCode = 122001
+        versionCode = 122002
         versionName = "1.2.2"
 
         vectorDrawables.useSupportLibrary = true
@@ -39,12 +39,13 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_20
-        targetCompatibility = JavaVersion.VERSION_20
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlinOptions {
-        jvmTarget = JvmTarget.JVM_20.description
+        jvmTarget = JvmTarget.JVM_21.description
         freeCompilerArgs += listOf(
             "-P",
             "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
@@ -53,7 +54,7 @@ android {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = JvmTarget.JVM_20.description
+            jvmTarget = JvmTarget.JVM_21.description
         }
     }
 
@@ -108,6 +109,7 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar", "*.aar"))))
     implementation(libs.kotlin.reflect)
     implementation(libs.kotlin.stdlib)
+    coreLibraryDesugaring(libs.desugar.jdk.libs.nio)
 
     ksp(libs.glide.ksp)
 }
