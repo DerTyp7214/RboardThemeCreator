@@ -9,16 +9,16 @@ plugins {
 
 android {
     namespace = "de.dertyp7214.rboardthemecreator"
+    compileSdkPreview = "VanillaIceCream"
 
-    compileSdk = 34
-    buildToolsVersion = "34.0.0"
+    buildToolsVersion = "35.0.0 rc1"
     buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
         targetSdk = 34
-        versionCode = 125000
+        versionCode = 125001
         versionName = "1.2.5"
 
         vectorDrawables.useSupportLibrary = true
