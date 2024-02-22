@@ -2,7 +2,7 @@
 activity-ktx = "1.9.0-alpha03"
 android-shell = "1.0.0"
 appcompat = "1.7.0-alpha03"
-browser = "1.8.0-beta02"
+browser = "1.8.0-rc01"
 commons-text = "1.11.0"
 constraintlayout = "2.2.0-alpha13"
 core = "1.13.0-alpha05"
@@ -32,7 +32,7 @@ preference-ktx = "1.2.1"
 preferencesplus = "1.1"
 simple-item-decoration = "1.0.0"
 vectorchildfinder = "1.0.0"
-webkit = "1.10.0"
+webkit = "1.11.0-alpha02"
 kspPlugin = "1.9.22-1.0.17"
 
 [libraries]
