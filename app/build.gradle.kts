@@ -11,14 +11,14 @@ android {
     namespace = "de.dertyp7214.rboardthemecreator"
     compileSdkPreview = "VanillaIceCream"
 
-    buildToolsVersion = "35.0.0 rc1"
+    buildToolsVersion = "35.0.0 rc3"
     buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 23
         targetSdk = 34
-        versionCode = 125003
+        versionCode = 125005
         versionName = "1.2.5"
 
         vectorDrawables.useSupportLibrary = true
