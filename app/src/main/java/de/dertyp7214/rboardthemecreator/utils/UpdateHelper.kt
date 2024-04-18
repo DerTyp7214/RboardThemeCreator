@@ -18,11 +18,7 @@ class UpdateHelper(
 ) {
     companion object {
         private fun getPath(context: Context, folder: String): String {
-            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                File(context.filesDir, folder).absolutePath
-            } else {
-                File(context.getExternalFilesDir(""), folder).absolutePath
-            }
+            return File(context.filesDir, folder).absolutePath
         }
     }
 
