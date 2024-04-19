@@ -16,10 +16,10 @@ android {
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
-        minSdk = 23
+        minSdk = 26
         targetSdk = 34
-        versionCode = 125006
-        versionName = "1.2.5"
+        versionCode = 130000
+        versionName = "1.3.0"
 
         vectorDrawables.useSupportLibrary = true
     }

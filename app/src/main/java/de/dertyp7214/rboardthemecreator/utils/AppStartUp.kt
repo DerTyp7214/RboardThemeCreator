@@ -58,20 +58,18 @@ class AppStartUp(private val activity: AppCompatActivity) {
 
     private fun createNotificationChannels(activity: AppCompatActivity) {
         activity.apply {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                val nameDownload = getString(R.string.channel_name_download)
-                val channelIdDownload = getString(R.string.download_notification_channel_id)
-                val descriptionTextDownload = getString(R.string.channel_description_download)
-                val importanceDownload = NotificationManager.IMPORTANCE_LOW
-                val channelDownload =
-                    NotificationChannel(channelIdDownload, nameDownload, importanceDownload).apply {
-                        description = descriptionTextDownload
-                    }
+            val nameDownload = getString(R.string.channel_name_download)
+            val channelIdDownload = getString(R.string.download_notification_channel_id)
+            val descriptionTextDownload = getString(R.string.channel_description_download)
+            val importanceDownload = NotificationManager.IMPORTANCE_LOW
+            val channelDownload =
+                NotificationChannel(channelIdDownload, nameDownload, importanceDownload).apply {
+                    description = descriptionTextDownload
+                }
 
-                val notificationManager: NotificationManager =
-                    getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-                notificationManager.createNotificationChannel(channelDownload)
-            }
+            val notificationManager: NotificationManager =
+                getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channelDownload)
         }
     }
 }
