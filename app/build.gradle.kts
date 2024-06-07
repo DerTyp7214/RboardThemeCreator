@@ -11,14 +11,14 @@ android {
     namespace = "de.dertyp7214.rboardthemecreator"
     compileSdkPreview = "VanillaIceCream"
 
-    buildToolsVersion = "35.0.0 rc3"
+    buildToolsVersion = "35.0.0 rc4"
     buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 26
         targetSdk = 34
-        versionCode = 130000
+        versionCode = 130001
         versionName = "1.3.0"
 
         vectorDrawables.useSupportLibrary = true
@@ -40,12 +40,12 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_21
-        targetCompatibility = JavaVersion.VERSION_21
+        sourceCompatibility = JavaVersion.VERSION_22
+        targetCompatibility = JavaVersion.VERSION_22
     }
 
     kotlinOptions {
-        jvmTarget = JvmTarget.JVM_21.description
+        jvmTarget = JvmTarget.JVM_22.description
         freeCompilerArgs += listOf(
             "-P",
             "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
@@ -54,7 +54,7 @@ android {
 
     tasks.withType<KotlinCompile> {
         kotlinOptions {
-            jvmTarget = JvmTarget.JVM_21.description
+            jvmTarget = JvmTarget.JVM_22.description
         }
     }
 
