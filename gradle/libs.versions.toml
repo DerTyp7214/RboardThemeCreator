@@ -8,31 +8,32 @@ constraintlayout = "2.2.0-alpha13"
 core = "1.13.1"
 core-ktx = "1.13.1"
 desugar_jdk_libs_nio = "2.0.4"
-espresso-core = "3.6.0-rc01"
-firebase-bom = "33.1.0"
-firebase-analytics-ktx = "22.0.1"
+espresso-core = "3.6.1"
+firebase-bom = "33.1.1"
+firebase-analytics-ktx = "22.0.2"
 firebase-messaging-ktx = "24.0.0"
 flagkit-android = "1.0.2"
-fragment-ktx = "1.8.0-rc01"
+fragment-ktx = "1.8.1"
 github-ksp = "5.0.0-SNAPSHOT"
-gradle = "8.6.0-alpha05"
+gradle = "8.6.0-alpha08"
 gson = "2.11.0"
 insetter = "0.6.1"
-junit = "1.1.5"
+junit = "1.2.1"
 junit-junit = "4.13.2"
 kotlin-gradle-plugin = "2.0.0"
 kotlin-reflect = "2.0.0"
 material = "1.12.0"
-navigation-ui-ktx = "2.8.0-beta02"
-navigation-fragment-ktx = "2.8.0-beta02"
+navigation-ui-ktx = "2.8.0-beta04"
+navigation-fragment-ktx = "2.8.0-beta04"
 legacy-support-v4 = "1.0.0"
 pikolo = "2.0.2"
 prdownloader = "v0.6.0"
 preference-ktx = "1.2.1"
 preferencesplus = "1.1"
+r8 = "8.6.13-dev"
 simple-item-decoration = "1.0.0"
 vectorchildfinder = "1.0.0"
-webkit = "1.12.0-alpha01"
+webkit = "1.12.0-alpha02"
 kspPlugin = "2.0.0-1.0.22"
 
 [libraries]
@@ -71,6 +72,7 @@ material = { module = "com.google.android.material:material", version.ref = "mat
 pikolo = { module = "com.github.madrapps:pikolo", version.ref = "pikolo" }
 prdownloader = { module = "de.dertyp7214:PRDownloader", version.ref = "prdownloader" }
 preferencesplus = { module = "de.dertyp7214:PreferencesPlus", version.ref = "preferencesplus" }
+r8 = { module = "com.android.tools:r8", version.ref = "r8" }
 simple-item-decoration = { module = "com.bignerdranch.android:simple-item-decoration", version.ref = "simple-item-decoration" }
 vectorchildfinder = { module = "com.github.devsideal:VectorChildFinder", version.ref = "vectorchildfinder" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebase-bom" }
