@@ -34,7 +34,7 @@ jobs:
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 22
+          java-version: 21
           distribution: temurin
 
       - name: Cache Gradle dependencies
@@ -92,7 +92,7 @@ jobs:
           signingKey: ${{ secrets.SIGNING_KEY }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: '35.0.0-rc4'
+          buildToolsVersion: '35.0.0'
 
 
       - name: List files
