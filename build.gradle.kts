@@ -11,9 +11,11 @@ buildscript {
         maven("https://maven.fabric.io/public")
         maven("https://maven.google.com")
         maven("https://oss.sonatype.org/content/repositories/snapshots/")
+        maven ("https://storage.googleapis.com/r8-releases/raw")
     }
     dependencies {
         classpath(libs.gradle)
+        classpath(libs.r8)
         //noinspection DifferentKotlinGradleVersion
         classpath(libs.kotlin.gradle.plugin)
     }

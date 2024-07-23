@@ -1,32 +1,31 @@
-
 import org.jetbrains.kotlin.config.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     id("com.android.application")
+    kotlin("kapt")
     kotlin("android")
     alias(libs.plugins.ksp)
 }
 
 android {
     namespace = "de.dertyp7214.rboardthemecreator"
-    compileSdkPreview = "VanillaIceCream"
+    compileSdk = 35
 
-    buildToolsVersion = "35.0.0 rc4"
+    buildToolsVersion = "35.0.0"
     buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 26
-        targetSdk = 34
-        versionCode = 130002
-        versionName = "1.3.0"
+        targetSdk = 35
+        versionCode = 131003
+        versionName = "1.3.1"
 
         vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
         getByName("release") {
-            isDebuggable = false
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -40,22 +39,17 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_22
-        targetCompatibility = JavaVersion.VERSION_22
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlinOptions {
-        jvmTarget = JvmTarget.JVM_22.description
+        jvmTarget = JvmTarget.JVM_21.toString()
         freeCompilerArgs += listOf(
             "-P",
-            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true"
+            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true",
+            "-Xsuppress-version-warnings"
         )
-    }
-
-    tasks.withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = JvmTarget.JVM_22.description
-        }
     }
 
     packaging {
