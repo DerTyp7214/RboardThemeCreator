@@ -18,7 +18,7 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 26
         targetSdk = 35
-        versionCode = 131001
+        versionCode = 131002
         versionName = "1.3.1"
 
         vectorDrawables.useSupportLibrary = true
