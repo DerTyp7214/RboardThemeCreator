@@ -129,9 +129,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        enableEdgeToEdge()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             window.isNavigationBarContrastEnforced = false
-            enableEdgeToEdge()
         }
         doInBackground {
             repoHelper.cacheAndGetManifest()?.let { manifest ->
