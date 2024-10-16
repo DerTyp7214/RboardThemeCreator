@@ -18,8 +18,8 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 26
         targetSdk = 35
-        versionCode = 131004
-        versionName = "1.3.1"
+        versionCode = 132000
+        versionName = "1.3.2"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -77,8 +77,6 @@ dependencies {
     implementation(libs.prdownloader)
     implementation(libs.androidx.browser)
     implementation(libs.androidx.webkit)
-    implementation(libs.preferencesplus)
-    implementation(libs.flagkit.android)
     implementation(libs.pikolo)
     implementation(libs.vectorchildfinder)
     androidTestImplementation(libs.androidx.junit)
