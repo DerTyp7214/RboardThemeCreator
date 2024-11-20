@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.config.JvmTarget
-
 plugins {
     id("com.android.application")
     kotlin("kapt")
@@ -9,17 +7,17 @@ plugins {
 
 android {
     namespace = "de.dertyp7214.rboardthemecreator"
-    compileSdk = 35
+    compileSdkPreview = "Baklava"
 
-    buildToolsVersion = "35.0.0"
+    buildToolsVersion = "36.0.0 rc1"
     buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 26
         targetSdk = 35
-        versionCode = 131004
-        versionName = "1.3.1"
+        versionCode = 132002
+        versionName = "1.3.2"
 
         vectorDrawables.useSupportLibrary = true
     }
@@ -39,12 +37,12 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.VERSION_22
-        targetCompatibility = JavaVersion.VERSION_22
+        sourceCompatibility = JavaVersion.current()
+        targetCompatibility = JavaVersion.current()
     }
 
     kotlinOptions {
-        jvmTarget = JvmTarget.JVM_22.toString()
+        jvmTarget = JavaVersion.current().toString()
         freeCompilerArgs += listOf(
             "-P",
             "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true",
@@ -77,8 +75,6 @@ dependencies {
     implementation(libs.prdownloader)
     implementation(libs.androidx.browser)
     implementation(libs.androidx.webkit)
-    implementation(libs.preferencesplus)
-    implementation(libs.flagkit.android)
     implementation(libs.pikolo)
     implementation(libs.vectorchildfinder)
     androidTestImplementation(libs.androidx.junit)

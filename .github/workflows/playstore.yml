@@ -23,12 +23,12 @@ jobs:
 
       - uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r27
+          ndk-version: r27c
 
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 22
+          java-version: 23
           distribution: temurin
 
       - name: Cache Gradle dependencies
@@ -57,11 +57,12 @@ jobs:
         run: echo -n -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > /usr/local/lib/android/sdk/licenses/android-sdk-preview-license
 
       - name: Build Bundle
-        id: buildBundle
-        uses: gradle/gradle-build-action@v3
+        id: buildAllApks
+        uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: wrapper
-          arguments: bundleRelease
+            gradle-version: wrapper
+      - name: bundleRelease the project
+        run: ./gradlew bundleRelease
 
       - name: Sign artifact
         id: signArtifact
@@ -72,7 +73,7 @@ jobs:
           signingKey: ${{ secrets.SIGNING_KEY }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: '35.0.0'
+          buildToolsVersion: '36.0.0-rc1'
 
 
       - name: Upload Artifact

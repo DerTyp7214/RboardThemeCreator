@@ -1,40 +1,38 @@
 [versions]
-activity-ktx = "1.9.1"
+activity-ktx = "1.10.0-beta01"
 android-shell = "1.0.0"
 appcompat = "1.7.0"
 browser = "1.8.0"
 commons-text = "1.12.0"
-constraintlayout = "2.2.0-alpha14"
-core = "1.13.1"
-core-ktx = "1.13.1"
-desugar_jdk_libs_nio = "2.1.0"
+constraintlayout = "2.2.0"
+core = "1.15.0"
+core-ktx = "1.15.0"
+desugar_jdk_libs_nio = "2.1.3"
 espresso-core = "3.6.1"
-firebase-bom = "33.2.0"
-firebase-analytics-ktx = "22.1.0"
-firebase-messaging-ktx = "24.0.1"
-flagkit-android = "1.0.2"
-fragment-ktx = "1.8.2"
+firebase-bom = "33.6.0"
+firebase-analytics-ktx = "22.1.2"
+firebase-messaging-ktx = "24.1.0"
+fragment-ktx = "1.8.5"
 github-ksp = "5.0.0-SNAPSHOT"
-gradle = "8.7.0-alpha07"
+gradle = "8.9.0-alpha02"
 gson = "2.11.0"
 insetter = "0.6.1"
 junit = "1.2.1"
 junit-junit = "4.13.2"
-kotlin-gradle-plugin = "2.0.20"
-kotlin-reflect = "2.0.20"
+kotlin-gradle-plugin = "2.1.0-RC2"
+kotlin-reflect = "2.1.0-RC2"
 material = "1.12.0"
-navigation-ui-ktx = "2.8.0-rc01"
-navigation-fragment-ktx = "2.8.0-rc01"
+navigation-ui-ktx = "2.9.0-alpha03"
+navigation-fragment-ktx = "2.9.0-alpha03"
 legacy-support-v4 = "1.0.0"
 pikolo = "2.0.2"
 prdownloader = "v0.6.0"
 preference-ktx = "1.2.1"
-preferencesplus = "1.1"
-r8 = "8.6.27"
+r8 = "8.8.19"
 simple-item-decoration = "1.0.0"
 vectorchildfinder = "1.0.0"
-webkit = "1.12.0-beta01"
-kspPlugin = "2.0.20-1.0.24"
+webkit = "1.13.0-alpha01"
+kspPlugin = "2.1.0-RC2-1.0.28"
 
 [libraries]
 android-shell = { module = "com.jaredrummler:android-shell", version.ref = "android-shell" }
@@ -58,7 +56,6 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics", versio
 firebase-analytics-ktx = { module = "com.google.firebase:firebase-analytics-ktx", version.ref = "firebase-analytics-ktx" }
 firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebase-messaging-ktx" }
 firebase-messaging-ktx = { module = "com.google.firebase:firebase-messaging-ktx", version.ref = "firebase-messaging-ktx" }
-flagkit-android = { module = "com.github.murgupluoglu:flagkit-android", version.ref = "flagkit-android" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "github-ksp" }
 glide-ksp = { module = "com.github.bumptech.glide:ksp", version.ref = "github-ksp" }
 gradle = { module = "com.android.tools.build:gradle", version.ref = "gradle" }
@@ -71,7 +68,6 @@ kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "
 material = { module = "com.google.android.material:material", version.ref = "material" }
 pikolo = { module = "com.github.madrapps:pikolo", version.ref = "pikolo" }
 prdownloader = { module = "de.dertyp7214:PRDownloader", version.ref = "prdownloader" }
-preferencesplus = { module = "de.dertyp7214:PreferencesPlus", version.ref = "preferencesplus" }
 r8 = { module = "com.android.tools:r8", version.ref = "r8" }
 simple-item-decoration = { module = "com.bignerdranch.android:simple-item-decoration", version.ref = "simple-item-decoration" }
 vectorchildfinder = { module = "com.github.devsideal:VectorChildFinder", version.ref = "vectorchildfinder" }
