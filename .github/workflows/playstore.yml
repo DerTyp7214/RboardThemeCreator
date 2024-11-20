@@ -23,12 +23,12 @@ jobs:
 
       - uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r27b
+          ndk-version: r27c
 
       - name: Setup JDK
         uses: actions/setup-java@v4
         with:
-          java-version: 22
+          java-version: 23
           distribution: temurin
 
       - name: Cache Gradle dependencies
@@ -72,7 +72,7 @@ jobs:
           signingKey: ${{ secrets.SIGNING_KEY }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-          buildToolsVersion: '35.0.0'
+          buildToolsVersion: '36.0.0-rc1'
 
 
       - name: Upload Artifact
