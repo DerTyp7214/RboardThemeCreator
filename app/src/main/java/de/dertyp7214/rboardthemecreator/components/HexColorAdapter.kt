@@ -18,6 +18,7 @@ import de.dertyp7214.rboardthemecreator.core.openDialog
 import de.dertyp7214.rboardthemecreator.core.toHex
 import java.util.Locale
 import java.util.regex.Pattern
+import androidx.core.graphics.toColorInt
 
 class HexColorAdapter(
     private val activity: Activity,
@@ -106,9 +107,9 @@ class HexColorAdapter(
 
     private fun parseColor(string: String): Int {
         return try {
-            Color.parseColor(string.let {
+            string.let {
                 if (it.startsWith("#")) it else "#$it"
-            })
+            }.toColorInt()
         } catch (_: Exception) {
             Color.RED
         }
