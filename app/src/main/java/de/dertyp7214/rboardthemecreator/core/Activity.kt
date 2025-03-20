@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.preference.PreferenceManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import de.dertyp7214.rboardthemecreator.R
+import androidx.core.net.toUri
 
 val Activity.preferences: SharedPreferences
     get() = PreferenceManager.getDefaultSharedPreferences(this)
@@ -48,7 +49,7 @@ fun Activity.openUrl(url: String) {
                 .build()
         )
         .build()
-        .launchUrl(this, Uri.parse(url))
+        .launchUrl(this, url.toUri())
 }
 
 fun Activity.openDialog(

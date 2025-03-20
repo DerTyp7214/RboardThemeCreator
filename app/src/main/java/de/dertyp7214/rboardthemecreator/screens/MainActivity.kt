@@ -36,6 +36,7 @@ import de.dertyp7214.rboardthemecreator.utils.AppStartUp
 import de.dertyp7214.rboardthemecreator.utils.RepoHelper
 import de.dertyp7214.rboardthemecreator.utils.ThemeUtils
 import de.dertyp7214.rboardthemecreator.utils.doInBackground
+import androidx.core.view.isVisible
 
 @SuppressLint("NotifyDataSetChanged")
 class MainActivity : AppCompatActivity() {
@@ -359,9 +360,9 @@ class MainActivity : AppCompatActivity() {
         if (usingHex) return themeColors.apply { this.template = this@MainActivity.template }
 
         val dBool = darkMode.isChecked
-        val mBool = monet.visibility == View.VISIBLE && monet.isChecked
-        val tBool = mBool && tertiary.visibility == View.VISIBLE && tertiary.isChecked
-        val aBool = amoled.visibility == View.VISIBLE && dBool && amoled.isChecked
+        val mBool = monet.isVisible && monet.isChecked
+        val tBool = mBool && tertiary.isVisible && tertiary.isChecked
+        val aBool = amoled.isVisible && dBool && amoled.isChecked
 
         return ThemeUtils.buildColorSets(
             this, getColor(),

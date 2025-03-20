@@ -7,17 +7,17 @@ plugins {
 
 android {
     namespace = "de.dertyp7214.rboardthemecreator"
-    compileSdkPreview = "Baklava"
+    compileSdk = 36
 
-    buildToolsVersion = "36.0.0 rc1"
+    buildToolsVersion = "36.0.0"
     buildFeatures.buildConfig = true
 
     defaultConfig {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 26
-        targetSdk = 35
-        versionCode = 132003
-        versionName = "1.3.2"
+        targetSdk = 36
+        versionCode = 133000
+        versionName = "1.3.3"
 
         vectorDrawables.useSupportLibrary = true
     }
