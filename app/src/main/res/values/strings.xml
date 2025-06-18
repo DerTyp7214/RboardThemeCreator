@@ -1,9 +1,7 @@
 <resources translatable="false">
     <string name="app_name">Rboard Theme Creator</string>
     <string name="share_theme">Share Theme</string>
-    <string name="generate_theme">Do me theme pls</string>
     <string name="dark">Dark</string>
-    <string name="share_generate_theme">Do share my theme pls sur</string>
     <string name="monet">Monet</string>
     <string name="tertiary">Tertiary Accent</string>
     <string name="hide_secondary_label">Hide Secondary Label</string>
