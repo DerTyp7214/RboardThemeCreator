@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
     id("com.android.application")
     kotlin("kapt")
@@ -16,7 +18,7 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 26
         targetSdk = 36
-        versionCode = 133001
+        versionCode = 133002
         versionName = "1.3.3"
 
         vectorDrawables.useSupportLibrary = true
@@ -37,17 +39,18 @@ android {
     }
     compileOptions {
         isCoreLibraryDesugaringEnabled = true
-        sourceCompatibility = JavaVersion.current()
-        targetCompatibility = JavaVersion.current()
     }
 
-    kotlinOptions {
-        jvmTarget = JavaVersion.current().toString()
-        freeCompilerArgs += listOf(
-            "-P",
-            "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true",
-            "-Xsuppress-version-warnings"
-        )
+    kotlin {
+        compilerOptions {
+            freeCompilerArgs = freeCompilerArgs.get() + listOf(
+                "-P",
+                "plugin:androidx.compose.compiler.plugins.kotlin:suppressKotlinVersionCompatibilityCheck=true",
+                "-Xsuppress-version-warnings"
+            )
+            jvmToolchain(23)
+            jvmTarget.set(JvmTarget.JVM_23)
+        }
     }
 
     packaging {
