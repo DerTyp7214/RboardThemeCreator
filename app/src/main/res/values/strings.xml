@@ -1,9 +1,8 @@
-<resources translatable="false">
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
     <string name="app_name">Rboard Theme Creator</string>
     <string name="share_theme">Share Theme</string>
-    <string name="generate_theme">Do me theme pls</string>
     <string name="dark">Dark</string>
-    <string name="share_generate_theme">Do share my theme pls sur</string>
     <string name="monet">Monet</string>
     <string name="tertiary">Tertiary Accent</string>
     <string name="hide_secondary_label">Hide Secondary Label</string>
@@ -16,12 +15,12 @@
     <string name="gboard_not_installed">Gboard is not installed</string>
     <string name="install_rboard">Do you want to install Rboard?</string>
     <string name="rboard_not_installed">Rboard is not installed</string>
-    <string name="default_notification_channel_id">push_channel</string>
-    <string name="download_notification_channel_id">download_channel</string>
-    <string name="channel_name">Push Notifications</string>
-    <string name="channel_description">For updates and information.</string>
-    <string name="channel_name_download">Download Notifications</string>
-    <string name="channel_description_download">For download notifications</string>
+    <string name="default_notification_channel_id" translatable="false">push_channel</string>
+    <string name="download_notification_channel_id" translatable="false">download_channel</string>
+    <string name="channel_name" translatable="false">Push Notifications</string>
+    <string name="channel_description" translatable="false">For updates and information.</string>
+    <string name="channel_name_download" translatable="false">Download Notifications</string>
+    <string name="channel_description_download" translatable="false">For download notifications</string>
     <string name="download_update">Downloading Update</string>
     <string name="download_update_progress">Downloading Update (%s)</string>
     <string name="download_complete">Download complete</string>

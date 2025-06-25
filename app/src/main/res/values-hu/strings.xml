@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rboard Theme Creator</string>
+    <string name="share_theme">Téma megosztása</string>
+    <string name="dark">Sötét</string>
+    <string name="monet">Monet</string>
+    <string name="tertiary">Harmadlagos Kiemelő</string>
+    <string name="hide_secondary_label">Másodlagos címke elrejtése</string>
+    <string name="amoled">Amoled</string>
+    <string name="unreleased">Ez az alkalmazás még nem jelent meg, egyes funkciók nem feltétlenül működnek. Kérjük, ne jelezz hibákat a főcsoportnak.</string>
+    <string name="notice">Értesítés</string>
+    <string name="update_ready">Frissítés kész, szeretné telepíteni?</string>
+    <string name="update">Frissítés</string>
+    <string name="install_gboard">Szeretné telepíteni a Gboardot?</string>
+    <string name="gboard_not_installed">A Gboard nincs telepítve</string>
+    <string name="install_rboard">Szeretné telepíteni az Rboardot?</string>
+    <string name="rboard_not_installed">Az Rboard nincs telepítve</string>
+    <string name="download_update">Frissítés letöltése</string>
+    <string name="download_update_progress">Frissítés letöltése (%s)</string>
+    <string name="download_complete">Letöltés kész</string>
+    <string name="download_error">Hiba letöltés közben</string>
+    <string name="error">Error</string>
+    <string name="name">Téma neve</string>
+    <string name="addToManager">Téma hozzáadása</string>
+    <string name="author">Szerző</string>
+    <string name="colorWheel">Színkerék</string>
+    <string name="hexPicker">Hex picker</string>
+    <string name="pickColor">Válasszon színt</string>
+    <string name="pick">Válasszon</string>
+    <string name="cancel">Mégsem</string>
+    <string name="hex">HEX</string>
+    <string name="template">Sablon</string>
+</resources>

@@ -1,9 +1,8 @@
-<resources translatable="false">
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
     <string name="app_name">منشئ ثيمات Rboard</string>
     <string name="share_theme">مشاركة الثيم</string>
-    <string name="generate_theme">اصنع لي ثيم من فضلك</string>
     <string name="dark">داكن</string>
-    <string name="share_generate_theme">هل يمكنك مشاركة ثيمي من فضلك؟</string>
     <string name="monet">Monet</string>
     <string name="tertiary">لون إضافي ثالث</string>
     <string name="hide_secondary_label">إخفاء التسمية الثانوية</string>
