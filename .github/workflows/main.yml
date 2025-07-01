@@ -74,13 +74,13 @@ jobs:
       - name: Accept Preview SDK License
         run: echo -n -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > /usr/local/lib/android/sdk/licenses/android-sdk-preview-license
 
-      - name: Build Bundle
+      - name: Build apk
         id: buildAllApks
         uses: gradle/actions/setup-gradle@v4
         with:
             gradle-version: wrapper
-      - name: bundleRelease the project
-        run: ./gradlew bundleRelease
+      - name: AssembleRelease the project
+        run: ./gradlew assembleRelease
 
       - name: Get JSON
         id: metadataJson
