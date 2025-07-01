@@ -1,6 +1,6 @@
 <resources>
 
-    <style name="Dialog.RboardThemeCreator.MaterialAlertDialog" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
+    <style name="Dialog.RboardThemeCreator.MaterialAlertDialog" parent="@style/ThemeOverlay.Material3Expressive.MaterialAlertDialog">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MyApp.Dialog.Rounded
         </item>
     </style>

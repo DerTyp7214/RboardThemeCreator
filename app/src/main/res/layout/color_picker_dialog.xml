@@ -68,19 +68,18 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDice"
-            style="@style/Widget.Material3.Button.IconButton"
+            style="@style/Widget.Material3Expressive.Button.IconButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="4dp"
             app:icon="@drawable/ic_dice"
-            app:iconTint="?attr/colorOnSurfaceVariant"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCancel"
-            style="@style/Widget.Material3.Button.TextButton.Dialog"
+            style="@style/Widget.Material3Expressive.Button.TextButton.Dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
@@ -90,7 +89,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnPick"
-            style="@style/Widget.Material3.Button.TextButton.Dialog"
+            style="@style/Widget.Material3Expressive.Button.TextButton.Dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"

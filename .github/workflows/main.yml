@@ -25,7 +25,14 @@ jobs:
 
       - uses: nttld/setup-ndk@v1
         with:
-          ndk-version: r28
+          ndk-version: r28b
+      - name: Setup cmake
+        uses: jwlawson/actions-setup-cmake@v2
+        with:
+          cmake-version: '4.0.2'
+
+      - name: Setup Ninja
+        run: sudo apt-get install ninja-build
 
       - name: Get Commit Message
         id: commitMessage
@@ -67,13 +74,13 @@ jobs:
       - name: Accept Preview SDK License
         run: echo -n -e "\n84831b9409646a918e30573bab4c9c91346d8abd" > /usr/local/lib/android/sdk/licenses/android-sdk-preview-license
 
-      - name: Build Bundle
+      - name: Build apk
         id: buildAllApks
         uses: gradle/actions/setup-gradle@v4
         with:
             gradle-version: wrapper
-      - name: bundleRelease the project
-        run: ./gradlew bundleRelease
+      - name: AssembleRelease the project
+        run: ./gradlew assembleRelease
 
       - name: Get JSON
         id: metadataJson
@@ -86,7 +93,7 @@ jobs:
           
       - name: Sign artifact
         id: signArtifact
-        uses: ilharp/sign-android-release@v1
+        uses: ilharp/sign-android-release@v2
         with:
           releaseDir: app/build/outputs/apk/release
           keyAlias: ${{ secrets.KEYALIAS }}
