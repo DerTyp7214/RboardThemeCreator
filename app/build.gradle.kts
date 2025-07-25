@@ -18,7 +18,7 @@ android {
         applicationId = "de.dertyp7214.rboardthemecreator"
         minSdk = 26
         targetSdk = 36
-        versionCode = 133002
+        versionCode = 133003
         versionName = "1.3.3"
 
         vectorDrawables.useSupportLibrary = true
@@ -66,8 +66,6 @@ dependencies {
     implementation(project(":rboardcomponents"))
 
     implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.messaging.ktx)
-    implementation(libs.firebase.analytics.ktx)
     
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.messaging)
