@@ -15,12 +15,6 @@
     <string name="gboard_not_installed">Gboard غير مثبت</string>
     <string name="install_rboard">هل تريد تثبيت Rboard؟</string>
     <string name="rboard_not_installed">Rboard غير مثبت</string>
-    <string name="default_notification_channel_id">قناة الإشعارات</string>
-    <string name="download_notification_channel_id">قناة تنزيل الإشعارات</string>
-    <string name="channel_name">إشعارات الدفع</string>
-    <string name="channel_description">للتحديثات والمعلومات.</string>
-    <string name="channel_name_download">إشعارات التنزيل</string>
-    <string name="channel_description_download">لإشعارات التنزيل</string>
     <string name="download_update">جارٍ تنزيل التحديث</string>
     <string name="download_update_progress">جارٍ تنزيل التحديث (%s)</string>
     <string name="download_complete">اكتمل التنزيل</string>
